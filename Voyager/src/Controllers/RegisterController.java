@@ -26,6 +26,8 @@ public class RegisterController {
 		this.dataService = dataService;
 	}
 	
+	
+	
 	public ModelAndView commitUserRegisterUser() {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
