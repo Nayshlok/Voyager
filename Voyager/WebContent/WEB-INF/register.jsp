@@ -22,7 +22,7 @@
 	<article class="bodyContainer">
 		<h1>Register New User</h1>
 		<form method="post" enctype="multipart/form-data">
-			<label>Username:</label> <input name="username" />
+			<label>Username:</label> <input name="username" type="text"/>
 			<label>Password:</label><input	name="password" type="password" /> 
 			<label>Confirm Password:</label><input name="confirmPassword" type="password" />
 			<label>Email Address:</label><input name="email" type="email" />

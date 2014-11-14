@@ -1,9 +1,4 @@
 package Tester;
-import java.sql.Connection;
-import java.sql.Driver;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.Properties;
 
 import models.Account;
 import models.DataService;
@@ -23,7 +18,7 @@ public class Tester {
 		// TODO Auto-generated method stub
 		access = new DatabaseAccess();
 		//registerTest();
-		//loginTest();
+		loginTest();
 		//updateTest();
 		//removeUser();
 		//registerTest();

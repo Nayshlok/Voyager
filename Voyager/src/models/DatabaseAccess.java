@@ -9,6 +9,8 @@ import java.util.Properties;
 
 import com.microsoft.sqlserver.jdbc.SQLServerDriver;
 
+import exceptions.UsernameAlreadyExistsException;
+
 
 public class DatabaseAccess implements DataService {
 
@@ -59,6 +61,7 @@ public class DatabaseAccess implements DataService {
 		} catch (SQLException e) {
 			if(e.getMessage().contains("UNIQUE KEY")){
 				System.err.println("User has already been registered.");
+				throw new UsernameAlreadyExistsException();
 			}
 			else{
 				e.printStackTrace();

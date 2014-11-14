@@ -23,7 +23,8 @@ public class FileUploadController {
 	    response.setContentType("text/html;charset=UTF-8");
 
 	    // Create path components to save the file
-	    final String path = filePath;
+	    final String path = filePath + "\\resources\\images";
+	    System.out.println(filePath);
 	    final Part filePart = request.getPart("image");
 	    final String fileName = getFileName(filePart);
 
@@ -59,7 +60,7 @@ public class FileUploadController {
 	    return fileName;
 	}
 
-	private static String getFileName(final Part part) {
+	public static String getFileName(final Part part) {
 	    final String partHeader = part.getHeader("content-disposition");
 	    for (String content : part.getHeader("content-disposition").split(";")) {
 	        if (content.trim().startsWith("filename")) {
