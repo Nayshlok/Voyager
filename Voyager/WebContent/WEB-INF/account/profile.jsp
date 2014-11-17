@@ -5,7 +5,7 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Voyager &#124; ${model.user.username}</title>
+<title>Voyager &#124; ${currentUser.username}</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/main.css">
 <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
@@ -21,8 +21,8 @@
 			</ul>
 		</nav>
 	</header>
-	<article class="bodyContainer">
-		<h1>Welcome, ${model.user.username}!</h1>
+	<article class="bodyContainer"> 
+		<h1>Welcome, ${currentUser.username}!</h1>
 
 	</article>
 </body>

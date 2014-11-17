@@ -9,6 +9,7 @@ import java.util.Properties;
 
 import com.microsoft.sqlserver.jdbc.SQLServerDriver;
 
+import exceptions.BadLoginException;
 import exceptions.UsernameAlreadyExistsException;
 
 
@@ -33,10 +34,13 @@ public class DatabaseAccess implements DataService {
 				account = new Account(rs.getString("userName"), rs.getString("userEmail"), "", Roles.valueOf(rs.getString("userRole")), rs.getString("userPassword"));
 			}
 			else{
-				System.out.println("Failed login. Bad password/username combination");
+				throw new BadLoginException("The username/password combination is incorrect");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			if(e.getMessage().contains("result set has no current row")){
+				throw new BadLoginException("The username/password combination is incorrect");
+			}
 		}	
 		
 		return account;

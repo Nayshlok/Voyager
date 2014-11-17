@@ -31,7 +31,6 @@ public class RegisterServlet extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException{
 		super.init(config);
 		dataService = (DataService) this.getServletContext().getAttribute("data");
-		System.out.println(this.getServletContext().getRealPath(File.separator));
 	}
 	
 	/**
