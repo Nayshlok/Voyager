@@ -26,13 +26,13 @@
 
 	<article class="bodyContainer">
 		<h1>Register</h1>
-		<p><%= (request.getAttribute("errorMessage") == null ? "" : request.getAttribute("errorMessage")) %></p>
 		<form method="get" action="<%=request.getContextPath()%>/register">
 			<input type="submit" value="Register" id="submit" />
 		</form>
 		<br /> <br />
 		<hr />
 		<h1>Login</h1>
+		<p><%= (request.getAttribute("errorMessage") == null ? "" : request.getAttribute("errorMessage")) %></p>
 		<form method="post">
 			<label>Username:</label> <input name="username" /> <label>Password:</label>
 			<input name="password" type="password" /> <input type="submit"

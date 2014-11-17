@@ -15,6 +15,7 @@ import exceptions.UsernameAlreadyExistsException;
 
 public class DatabaseAccess implements DataService {
 
+	private final String connectionUrl = "jdbc:sqlserver://n8bu1j6855.database.windows.net:1433;database=VoyagerDB;user=VoyageLogin@n8bu1j6855;password={GroupP@ssword};encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
 	/* (non-Javadoc)
 	 * @see models.DataService#login(java.lang.String, java.lang.String)
 	 */
@@ -22,10 +23,10 @@ public class DatabaseAccess implements DataService {
 	public Account login(String username, String password){
 		Account account = null;
 		Driver driver = new SQLServerDriver();
-		String connectionUrl = "jdbc:sqlserver://n8bu1j6855.database.windows.net:1433;database=VoyagerDB;user=VoyageLogin@n8bu1j6855;password={GroupP@ssword};encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
 		try {
 			Connection con = driver.connect(connectionUrl, new Properties());
-			PreparedStatement statement = con.prepareStatement("Select userName, userPassword, userEmail, userRole from UserTable where userName = '" + username + "'");
+			PreparedStatement statement = con.prepareStatement("Select userName, userPassword, userEmail, userRole from UserTable where userName = ?");
+			statement.setString(1, username);
 			ResultSet rs = statement.executeQuery();
 			rs.next();
 			String storedPass = rs.getString("userPassword");
@@ -55,11 +56,14 @@ public class DatabaseAccess implements DataService {
 	@Override
 	public void registerUser(Account user){
 		Driver driver = new SQLServerDriver();
-		String connectionUrl = "jdbc:sqlserver://n8bu1j6855.database.windows.net:1433;database=VoyagerDB;user=VoyageLogin@n8bu1j6855;password={GroupP@ssword};encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
 		try {
 			Connection con = driver.connect(connectionUrl, new Properties());
 			PreparedStatement statement = con.prepareStatement("Insert INTO UserTable (userName, userPassword, userEmail, userRole) "
-					+ "VALUES ('" + user.getUsername() + "', '" + user.getPassword() + "', '" + user.getEmail() + "', '" + user.getRole().toString() + "');");
+					+ "VALUES (?, ?, ?, ?);");
+			statement.setString(1, user.getUsername());
+			statement.setString(2, user.getPassword());
+			statement.setString(3, user.getEmail());
+			statement.setString(4, user.getRole().toString());
 			statement.execute();
 			System.out.println("Registration Successful");
 		} catch (SQLException e) {
@@ -79,10 +83,10 @@ public class DatabaseAccess implements DataService {
 	@Override
 	public void removeUser(Account user){
 		Driver driver = new SQLServerDriver();
-		String connectionUrl = "jdbc:sqlserver://n8bu1j6855.database.windows.net:1433;database=VoyagerDB;user=VoyageLogin@n8bu1j6855;password={GroupP@ssword};encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
 		try {
 			Connection con = driver.connect(connectionUrl, new Properties());
-			PreparedStatement statement = con.prepareStatement("DELETE FROM UserTable WHERE userName='" + user.getUsername() + "'");
+			PreparedStatement statement = con.prepareStatement("DELETE FROM UserTable WHERE userName=?");
+			statement.setString(1, user.getUsername());
 			statement.execute();
 			System.out.println("Removal sucessful");
 		} catch (SQLException e) {
@@ -96,17 +100,20 @@ public class DatabaseAccess implements DataService {
 	@Override
 	public void updateUser(Account user){
 		Driver driver = new SQLServerDriver();
-		String connectionUrl = "jdbc:sqlserver://n8bu1j6855.database.windows.net:1433;database=VoyagerDB;user=VoyageLogin@n8bu1j6855;password={GroupP@ssword};encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
 		try {
 			Connection con = driver.connect(connectionUrl, new Properties());
 			PreparedStatement statement = con.prepareStatement("UPDATE UserTable "
-					+ "SET userPassword='" + user.getPassword() + "', userEmail='" + user.getEmail() + "', userRole='" + user.getRole().toString() + "'"
-					+ "WHERE userName='" + user.getUsername() + "'");
+					+ "SET userPassword=?, userEmail=?, userRole=?"
+					+ "WHERE userName=?");
+			statement.setString(1, user.getPassword());
+			statement.setString(2, user.getEmail());
+			statement.setString(3, user.getRole().toString());
+			statement.setString(4, user.getUsername());
 			statement.execute();
 			System.out.println("Update successful");
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}	
+		}
 	}
 	
 	/* (non-Javadoc)
@@ -114,13 +121,12 @@ public class DatabaseAccess implements DataService {
 	 */
 	@Override
 	public int getUserId(String user){
-		Account account = null;
 		int id = -1;
 		Driver driver = new SQLServerDriver();
-		String connectionUrl = "jdbc:sqlserver://n8bu1j6855.database.windows.net:1433;database=VoyagerDB;user=VoyageLogin@n8bu1j6855;password={GroupP@ssword};encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
 		try {
 			Connection con = driver.connect(connectionUrl, new Properties());
-			PreparedStatement statement = con.prepareStatement("Select userId from UserTable where userName = '" + user + "'");
+			PreparedStatement statement = con.prepareStatement("Select userId from UserTable where userName = ?");
+			statement.setString(1, user);
 			ResultSet rs = statement.executeQuery();
 			rs.next();
 			String storedId = rs.getString("userId");
@@ -138,10 +144,10 @@ public class DatabaseAccess implements DataService {
 	public String getUserName(int userId){
 		String userName = null;
 		Driver driver = new SQLServerDriver();
-		String connectionUrl = "jdbc:sqlserver://n8bu1j6855.database.windows.net:1433;database=VoyagerDB;user=VoyageLogin@n8bu1j6855;password={GroupP@ssword};encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
 		try {
 			Connection con = driver.connect(connectionUrl, new Properties());
-			PreparedStatement statement = con.prepareStatement("Select userName from UserTable where userId = '" + userId + "'");
+			PreparedStatement statement = con.prepareStatement("Select userName from UserTable where userId = ?");
+			statement.setInt(1, userId);
 			ResultSet rs = statement.executeQuery();
 			rs.next();
 			userName = rs.getString("userName");
@@ -159,18 +165,20 @@ public class DatabaseAccess implements DataService {
 	@Override
 	public void enterPost(Post post){
 		Driver driver = new SQLServerDriver();
-		String connectionUrl = "jdbc:sqlserver://n8bu1j6855.database.windows.net:1433;database=VoyagerDB;user=VoyageLogin@n8bu1j6855;password={GroupP@ssword};encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
 		try {
 			Connection con = driver.connect(connectionUrl, new Properties());
 			PreparedStatement statement = con.prepareStatement("Insert INTO PostTable (postTitle, postAuthorId, postTime, postContent) "
 					+ "VALUES ('" + post.getTitle() + "', '" + this.getUserId(post.getAuthor()) + "', CURRENT_TIMESTAMP, '" + post.getMessage() + "');");
+			statement.setString(1, post.getTitle());
+			statement.setInt(2, this.getUserId(post.getAuthor()));
+			statement.setString(3, post.getMessage());
 			statement.execute();
 			System.out.println("Successful post");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}	
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see models.DataService#retrievePost(java.lang.String)
 	 */
@@ -178,7 +186,6 @@ public class DatabaseAccess implements DataService {
 	public Post retrievePost(String postTitle){
 		Post post = null;
 		Driver driver = new SQLServerDriver();
-		String connectionUrl = "jdbc:sqlserver://n8bu1j6855.database.windows.net:1433;database=VoyagerDB;user=VoyageLogin@n8bu1j6855;password={GroupP@ssword};encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
 		try {
 			Connection con = driver.connect(connectionUrl, new Properties());
 			PreparedStatement statement = con.prepareStatement("Select postTitle, postAuthorId, postTime, postContent from PostTable where postTitle = '" + postTitle + "'");

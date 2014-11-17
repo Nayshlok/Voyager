@@ -25,7 +25,7 @@
 	</header>
 	<article class="bodyContainer">
 		<h1>Register New User</h1>
-		<p><%=(((RegisterUserModel)request.getAttribute("errorMessage")).getErrorMessage() == null ? "" : ((RegisterUserModel)request.getAttribute("errorMessage")).getErrorMessage()) %></p>
+		<p><%=(request.getAttribute("errorMessage") == null ? "" : request.getAttribute("errorMessage")) %></p>
 		<form method="post" enctype="multipart/form-data">
 			<label>Username:</label> <input name="username" type="text" value="<%= current.getUsername() %>"/>
 			<label>Password:</label><input	name="password" type="password" /> 
