@@ -56,10 +56,12 @@ public class RegisterController {
 		
 		if(!password.equals(confirmPassword)) {
 			model.setErrorMessage("Bad username/password. ");
+			request.setAttribute("attemptedAccount", new Account(username, email, avatarPath, Roles.User, password));
 			mv = new ModelAndView(model, "/WEB-INF/register.jsp");
 		}
 		if(!email.equals(confirmEmail)){
 			model.setErrorMessage(model.getErrorMessage() + "Emails did not match. ");
+			request.setAttribute("attemptedAccount", new Account(username, email, avatarPath, Roles.User, password));
 			mv = new ModelAndView(model, "/WEB-INF/register.jsp");
 		}
 		try {
@@ -69,6 +71,7 @@ public class RegisterController {
 			model.setUser(user);
 			mv = new ModelAndView(model, "/WEB-INF/account/profile.jsp");
 		} catch(UsernameAlreadyExistsException e) {
+			request.setAttribute("attemptedAccount", new Account(username, email, avatarPath, Roles.User, password));
 			model.setErrorMessage("Username has already been used.");
 			mv = new ModelAndView(model, "/WEB-INF/register.jsp");
 		} catch (ServletException e) {

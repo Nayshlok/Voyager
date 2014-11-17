@@ -49,7 +49,13 @@ public class RegisterServlet extends HttpServlet {
 		String path = this.getServletContext().getRealPath(File.separator);
 		RegisterController regControl = new RegisterController(request, response, new DatabaseAccess(), this.getServletContext().getRealPath(File.separator));
 		ModelAndView mv = regControl.commitUserRegisterUser();
-		RequestDispatcher rd = request.getRequestDispatcher(mv.getViewName());
-		rd.forward(request, response);
+		if(mv.getModel() != null){
+			request.setAttribute("errorMessage", mv.getModel());
+			RequestDispatcher rd = request.getRequestDispatcher(mv.getViewName());
+			rd.forward(request, response);
+		}
+		else{
+			response.sendRedirect(mv.getViewName());
+		}
 	}
 }

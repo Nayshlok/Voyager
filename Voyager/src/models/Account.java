@@ -7,43 +7,52 @@ public class Account{
 	private int UserID;
 	
 	
-	private String username;
+	private String userName;
 	
 	private String password;
 	
-	private String Email;
+	private String email;
 	
-	private String Avatar;
+	private String avatar;
 	
 	private Roles role;
 	
-	private List<String> History;
+	private List<String> history;
 	
-	private List<String> Comments;
+	private List<String> comments;
 	
 	
 	//private Set<AccountRole> roles = new HashSet<>();
 	
+	public Account(){
+		userName = "";
+		password = "";
+		email = "";
+		avatar = "";
+		role = Roles.User;
+		
+	}
+	
 	public Account(String UserName, String Email, String Avatar,Roles role, String password){
 		this.setUsername(UserName);
-		this.Email = Email;
-		this.Avatar = Avatar;
+		this.email = Email;
+		this.avatar = Avatar;
 		this.role = role;
 		this.password = password;
 
 	}
 	public String getEmail() {
-		return Email;
+		return email;
 	}
 	public void setEmail(String email) {
-		Email = email;
+		this.email = email;
 	}
 	
 	public String getAvatar() {
-		return Avatar;
+		return avatar;
 	}
 	public void setAvatar(String avatar) {
-		Avatar = avatar;
+		this.avatar = avatar;
 	}
 
 	public int getUserID() {
@@ -67,23 +76,23 @@ public class Account{
 	}
 
 	public List<String> getHistory() {
-		return History;
+		return history;
 	}
 	public void setHistory(List<String> history) {
-		History = history;
+		this.history = history;
 	}
 
 	public List<String> getComments() {
-		return Comments;
+		return comments;
 	}
 	public void setComments(List<String> comments) {
-		Comments = comments;
+		this.comments = comments;
 	}
 	public String getUsername() {
-		return username;
+		return userName;
 	}
 	public void setUsername(String username) {
-		this.username = username;
+		this.userName = username;
 	}
 
 }
