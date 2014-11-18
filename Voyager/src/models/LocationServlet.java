@@ -1,6 +1,5 @@
 package models;
 
-
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -10,21 +9,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Controllers.LoginController;
-
-
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class LocationServlet
  */
-@WebServlet("/login/*")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/locations/*")
+public class LocationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
+	private DataService da = new DatabaseAccess();
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
+		Comments list = new Comments();
+		list.AddComment(new CommentModel(15, "New Guy", "This is a test comment, for testing purposes"));
+		list.AddComment(new CommentModel(10, "Old Dude", "Radical!"));
+		list.AddComment(new CommentModel(1, "SuperCool", "Semi long comment, for test"));
+		
+		RequestDispatcher rd = request.getRequestDispatcher("/locations.jsp");
+		
+		request.setAttribute("comments", list.getCommentsList());
+		request.setAttribute("location", da.retrievePost("Test1"));
 		rd.forward(request, response);
 	}
 
@@ -32,12 +37,7 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		LoginController lc = new LoginController(request, new DatabaseAccess());
-//
-		ModelAndView mav = lc.commitUserLogin();
-		request.setAttribute("model", mav.getModel());
-		RequestDispatcher rd = request.getRequestDispatcher(mav.getViewName());
-		rd.forward(request, response);
+		// TODO Auto-generated method stub
 	}
 
 }
