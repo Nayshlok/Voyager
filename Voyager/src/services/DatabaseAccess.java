@@ -1,4 +1,4 @@
-package models;
+package services;
 
 import java.sql.Connection;
 import java.sql.Driver;
@@ -6,6 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
+
+import models.Account;
+import models.Post;
+import models.Roles;
 
 import com.microsoft.sqlserver.jdbc.SQLServerDriver;
 

@@ -1,4 +1,7 @@
-package models;
+package services;
+
+import models.Account;
+import models.Post;
 
 public interface DataService {
 

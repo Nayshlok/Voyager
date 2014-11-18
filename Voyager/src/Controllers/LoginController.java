@@ -2,8 +2,8 @@ package Controllers;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import services.DataService;
 import models.Account;
-import models.DataService;
 import models.ModelAndView;
 import models.RegisterUserModel;
 

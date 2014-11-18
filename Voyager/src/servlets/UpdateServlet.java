@@ -1,4 +1,5 @@
-package models;
+package servlets;
+
 
 
 import java.io.File;
@@ -14,16 +15,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Controllers.RegisterController;
+import services.DataService;
+import services.DatabaseAccess;
+import models.ModelAndView;
+import Controllers.UpdateController;
+
 
 
 /**
  * Servlet implementation class RegisterServlet
  */
-@WebServlet("/register/*")
+@WebServlet("/update/*")
 @MultipartConfig(location="", fileSizeThreshold=1024*1024, 
 maxFileSize=1024*1024*5, maxRequestSize=1024*1024*5*5)
-public class RegisterServlet extends HttpServlet {
+public class UpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DataService dataService;
 	
@@ -31,13 +36,14 @@ public class RegisterServlet extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException{
 		super.init(config);
 		dataService = (DataService) this.getServletContext().getAttribute("data");
+		System.out.println(this.getServletContext().getRealPath(File.separator));
 	}
 	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/register.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("update.jsp");
 		rd.forward(request, response);
 	}
 
@@ -46,15 +52,9 @@ public class RegisterServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String path = this.getServletContext().getRealPath(File.separator);
-		RegisterController regControl = new RegisterController(request, response, new DatabaseAccess(), this.getServletContext().getRealPath(File.separator));
+		UpdateController regControl = new UpdateController(request, response, new DatabaseAccess(), this.getServletContext().getRealPath(File.separator));
 		ModelAndView mv = regControl.commitUserRegisterUser();
-		if(mv.getModel() != null){
-			request.setAttribute("errorMessage", mv.getModel());
-			RequestDispatcher rd = request.getRequestDispatcher(mv.getViewName());
-			rd.forward(request, response);
-		}
-		else{
-			response.sendRedirect(mv.getViewName());
-		}
+		RequestDispatcher rd = request.getRequestDispatcher(mv.getViewName());
+		rd.forward(request, response);
 	}
 }

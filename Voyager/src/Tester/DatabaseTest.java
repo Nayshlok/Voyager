@@ -1,10 +1,11 @@
 package Tester;
 
 import models.Account;
-import models.DatabaseAccess;
 import models.Roles;
 
 import org.junit.Test;
+
+import services.DatabaseAccess;
 
 public class DatabaseTest {
 	private DatabaseAccess db = new DatabaseAccess();
