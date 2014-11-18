@@ -5,8 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Home</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main.css">
-<link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type='text/css'>
+
 </head>
 <body>
 <header>
