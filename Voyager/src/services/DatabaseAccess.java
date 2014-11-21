@@ -145,7 +145,7 @@ public class DatabaseAccess implements DataService {
 	 * @see models.DataService#getUserName(int)
 	 */
 	@Override
-	public String getUserName(int userId){
+	public String getUsername(int userId){
 		String userName = null;
 		Driver driver = new SQLServerDriver();
 		try {
@@ -195,7 +195,7 @@ public class DatabaseAccess implements DataService {
 			PreparedStatement statement = con.prepareStatement("Select postTitle, postAuthorId, postTime, postContent from PostTable where postTitle = '" + postTitle + "'");
 			ResultSet rs = statement.executeQuery();
 			rs.next();
-			post = new Post(rs.getString("postTitle"), rs.getString("postContent"), this.getUserName(rs.getInt("postAuthorId")));
+			post = new Post(rs.getString("postTitle"), rs.getString("postContent"), this.getUsername(rs.getInt("postAuthorId")));
 
 		} catch (SQLException e) {
 			e.printStackTrace();

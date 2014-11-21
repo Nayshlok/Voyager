@@ -2,15 +2,36 @@ package models;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="CommentTable")
 public class CommentModel 
 {
+	
+	@Id
+	@Column
+	@GeneratedValue(generator="fingerSequence", strategy=GenerationType.IDENTITY)
 	private int ID;
-	private String user;
+	@ManyToOne
+	@Column
+	private Account user;
+	@Column
 	private String comment = "";
+	@Column
 	private Date time;
 	
-	public CommentModel(int ID, String user, String comment)
+	public CommentModel(int ID, Account user, String comment)
 	{
 		this.ID = ID;
 		this.user = user;
@@ -26,7 +47,7 @@ public class CommentModel
 	public int getID() {
 		return ID;
 	}
-	public String getUser() {
+	public Account getUser() {
 		return user;
 	}
 

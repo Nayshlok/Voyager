@@ -1,36 +1,66 @@
 package models;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.persistence.UniqueConstraint;
+
+@NamedQueries({
+	@NamedQuery(name="byUsername", query="SELECT u FROM Account u WHERE u.username = :username")
+})
+
+@Entity
+@Table(name="AccountTable", uniqueConstraints=@UniqueConstraint(columnNames={"username"}))
 public class Account{
 	
-	private int UserID;
+	@Id
+	@Column
+	@GeneratedValue(generator="fingerSequence", strategy=GenerationType.IDENTITY)
+	private int userId;
+		
+	@Column
+	private String username;
 	
-	
-	private String userName;
-	
+	@Column
 	private String password;
 	
+	@Column
 	private String email;
 	
+	@Column
 	private String avatar;
 	
+	@Enumerated
+	@Column
 	private Roles role;
 	
-	private List<String> history;
+	@Transient
+	private Set<String> history;
 	
-	private List<String> comments;
-	
-	
-	//private Set<AccountRole> roles = new HashSet<>();
-	
+	@OneToMany(fetch=FetchType.LAZY, cascade={CascadeType.REMOVE, CascadeType.PERSIST}, mappedBy="user")
+	private Set<CommentModel> comments;
+
 	public Account(){
-		userName = "";
+		username = "";
 		password = "";
 		email = "";
 		avatar = "";
 		role = Roles.User;
-		
+		history = new HashSet<>();
+		comments = new HashSet<>();
 	}
 	
 	public Account(String UserName, String Email, String Avatar,Roles role, String password){
@@ -39,7 +69,8 @@ public class Account{
 		this.avatar = Avatar;
 		this.role = role;
 		this.password = password;
-
+		this.history = new HashSet<>();
+		this.comments = new HashSet<>();
 	}
 	public String getEmail() {
 		return email;
@@ -56,7 +87,7 @@ public class Account{
 	}
 
 	public int getUserID() {
-		return UserID;
+		return userId;
 	}
 	
 	
@@ -75,24 +106,24 @@ public class Account{
 		this.role = role;
 	}
 
-	public List<String> getHistory() {
+	public Set<String> getHistory() {
 		return history;
 	}
-	public void setHistory(List<String> history) {
+	public void setHistory(Set<String> history) {
 		this.history = history;
 	}
 
-	public List<String> getComments() {
+	public Set<CommentModel> getComments() {
 		return comments;
 	}
-	public void setComments(List<String> comments) {
+	public void setComments(Set<CommentModel> comments) {
 		this.comments = comments;
 	}
 	public String getUsername() {
-		return userName;
+		return username;
 	}
 	public void setUsername(String username) {
-		this.userName = username;
+		this.username = username;
 	}
 
 }

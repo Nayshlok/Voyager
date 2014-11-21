@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import services.Comments;
 import services.DataService;
 import services.DatabaseAccess;
 import models.CommentModel;
-import models.Comments;
 
 /**
  * Servlet implementation class LocationServlet
@@ -27,10 +27,10 @@ public class LocationServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Comments list = new Comments();
-		list.AddComment(new CommentModel(15, "New Guy", "This is a test comment, for testing purposes"));
+		/*list.AddComment(new CommentModel(15, "New Guy", "This is a test comment, for testing purposes"));
 		list.AddComment(new CommentModel(10, "Old Dude", "Radical!"));
 		list.AddComment(new CommentModel(1, "SuperCool", "Semi long comment, for test"));
-		
+		*/
 		RequestDispatcher rd = request.getRequestDispatcher("/locations.jsp");
 		
 		request.setAttribute("comments", list.getCommentsList());

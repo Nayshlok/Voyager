@@ -1,6 +1,8 @@
-package models;
+package services;
 
 import java.util.HashSet;
+
+import models.CommentModel;
 
 public class Comments 
 {

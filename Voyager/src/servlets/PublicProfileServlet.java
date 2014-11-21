@@ -32,7 +32,7 @@ public class PublicProfileServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("Username",db.getUserName(10));		request.setAttribute("comment","random comment");
+		request.setAttribute("Username",db.getUsername(10));		request.setAttribute("comment","random comment");
 		RequestDispatcher view = request.getRequestDispatcher("/publicProfile.jsp");
 	        view.forward(request, response);	}
 

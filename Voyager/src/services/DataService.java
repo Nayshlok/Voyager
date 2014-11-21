@@ -15,7 +15,7 @@ public interface DataService {
 
 	public int getUserId(String user);
 
-	public String getUserName(int userId);
+	public String getUsername(int userId);
 
 	public void enterPost(Post post);
 
