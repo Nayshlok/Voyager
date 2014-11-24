@@ -2,6 +2,7 @@ package Controllers;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -78,6 +79,27 @@ public class RegisterController {
 		}
 		
 		return mv;
+	}
+	
+	public ModelAndView getUserList(){
+		List<Account> allUsers = dataService.getAllUsers();
+		request.setAttribute("userList", allUsers);
+		return new ModelAndView(allUsers, "/WEB-INF/Users.jsp");
+	}
+	
+	public ModelAndView updateRole(){
+		Roles role = Roles.valueOf(request.getParameter("role"));
+		String username = request.getParameter("username");
+		Account toUpdate = dataService.getUser(username);
+		toUpdate.setRole(role);
+		dataService.updateUser(toUpdate);
+		return new ModelAndView(toUpdate, request.getContextPath() + "/register/users");
+	}
+	
+	public ModelAndView deleteUser(){
+		Account toRemove = dataService.getUser(request.getParameter("username"));
+		dataService.removeUser(toRemove);
+		return new ModelAndView(toRemove, request.getContextPath() + "/register/users");
 	}
 	
 	private String getValue(Part part) throws IOException {

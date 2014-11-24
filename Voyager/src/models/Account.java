@@ -19,7 +19,8 @@ import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 
 @NamedQueries({
-	@NamedQuery(name="byUsername", query="SELECT u FROM Account u WHERE u.username = :username")
+	@NamedQuery(name="byUsername", query="SELECT u FROM Account u WHERE u.username = :username"),
+	@NamedQuery(name="allUsers", query="SELECT u FROM Account u")
 })
 
 @Entity
@@ -28,7 +29,7 @@ public class Account{
 	
 	@Id
 	@Column
-	@GeneratedValue(generator="fingerSequence", strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int userId;
 		
 	@Column

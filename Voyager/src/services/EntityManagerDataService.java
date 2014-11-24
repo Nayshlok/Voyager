@@ -1,9 +1,11 @@
 package services;
 
 import java.util.Arrays;
+import java.util.List;
 
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
@@ -18,7 +20,7 @@ public class EntityManagerDataService implements DataService{
 	
 	@Override
 	public Account login(String username, String password) {
-		TypedQuery<Account> query = em.createNamedQuery("SELECT u FROM Account u WHERE u.username = :username", Account.class);
+		TypedQuery<Account> query = em.createNamedQuery("byUsername", Account.class);
 		query.setParameter("username", username);
 
 		Account user = query.getSingleResult();
@@ -41,8 +43,6 @@ public class EntityManagerDataService implements DataService{
 		em.getTransaction().begin();
 		em.persist(user);
 		em.getTransaction().commit();
-		Account testRead = em.find(Account.class, user.getUserID());
-		System.out.println(query.getResultList().isEmpty());
 	}
 
 	@Override
@@ -63,7 +63,16 @@ public class EntityManagerDataService implements DataService{
 
 	@Override
 	public int getUserId(String user) {
-		return em.find(Account.class, user).getUserID();
+		int id = -1;
+		TypedQuery<Account> query = em.createNamedQuery("byUsername", Account.class);
+		query.setParameter("username", user);
+		try{
+			Account found = query.getSingleResult();
+			id = found.getUserID();
+		} catch(NoResultException ex){
+			//ignore and leave id -1
+		}
+		return id;
 	}
 
 	@Override
@@ -80,6 +89,17 @@ public class EntityManagerDataService implements DataService{
 	public Post retrievePost(String postTitle) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<Account> getAllUsers() {
+		TypedQuery<Account> query = em.createNamedQuery("allUsers", Account.class);
+		return query.getResultList();
+	}
+
+	@Override
+	public Account getUser(String username) {
+		return em.find(Account.class, getUserId(username));
 	}
 
 	

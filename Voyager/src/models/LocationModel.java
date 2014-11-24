@@ -2,25 +2,48 @@ package models;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="LocationTable")
 public class LocationModel 
 {
-	private int ID;
+	@Id
+	@Column
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int id;
 
-	private int NumVisited;
+	@Column
+	private int numVisited;
 
-	private String Name;
+	@Column
+	private String name;
 
-	private String Picture;
+	@Column
+	private String picture;
 
-	private String Location;
+	@Column
+	private String location;
 	
-	private List<String> attractions;
+	@Column
+	@OneToMany(fetch=FetchType.LAZY, cascade={CascadeType.REMOVE, CascadeType.PERSIST}, mappedBy="location")
+	private List<AttractionModel> attractions;
 	
-	private String History;
+	@Column
+	private String history;
 	
 	public LocationModel(int ID, int NumVisited, String Name, String Picture, String Location, String History)
 	{
-		this.ID = ID;
+		this.id = ID;
 		this.setNumVisited(NumVisited);
 		this.setName(Name);
 		this.setPicture(Picture);
@@ -30,55 +53,55 @@ public class LocationModel
 	
 	
 	public long getID() {
-		return ID;
+		return id;
 	}
 
 
 	public int getNumVisited() {
-		return NumVisited;
+		return numVisited;
 	}
 	public void setNumVisited(int numVisited) {
-		NumVisited = numVisited;
+		this.numVisited = numVisited;
 	}
 
 
 	public String getName() {
-		return Name;
+		return name;
 	}
 	public void setName(String name) {
-		Name = name;
+		this.name = name;
 	}
 
 
 	public String getPicture() {
-		return Picture;
+		return picture;
 	}
 	public void setPicture(String picture) {
-		Picture = picture;
+		this.picture = picture;
 	}
 
 
 	public String getLocation() {
-		return Location;
+		return location;
 	}
 	public void setLocation(String location) {
-		Location = location;
+		this.location = location;
 	}
 
 
-	public List<String> getAttractions() {
+	public List<AttractionModel> getAttractions() {
 		return attractions;
 	}
-	public void setAttractions(List<String> attractions) {
+	public void setAttractions(List<AttractionModel> attractions) {
 		this.attractions = attractions;
 	}
 
 
 	public String getHistory() {
-		return History;
+		return history;
 	}
 	public void setHistory(String history) {
-		History = history;
+		this.history = history;
 	}
 	
 	

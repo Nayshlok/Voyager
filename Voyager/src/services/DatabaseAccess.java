@@ -5,6 +5,7 @@ import java.sql.Driver;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Properties;
 
 import models.Account;
@@ -202,5 +203,17 @@ public class DatabaseAccess implements DataService {
 		}	
 		
 		return post;
+	}
+
+	@Override
+	public List<Account> getAllUsers() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Account getUser(String username) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

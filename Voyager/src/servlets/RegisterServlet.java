@@ -16,7 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import services.DataService;
 import services.EntityManagerDataService;
+import models.Account;
 import models.ModelAndView;
+import models.Roles;
 import Controllers.RegisterController;
 
 
@@ -40,24 +42,48 @@ public class RegisterServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RegisterController regControl = new RegisterController(request, response, dataService, "");
+		if(request.getRequestURI().contains("users")){
+			if(((Account)request.getSession().getAttribute("account")) != null && ((Account)request.getSession().getAttribute("account")).getRole() == Roles.Admin){
+				ModelAndView mv = regControl.getUserList();
+				RequestDispatcher rd = request.getRequestDispatcher(mv.getViewName());
+				rd.forward(request, response);
+			}
+			else{
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Unauthorized.jsp");
+				rd.forward(request, response);
+			}
+		}
+		else{
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/register.jsp");
 		rd.forward(request, response);
+		}
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String path = this.getServletContext().getRealPath(File.separator);
 		RegisterController regControl = new RegisterController(request, response, dataService, this.getServletContext().getRealPath(File.separator));
-		ModelAndView mv = regControl.commitUserRegisterUser();
-		if(mv.getModel() != null){
-			request.setAttribute("errorMessage", mv.getModel());
-			RequestDispatcher rd = request.getRequestDispatcher(mv.getViewName());
-			rd.forward(request, response);
+		ModelAndView mv;
+		if(request.getRequestURI().contains("delete")){
+			mv = regControl.deleteUser();
+			response.sendRedirect(mv.getViewName());
+		}
+		else if(request.getRequestURI().contains("update")){
+			mv = regControl.updateRole();
+			response.sendRedirect(mv.getViewName());
 		}
 		else{
-			response.sendRedirect(mv.getViewName());
+			mv = regControl.commitUserRegisterUser();
+			if(mv.getModel() != null){
+				request.setAttribute("errorMessage", mv.getModel());
+				RequestDispatcher rd = request.getRequestDispatcher(mv.getViewName());
+				rd.forward(request, response);
+			}
+			else{
+				response.sendRedirect(mv.getViewName());
+			}
 		}
 	}
 }

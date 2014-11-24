@@ -1,11 +1,15 @@
 package services;
 
+import java.util.List;
+
 import models.Account;
 import models.Post;
 
 public interface DataService {
 
 	public Account login(String username, String password);
+	
+	public Account getUser(String username);
 
 	public void registerUser(Account user);
 
@@ -21,4 +25,5 @@ public interface DataService {
 
 	public Post retrievePost(String postTitle);
 
+	public List<Account> getAllUsers();
 }
