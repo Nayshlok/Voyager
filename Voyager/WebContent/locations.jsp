@@ -5,179 +5,122 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Voyager &#124; Submissions</title>
+<title>Voyager &#124; Locations</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/main.css">
-<link href='http://fonts.googleapis.com/css?family=Open+Sans'
-	rel='stylesheet' type='text/css'>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
 </head>
+
 <body>
-	<header>
-		<nav>
-			<ul>
-				<li>Home</li> &bull;
-				<li>Profile</li> &bull;
-				<li>Submit</li> &bull;
-				<li>Search</li>
-			</ul>
-		</nav>
-	</header>
-	<article id="wrapper">
-		<h1>Recent Submissions</h1>
-		<hr />
+    <section id="sideContainer">
+        <i class="fa fa-compass fa-5x compass"></i>
+        <nav>
+            <menu>
+                <section class="menuBg"><a href="index.html" class="navLink">HOME</a>
+                </section>
+                <section class="menuBg"><a href="locations.html" class="navLink">LOCATIONS</a>
+                </section>
+                <section class="menuBg"><a href="#" class="navLink">SEARCH</a>
+                </section>
+                <section class="menuBg"><a href="profile.html" class="navLink">PROFILE</a>
+                </section>
+                <hr/>
+                <section class="menuBg"><a href="register.html" class="navLink">REGISTER</a>
+                </section>
+                <section class="menuBg"><a href="login.html" class="navLink">LOGIN</a>
+                </section>
+            </menu>
+        </nav>
 
-		<!-- <section id="wrapper">-->
-		<section id="columns">
-			<section class="locationPost">
+        <footer>
+            <section id="footerContainer">
+                Voyager &copy; 2014
+                <br/>All Rights Reserved
+            </section>
+        </footer>
+    </section>
 
+    <article class="mainContainer">
+        <section class="topContent">
+            <h1>Submitted Locations</h1>
+
+        </section>
+
+        <article class="contentContainer">
+            <div id="wrapper">
+                <div id="columns">
+                    <div class="pin">
 				<img src="${pageContext.request.contextPath}/resources/ph.png" />
-				<section class="locationData">
-					<div class="title">
-						<h2 class="postTitle">${location.title}</h2>
-						<div class="author">${location.author}</div>
-					</div>
-					<hr />
-					<div class="message">${location.message}</div>
-					<hr />
-					<div class="comments">
-						<c:forEach var="comment" items="${comments}">
-							<section class="commentBox">
-							${comment.user} <br/>
-								<c:out value="${comment.comment}" />
-							</section>
-						</c:forEach>
-					</div>
-				</section>
-			</section>
+                        <hr/>
 
-			<section class="locationPost">
+                        <h3>${location.name}</h3>
+                        <h3 class="author">${location.author}</h3>
+                        <p>
+                            ${location.description} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat consectetur pellentesque. Nam ac elit risus, ac blandit dui. Duis rutrum porta tortor ut convallis. Duis rutrum porta tortor ut convallis.
+                        </p>
+                    </div>
+                    <div class="pin">
 				<img src="${pageContext.request.contextPath}/resources/ph2.jpg" />
-				<section class="locationData">
-					<div class="title">
-						<h2 class="postTitle">${location.title}</h2>
-						<div class="author">${location.author}</div>
-					</div>
-					<hr />
-					<div class="message">${location.message}</div>
-					<hr />
-					<div class="comments">
-						<c:forEach var="comment" items="${comments}">
-							<section class="commentBox">
-							${comment.user} <br/>
-								<c:out value="${comment.comment}" />
-							</section>
-						</c:forEach>
-					</div>
-				</section>
-			</section>
-
-			<section class="locationPost">
+                        <hr/>
+                        <h3>${location.name}</h3>
+                        <h3 class="author">${location.author}</h3>
+                        <p>
+                            ${location.description} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat consectetur pellentesque. Nam ac elit risus, ac blandit dui. Duis rutrum porta tortor ut convallis. Duis rutrum porta tortor ut convallis.
+                        </p>
+                    </div>
+                    <div class="pin">
 				<img src="${pageContext.request.contextPath}/resources/ph3.jpg" />
-				<section class="locationData">
-					<div class="title">
-						<h2 class="postTitle">${location.title}</h2>
-						<div class="author">${location.author}</div>
-					</div>
-					<hr />
-					<div class="message">${location.message}</div>
-					<hr />
-					<div class="comments">
-						<c:forEach var="comment" items="${comments}">
-							<section class="commentBox">
-							${comment.user} <br/>
-								<c:out value="${comment.comment}" />
-							</section>
-						</c:forEach>
-					</div>
-				</section>
-			</section>
+                        <hr/>
+                        <h3>${location.name}</h3>
+                        <h3 class="author">${location.author}</h3>
+                        <p>
+                            ${location.description} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat consectetur pellentesque. Nam ac elit risus, ac blandit dui.
+                        </p>
+                    </div>
 
-			<section class="locationPost">
+                    <div class="pin">
 				<img src="${pageContext.request.contextPath}/resources/ph2.jpg" />
-				<section class="locationData">
-					<div class="title">
-						<h2 class="postTitle">${location.title}</h2>
-						<div class="author">${location.author}</div>
-					</div>
-					<hr />
-					<div class="message">${location.message}</div>
-					<hr />
-					<div class="comments">
-						<c:forEach var="comment" items="${comments}">
-							<section class="commentBox">
-							${comment.user} <br/>
-								<c:out value="${comment.comment}" />
-							</section>
-						</c:forEach>
-					</div>
-				</section>
-			</section>
+                        <hr/>
+                        <h3>${location.name}</h3>
+                        <h3 class="author">${location.author}</h3>
+                        <p>
+                            ${location.description} Lorem ipsum dolor sit amet.
+                        </p>
+                    </div>
 
-			<section class="locationPost">
+                    <div class="pin">
 				<img src="${pageContext.request.contextPath}/resources/ph.png" />
-				<section class="locationData">
-					<div class="title">
-						<h2 class="postTitle">${location.title}</h2>
-						<div class="author">${location.author}</div>
-					</div>
-					<hr />
-					<div class="message">${location.message}</div>
-					<hr />
-					<div class="comments">
-						<c:forEach var="comment" items="${comments}">
-							<section class="commentBox">
-							${comment.user} <br/>
-								<c:out value="${comment.comment}" />
-							</section>
-						</c:forEach>
-					</div>
-				</section>
-			</section>
+                        <hr/>
+                         <h3>${location.name}</h3>
+                        <h3 class="author">${location.author}</h3>
+                        <p>
+                            ${location.description} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat consectetur pellentesque. Nam ac elit risus, ac blandit dui.
+                        </p>
+                    </div>
 
-			<section class="locationPost">
+                    <div class="pin">
 				<img src="${pageContext.request.contextPath}/resources/ph3.jpg" />
-				<section class="locationData">
-					<div class="title">
-						<h2 class="postTitle">${location.title}</h2>
-						<div class="author">${location.author}</div>
-					</div>
-					<hr />
-					<div class="message">${location.message}</div>
-					<hr />
-					<div class="comments">
-						<c:forEach var="comment" items="${comments}">
-							<section class="commentBox">
-							${comment.user} <br/>
-								<c:out value="${comment.comment}" />
-							</section>
-						</c:forEach>
-					</div>
-				</section>
-			</section>
+                        <hr/>
+                         <h3>${location.name}</h3>
+                        <h3 class="author">${location.author}</h3>
+                        <p>
+                            ${location.description} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat consectetur pellentesque. Nam ac elit risus, ac blandit dui. Duis rutrum porta tortor ut convallis. Duis rutrum porta tortor ut convallis.
+                        </p>
+                    </div>
 
-			<section class="locationPost">
+                    <div class="pin">
 				<img src="${pageContext.request.contextPath}/resources/ph.png" />
-				<section class="locationData">
-					<div class="title">
-						<h2 class="postTitle">${location.title}</h2>
-						<div class="author">${location.author}</div>
-					</div>
-					<hr />
-					<div class="message">${location.message}</div>
-					<hr />
-					<div class="comments">
-						<c:forEach var="comment" items="${comments}">
-							<section class="commentBox">
-							${comment.user} 
-							<br/>
-								<c:out value="${comment.comment}" />
-							</section>
-						</c:forEach>
-					</div>
-				</section>
-			</section>
-		</section>
-		<!-- </section>-->
-	</article>
+                        <hr/>
+                         <h3>${location.name}</h3>
+                        <h3 class="author">${location.author}</h3>
+                        <p>
+                            ${location.description} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat consectetur pellentesque. Nam ac elit risus, ac blandit dui. Duis rutrum porta tortor ut convallis.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </article>
 </body>
 </html>

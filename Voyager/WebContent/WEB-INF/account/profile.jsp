@@ -8,22 +8,91 @@
 <title>Voyager &#124; ${currentUser.username}</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/main.css">
-<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-</head>
-<body>
-	<header>
-		<nav>
-			<ul>
-				<li>Home</li> &bull;
-				<li>Profile</li> &bull;
-				<li>Submit</li> &bull;
-				<li>Search</li>
-			</ul>
-		</nav>
-	</header>
-	<article class="bodyContainer"> 
-		<h1>Welcome, ${currentUser.username}!</h1>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
-	</article>
+
+</head>
+
+<body>
+    <section id="sideContainer">
+        <i class="fa fa-compass fa-5x compass"></i>
+        <nav>
+           <menu>
+                <section class="menuBg"><a href="index.html" class="navLink">HOME</a>
+                </section>
+                <section class="menuBg"><a href="locations.html" class="navLink">LOCATIONS</a>
+                </section>
+                <section class="menuBg"><a href="#" class="navLink">SEARCH</a>
+                </section>
+                <section class="menuBg"><a href="profile.html" class="navLink">PROFILE</a>
+                </section>
+                <hr/>
+                <section class="menuBg"><a href="register.html" class="navLink">REGISTER</a>
+                </section>
+                <section class="menuBg"><a href="login.html" class="navLink">LOGIN</a>
+                </section>
+            </menu>
+        </nav>
+
+         <footer>
+            <section id="footerContainer">
+                Voyager &copy; 2014 <br/>
+                All Rights Reserved
+            </section>
+        </footer>
+    </section>
+
+    <article class="mainContainer">
+        <section class="topContent">
+            <h1>${account.username}</h1>
+
+            <section class="hrContainer">
+                <hr/>
+            </section>
+
+
+            <img src="assets/images/avatar.png" alt="avatar" />
+            <br/>
+            <br/>
+            <section class="content"></section>
+        </section>
+
+
+        <h2>Recent Comments</h2>
+        <hr class="div" />
+        <article class="contentContainer">
+            <section class="commentContainer">
+                <h3>${comment.title}</h3> 
+                <hr/>
+                <br/>
+                <p class="commentBody">${comment.body}
+                    <br/>
+                    <br/>
+                    <cite>Submitted By &mdash; ${comment.author}</cite>
+                </p>
+
+            </section>
+            <section class="commentContainer">
+                <h3>${comment.title}</h3> 
+                <hr/>
+                <br/>
+                <p class="commentBody">${comment.body}
+                    <br/>
+                    <br/>
+                    <cite>Submitted By &mdash; ${comment.author}</cite>
+                </p>
+            </section>
+            <section class="commentContainer">
+                <h3>${comment.title}</h3> 
+                <hr/>
+                <br/>
+                <p class="commentBody">${comment.body} 
+                    <br/>
+                    <br/>
+                    <cite>Submitted By &mdash; ${comment.author}</cite>
+                </p>
+            </section>
+        </article>
+    </article>
 </body>
 </html>
