@@ -17,18 +17,13 @@
         <i class="fa fa-compass fa-5x compass"></i>
         <nav>
             <menu>
-                <section class="menuBg"><a href="${pageContext.request.contextPath}/home" class="navLink">HOME</a>
-                </section>
-                <section class="menuBg"><a href="${pageContext.request.contextPath}/locations" class="navLink">LOCATIONS</a>
-                </section>
-                <section class="menuBg"><a href="profile.html" class="navLink">PROFILE</a>
-                </section>
-                <hr/>
-                <section class="menuBg"><a href="${pageContext.request.contextPath}/register" class="navLink">REGISTER</a>
-                </section>
-                <section class="menuBg"><a href="${pageContext.request.contextPath}/login" class="navLink">LOGIN</a>
-                </section>
-            </menu>
+				<section class="menuBg"><a href="${pageContext.request.contextPath}/voyager/home" class="navLink">HOME</a></section>
+				<section class="menuBg"><a href="${pageContext.request.contextPath}/voyager/locations" class="navLink">LOCATIONS</a></section>
+				<section class="menuBg"><a href="profile.html" class="navLink">PROFILE</a></section>
+				<hr />
+				<section class="menuBg"><a href="${pageContext.request.contextPath}/voyager/register" class="navLink">REGISTER</a></section>
+				<section class="menuBg"><a href="${pageContext.request.contextPath}/voyager/login" class="navLink">LOGIN</a></section>
+			</menu>
         </nav>
 
         <footer>
@@ -48,6 +43,7 @@
         <article class="contentContainer">
             <div id="wrapper">
                 <div id="columns">
+                <a href="${pageContext.request.contextPath}/voyager/loc/1">
                     <div class="pin">
 				<img src="${pageContext.request.contextPath}/resources/ph.png" />
                         <hr/>
@@ -57,7 +53,7 @@
                         <p>
                             ${location.message} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat consectetur pellentesque. Nam ac elit risus, ac blandit dui. Duis rutrum porta tortor ut convallis. Duis rutrum porta tortor ut convallis.
                         </p>
-                    </div>
+                    </div></a>
                     <div class="pin">
 				<img src="${pageContext.request.contextPath}/resources/ph2.jpg" />
                         <hr/>

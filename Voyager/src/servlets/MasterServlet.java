@@ -46,6 +46,9 @@ public class MasterServlet extends HttpServlet {
 			rd = request.getRequestDispatcher("locations.jsp");
 		} else if(request.getPathInfo().equals("/login")) {
 			rd = request.getRequestDispatcher("/WEB-INF/account/login.jsp");
+		} else if(request.getPathInfo().equals("/loc/1")) {
+			request.setAttribute("location", dataService.retrievePost("Test1"));
+			rd = request.getRequestDispatcher("/location.jsp");
 		} else {
 			rd = request.getRequestDispatcher("/WEB-INF/404.jsp");
 		}
