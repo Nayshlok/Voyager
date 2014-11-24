@@ -52,65 +52,65 @@
 				<img src="${pageContext.request.contextPath}/resources/ph.png" />
                         <hr/>
 
-                        <h3>${location.name}</h3>
+                        <h3>${location.title}</h3>
                         <h3 class="author">${location.author}</h3>
                         <p>
-                            ${location.description} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat consectetur pellentesque. Nam ac elit risus, ac blandit dui. Duis rutrum porta tortor ut convallis. Duis rutrum porta tortor ut convallis.
+                            ${location.message} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat consectetur pellentesque. Nam ac elit risus, ac blandit dui. Duis rutrum porta tortor ut convallis. Duis rutrum porta tortor ut convallis.
                         </p>
                     </div>
                     <div class="pin">
 				<img src="${pageContext.request.contextPath}/resources/ph2.jpg" />
                         <hr/>
-                        <h3>${location.name}</h3>
+                        <h3>${location.title}</h3>
                         <h3 class="author">${location.author}</h3>
                         <p>
-                            ${location.description} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat consectetur pellentesque. Nam ac elit risus, ac blandit dui. Duis rutrum porta tortor ut convallis. Duis rutrum porta tortor ut convallis.
+                            ${location.message} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat consectetur pellentesque. Nam ac elit risus, ac blandit dui. Duis rutrum porta tortor ut convallis. Duis rutrum porta tortor ut convallis.
                         </p>
                     </div>
                     <div class="pin">
 				<img src="${pageContext.request.contextPath}/resources/ph3.jpg" />
                         <hr/>
-                        <h3>${location.name}</h3>
+                        <h3>${location.title}</h3>
                         <h3 class="author">${location.author}</h3>
                         <p>
-                            ${location.description} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat consectetur pellentesque. Nam ac elit risus, ac blandit dui.
+                            ${location.message} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat consectetur pellentesque. Nam ac elit risus, ac blandit dui.
                         </p>
                     </div>
 
                     <div class="pin">
 				<img src="${pageContext.request.contextPath}/resources/ph2.jpg" />
                         <hr/>
-                        <h3>${location.name}</h3>
+                        <h3>${location.title}</h3>
                         <h3 class="author">${location.author}</h3>
                         <p>
-                            ${location.description} Lorem ipsum dolor sit amet.
+                            ${location.message} Lorem ipsum dolor sit amet.
                         </p>
                     </div>
 
                     <div class="pin">
 				<img src="${pageContext.request.contextPath}/resources/ph.png" />
                         <hr/>
-                         <h3>${location.name}</h3>
+                         <h3>${location.title}</h3>
                         <h3 class="author">${location.author}</h3>
                         <p>
-                            ${location.description} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat consectetur pellentesque. Nam ac elit risus, ac blandit dui.
+                            ${location.message} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat consectetur pellentesque. Nam ac elit risus, ac blandit dui.
                         </p>
                     </div>
 
                     <div class="pin">
 				<img src="${pageContext.request.contextPath}/resources/ph3.jpg" />
                         <hr/>
-                         <h3>${location.name}</h3>
+                         <h3>${location.title}</h3>
                         <h3 class="author">${location.author}</h3>
                         <p>
-                            ${location.description} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat consectetur pellentesque. Nam ac elit risus, ac blandit dui. Duis rutrum porta tortor ut convallis. Duis rutrum porta tortor ut convallis.
+                            ${location.message} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat consectetur pellentesque. Nam ac elit risus, ac blandit dui. Duis rutrum porta tortor ut convallis. Duis rutrum porta tortor ut convallis.
                         </p>
                     </div>
 
                     <div class="pin">
 				<img src="${pageContext.request.contextPath}/resources/ph.png" />
                         <hr/>
-                         <h3>${location.name}</h3>
+                         <h3>${location.title}</h3>
                         <h3 class="author">${location.author}</h3>
                         <p>
                             ${location.message}
