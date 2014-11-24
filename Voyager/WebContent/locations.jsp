@@ -17,18 +17,16 @@
         <i class="fa fa-compass fa-5x compass"></i>
         <nav>
             <menu>
-                <section class="menuBg"><a href="index.html" class="navLink">HOME</a>
+                <section class="menuBg"><a href="${pageContext.request.contextPath}/home" class="navLink">HOME</a>
                 </section>
-                <section class="menuBg"><a href="locations.html" class="navLink">LOCATIONS</a>
-                </section>
-                <section class="menuBg"><a href="#" class="navLink">SEARCH</a>
+                <section class="menuBg"><a href="${pageContext.request.contextPath}/locations" class="navLink">LOCATIONS</a>
                 </section>
                 <section class="menuBg"><a href="profile.html" class="navLink">PROFILE</a>
                 </section>
                 <hr/>
-                <section class="menuBg"><a href="register.html" class="navLink">REGISTER</a>
+                <section class="menuBg"><a href="${pageContext.request.contextPath}/register" class="navLink">REGISTER</a>
                 </section>
-                <section class="menuBg"><a href="login.html" class="navLink">LOGIN</a>
+                <section class="menuBg"><a href="${pageContext.request.contextPath}/login" class="navLink">LOGIN</a>
                 </section>
             </menu>
         </nav>
@@ -115,7 +113,7 @@
                          <h3>${location.name}</h3>
                         <h3 class="author">${location.author}</h3>
                         <p>
-                            ${location.description} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat consectetur pellentesque. Nam ac elit risus, ac blandit dui. Duis rutrum porta tortor ut convallis.
+                            ${location.message}
                         </p>
                     </div>
                 </div>

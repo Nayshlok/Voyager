@@ -56,11 +56,11 @@
 				<p><%=(request.getAttribute("errorMessage") == null ? "" : request.getAttribute("errorMessage")) %></p>
 				<form method="post" enctype="multipart/form-data">
 					<label>Username:</label> <input name="username" type="text"
-						value="<%= current.getUsername() %>" class="textEntry" /><br /> <label>Password:</label>
+						 class="textEntry" /><br /> <label>Password:</label>
 					<input name="password" type="password" class="textEntry" /><br /> <label>Confirm
 						Password:</label> <input name="confirmPassword" type="password"
 						class="textEntry" /><br /> <label>Email Address:</label> <input
-						name="email" type="email" value="<%=current.getEmail() %>"
+						name="email" type="email"
 						class="textEntry" /><br /> <label>Confirm Email:</label> <input
 						name="confirmEmail" type="email" class="textEntry" /><br /> <label>Profile
 						Image:</label> <input name="image" type="file" class="custom-file-input" /><br />

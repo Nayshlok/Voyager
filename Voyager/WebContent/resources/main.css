@@ -63,6 +63,9 @@ h1 {
     letter-spacing: 3px;
 }
 
+#error {
+	color: #e51111;
+}
 #sideContainer {
     position: absolute;
     top: 0;

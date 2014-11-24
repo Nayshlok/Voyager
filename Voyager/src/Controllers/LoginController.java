@@ -27,8 +27,7 @@ public class LoginController {
 			if(account != null) {
 				System.out.println("Logged in");
 				model.setUser(account);
-				HttpSession session = request.getSession(true);
-				session.setAttribute("account", account);
+				request.setAttribute("account", account);
 				return new ModelAndView(model, "/WEB-INF/account/profile.jsp");
 			} else {
 				model.setErrorMessage("Incorrect Login");
