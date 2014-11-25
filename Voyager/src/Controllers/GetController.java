@@ -1,18 +1,8 @@
 package Controllers;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.util.List;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
 
 import services.DataService;
 import models.Account;
@@ -20,7 +10,23 @@ import models.ModelAndView;
 
 public class GetController {
 	
-	public ModelAndView getUserList(HttpServletRequest request, DataService dataService){
+	private HttpServletRequest request;
+	private DataService dataService;
+	
+	public GetController(HttpServletRequest request, DataService dataService) {
+		this.request = request;
+		this.dataService = dataService;
+	}
+	
+	public ModelAndView getAllLocations() {
+		/*
+		 * "location" model needs to be set to the list of locations from JPA 
+		 */
+		request.setAttribute("location", null);
+		return new ModelAndView(null, "locations.jsp");
+	}
+	
+	public ModelAndView getUserList(){
 		List<Account> allUsers = dataService.getAllUsers();
 		request.setAttribute("userList", allUsers);
 		return new ModelAndView(allUsers, "/WEB-INF/Users.jsp");
@@ -46,7 +52,8 @@ public class GetController {
 		return new ModelAndView(null, "submit.jsp");
 	}
 	
-	public ModelAndView getSingleLocation() {
+	public ModelAndView getSingleLocation(Long id) {
+		request.setAttribute("location", dataService.retrievePost("Test1"));
 		return null;
 	}
 }

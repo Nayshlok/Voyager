@@ -13,8 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import models.ModelAndView;
-import Controllers.RegisterController;
 import services.DataService;
+import Controllers.GetController;
+import Controllers.RegisterController;
 
 /**
  * Servlet implementation class MasterServlet
@@ -35,26 +36,36 @@ public class MasterServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		GetController gc = new GetController(request, dataService);
+		ModelAndView mav; 
 		RequestDispatcher rd = null;
 		
 		if(request.getPathInfo().equals("/*") || request.getPathInfo().equals("/home")) {
-			rd = request.getRequestDispatcher("/index.jsp");
+			mav = gc.getHomePage();
+			rd = request.getRequestDispatcher(mav.getViewName());
 		} else if(request.getPathInfo().equals("/register")) {
-			rd = request.getRequestDispatcher("/WEB-INF/register.jsp");
+			mav = gc.beginRegisterWorkflow();
+			rd = request.getRequestDispatcher(mav.getViewName());
 		} else if(request.getPathInfo().equals("/locations")) {
-			request.setAttribute("location", dataService.retrievePost("Test1"));
-			rd = request.getRequestDispatcher("locations.jsp");
+			mav = gc.getAllLocations();
+			rd = request.getRequestDispatcher(mav.getViewName());
 		} else if(request.getPathInfo().equals("/login")) {
-			rd = request.getRequestDispatcher("/WEB-INF/account/login.jsp");
-		} else if(request.getPathInfo().equals("/loc/1")) {
-			request.setAttribute("location", dataService.retrievePost("Test1"));
-			rd = request.getRequestDispatcher("/location.jsp");
+			mav = gc.beginLoginWorkflow();
+			rd = request.getRequestDispatcher(mav.getViewName());
+		} else if(request.getPathInfo().equals("/new")) {
+			mav = gc.beginLocationSubmissionWorkflow();
+			rd = request.getRequestDispatcher(mav.getViewName());
+		} 
+		//Needs a pattern or something for this
+		else if(request.getPathInfo().equals("/loc/1")) {
+			//this needs to be changed for dynamic IDs 
+			mav = gc.getSingleLocation(1l);
+			rd = request.getRequestDispatcher(mav.getViewName());
 		} else {
 			rd = request.getRequestDispatcher("/WEB-INF/404.jsp");
 		}
 		
 		rd.forward(request, response);
-		
 	}
 
 	/**
