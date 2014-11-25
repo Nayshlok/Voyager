@@ -53,7 +53,7 @@ public class GetController {
 	}
 	
 	public ModelAndView getSingleLocation(Long id) {
-		request.setAttribute("location", dataService.retrievePost("Test1"));
+		request.setAttribute("location", dataService.retrieveLocation("Test1"));
 		return null;
 	}
 }

@@ -5,9 +5,13 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.LocationModel;
+import models.ModelAndView;
+import services.DataService;
+import services.DatabaseAccess;
+
 
 public class SearchController {
-	DatabaseAccess db= new DatabaseAccess();
 	
 	private DataService dataService;
 	private HttpServletRequest request;
@@ -102,10 +106,10 @@ public class SearchController {
 			states.put("WI", "WISCONSIN");
 			states.put("WY", "WYOMING");
 			search = states.get(search);
-			loc = db.retrieveLocation(search);
+			loc = dataService.retrieveLocation(search);
 		}
 		else{
-			loc = db.retrieveLocation(search);
+			loc = dataService.retrieveLocation(search);
 		}
 		
 		
@@ -116,12 +120,12 @@ public class SearchController {
 		if(index>0){
 			search = search.substring(0, index);
 		}
-		LocationModel loc = db.retrieveLocation(search);
+		LocationModel loc = dataService.retrieveLocation(search);
 		return loc;
 		
 	}
 	private LocationModel NonAddressSearch(String arr) {
-		return db.retrieveLocation(arr);
+		return dataService.retrieveLocation(arr);
 		
 	}
 }
