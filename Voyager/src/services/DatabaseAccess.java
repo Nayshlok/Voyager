@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Properties;
 
 import models.Account;
+import models.LocationModel;
 import models.Post;
 import models.Roles;
 
@@ -167,43 +168,43 @@ public class DatabaseAccess implements DataService {
 	/* (non-Javadoc)
 	 * @see models.DataService#enterPost(models.Post)
 	 */
-	@Override
-	public void enterPost(Post post){
-		Driver driver = new SQLServerDriver();
-		try {
-			Connection con = driver.connect(connectionUrl, new Properties());
-			PreparedStatement statement = con.prepareStatement("Insert INTO PostTable (postTitle, postAuthorId, postTime, postContent) "
-					+ "VALUES ('" + post.getTitle() + "', '" + this.getUserId(post.getAuthor()) + "', CURRENT_TIMESTAMP, '" + post.getMessage() + "');");
-			statement.setString(1, post.getTitle());
-			statement.setInt(2, this.getUserId(post.getAuthor()));
-			statement.setString(3, post.getMessage());
-			statement.execute();
-			System.out.println("Successful post");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}	
-	}
-
-	/* (non-Javadoc)
-	 * @see models.DataService#retrievePost(java.lang.String)
-	 */
-	@Override
-	public Post retrievePost(String postTitle){
-		Post post = null;
-		Driver driver = new SQLServerDriver();
-		try {
-			Connection con = driver.connect(connectionUrl, new Properties());
-			PreparedStatement statement = con.prepareStatement("Select postTitle, postAuthorId, postTime, postContent from PostTable where postTitle = '" + postTitle + "'");
-			ResultSet rs = statement.executeQuery();
-			rs.next();
-			post = new Post(rs.getString("postTitle"), rs.getString("postContent"), this.getUsername(rs.getInt("postAuthorId")));
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}	
-		
-		return post;
-	}
+//	@Override
+//	public void enterPost(Post post){
+//		Driver driver = new SQLServerDriver();
+//		try {
+//			Connection con = driver.connect(connectionUrl, new Properties());
+//			PreparedStatement statement = con.prepareStatement("Insert INTO PostTable (postTitle, postAuthorId, postTime, postContent) "
+//					+ "VALUES ('" + post.getTitle() + "', '" + this.getUserId(post.getAuthor()) + "', CURRENT_TIMESTAMP, '" + post.getMessage() + "');");
+//			statement.setString(1, post.getTitle());
+//			statement.setInt(2, this.getUserId(post.getAuthor()));
+//			statement.setString(3, post.getMessage());
+//			statement.execute();
+//			System.out.println("Successful post");
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}	
+//	}
+//
+//	/* (non-Javadoc)
+//	 * @see models.DataService#retrievePost(java.lang.String)
+//	 */
+//	@Override
+//	public Post retrievePost(String postTitle){
+//		Post post = null;
+//		Driver driver = new SQLServerDriver();
+//		try {
+//			Connection con = driver.connect(connectionUrl, new Properties());
+//			PreparedStatement statement = con.prepareStatement("Select postTitle, postAuthorId, postTime, postContent from PostTable where postTitle = '" + postTitle + "'");
+//			ResultSet rs = statement.executeQuery();
+//			rs.next();
+//			post = new Post(rs.getString("postTitle"), rs.getString("postContent"), this.getUsername(rs.getInt("postAuthorId")));
+//
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}	
+//		
+//		return post;
+//	}
 
 	@Override
 	public List<Account> getAllUsers() {
@@ -213,6 +214,36 @@ public class DatabaseAccess implements DataService {
 
 	@Override
 	public Account getUser(String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void addLocation(LocationModel location) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public LocationModel getLocation(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<LocationModel> getAllLocations() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<LocationModel> getLocations(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public LocationModel retrieveLocation(String location) {
 		// TODO Auto-generated method stub
 		return null;
 	}
