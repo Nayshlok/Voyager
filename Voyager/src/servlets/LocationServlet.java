@@ -34,7 +34,7 @@ public class LocationServlet extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("/locations.jsp");
 		
 		request.setAttribute("comments", list.getCommentsList());
-		request.setAttribute("location", da.retrievePost("Test1"));
+		request.setAttribute("location", da.retrieveLocation("Test1"));
 		rd.forward(request, response);
 	}
 
