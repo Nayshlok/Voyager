@@ -117,7 +117,6 @@ public class EntityManagerDataService implements DataService{
 
 	@Override
 	public LocationModel retrieveLocation(String location) {
-		
 		return null;
 	}
 

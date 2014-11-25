@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import services.DataService;
 import models.Account;
+import models.LocationModel;
 import models.ModelAndView;
 
 public class GetController {
@@ -19,11 +20,9 @@ public class GetController {
 	}
 	
 	public ModelAndView getAllLocations() {
-		/*
-		 * "location" model needs to be set to the list of locations from JPA 
-		 */
-		request.setAttribute("location", null);
-		return new ModelAndView(null, "locations.jsp");
+		List<LocationModel> allLocations = dataService.getAllLocations();
+		request.setAttribute("location", allLocations);
+		return new ModelAndView(allLocations, "locations.jsp");
 	}
 	
 	public ModelAndView getUserList(){
@@ -44,8 +43,8 @@ public class GetController {
 		return new ModelAndView(null, "index.jsp");
 	}
 	
-	public ModelAndView getProfilePage() {
-		return null;
+	public ModelAndView getProfilePage(String username) {
+		return new ModelAndView(dataService.getUser(username), "/profile.jsp");
 	}
 	
 	public ModelAndView beginLocationSubmissionWorkflow() {
@@ -53,7 +52,7 @@ public class GetController {
 	}
 	
 	public ModelAndView getSingleLocation(Long id) {
-		request.setAttribute("location", dataService.retrievePost("Test1"));
+		request.setAttribute("location", dataService.getLocations("Test1"));
 		return null;
 	}
 }
