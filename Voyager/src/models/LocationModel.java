@@ -10,11 +10,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+@NamedQueries({
+	@NamedQuery(name="byLocationName", query="SELECT u FROM LocationModel u WHERE u.name = :locationName"),
+	@NamedQuery(name="allLocation", query="SELECT u FROM LocationModel u")
+})
 
 @Entity
-@Table(name="LocationTable")
+@Table(name="LocationTable", uniqueConstraints=@UniqueConstraint(columnNames={"location"}))
 public class LocationModel 
 {
 	@Id
