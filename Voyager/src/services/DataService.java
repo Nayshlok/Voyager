@@ -3,6 +3,7 @@ package services;
 import java.util.List;
 
 import models.Account;
+import models.LocationModel;
 import models.Post;
 
 public interface DataService {
@@ -21,9 +22,15 @@ public interface DataService {
 
 	public String getUsername(int userId);
 
-	public void enterPost(Post post);
-
-	public Post retrievePost(String postTitle);
-
+	public void addLocation(LocationModel location);
+	
+	public LocationModel getLocation(int id);
+	
+	public List<LocationModel> getAllLocations();
+	
+	public List<LocationModel> getLocations(String name);
+	
+	public LocationModel retrieveLocation(String location);
+	
 	public List<Account> getAllUsers();
 }

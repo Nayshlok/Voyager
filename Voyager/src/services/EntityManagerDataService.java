@@ -9,8 +9,10 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import servlets.LocationServlet;
 import exceptions.BadLoginException;
 import models.Account;
+import models.LocationModel;
 import models.Post;
 
 public class EntityManagerDataService implements DataService{
@@ -81,17 +83,6 @@ public class EntityManagerDataService implements DataService{
 	}
 
 	@Override
-	public void enterPost(Post post) {
-		System.out.println("Not implemented");
-	}
-
-	@Override
-	public Post retrievePost(String postTitle) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public List<Account> getAllUsers() {
 		TypedQuery<Account> query = em.createNamedQuery("allUsers", Account.class);
 		return query.getResultList();
@@ -100,6 +91,34 @@ public class EntityManagerDataService implements DataService{
 	@Override
 	public Account getUser(String username) {
 		return em.find(Account.class, getUserId(username));
+	}
+
+	@Override
+	public void addLocation(LocationModel location) {
+		em.persist(location);
+	}
+
+	@Override
+	public LocationModel getLocation(int id) {
+		return em.find(LocationModel.class, id);
+	}
+
+	@Override
+	public List<LocationModel> getAllLocations() {
+		TypedQuery<LocationModel> locationSearch = em.createNamedQuery("allLocations", LocationModel.class);
+		return locationSearch.getResultList();
+	}
+
+	@Override
+	public List<LocationModel> getLocations(String name) {
+		TypedQuery<LocationModel> locationSearch = em.createNamedQuery("byLocationName", LocationModel.class);
+		return locationSearch.getResultList();
+	}
+
+	@Override
+	public LocationModel retrieveLocation(String location) {
+		
+		return null;
 	}
 
 	
