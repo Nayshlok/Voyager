@@ -72,17 +72,22 @@ public class MasterServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String path = this.getServletContext().getRealPath(File.separator);
-		RegisterController regControl = new RegisterController(request, response, dataService, this.getServletContext().getRealPath(File.separator));
-		ModelAndView mv = regControl.commitUserRegisterUser();
-		if(mv.getModel() != null){
-			request.setAttribute("errorMessage", mv.getModel());
-			RequestDispatcher rd = request.getRequestDispatcher(mv.getViewName());
-			rd.forward(request, response);
-		}
-		else{
-			response.sendRedirect(mv.getViewName());
-		}
+//		String path = this.getServletContext().getRealPath(File.separator);
+//		RegisterController regControl = new RegisterController(request, response, dataService, this.getServletContext().getRealPath(File.separator));
+//		ModelAndView mv = regControl.commitUserRegisterUser();
+//		if(mv.getModel() != null){
+//			request.setAttribute("errorMessage", mv.getModel());
+//			RequestDispatcher rd = request.getRequestDispatcher(mv.getViewName());
+//			rd.forward(request, response);
+//		}
+//		else{
+//			response.sendRedirect(mv.getViewName());
+//		}
+		
+//		ModelAndView mav = lc.commitUserLogin();
+//		request.setAttribute("model", mav.getModel());
+//		RequestDispatcher rd = request.getRequestDispatcher(mav.getViewName());
+//		rd.forward(request, response);
 	}
 
 }
