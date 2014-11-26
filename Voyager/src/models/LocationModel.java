@@ -1,6 +1,8 @@
 package models;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,7 +20,7 @@ import javax.persistence.UniqueConstraint;
 
 @NamedQueries({
 	@NamedQuery(name="byLocationName", query="SELECT u FROM LocationModel u WHERE u.name = :locationName"),
-	@NamedQuery(name="allLocation", query="SELECT u FROM LocationModel u"),
+	@NamedQuery(name="allLocations", query="SELECT u FROM LocationModel u"),
 	@NamedQuery(name="byLocationAddress", query="SELECT u FROM LocationModel u WHERE u.location = :Location")
 })
 
@@ -44,10 +46,14 @@ public class LocationModel
 	private String location;
 	
 	@OneToMany(fetch=FetchType.LAZY, cascade={CascadeType.REMOVE, CascadeType.PERSIST}, mappedBy="location")
-	private List<AttractionModel> attractions;
+	private Set<AttractionModel> attractions;
 	
 	@Column
 	private String history;
+	
+	public LocationModel(){
+		attractions = new HashSet();
+	}
 	
 	public LocationModel(int ID, int NumVisited, String Name, String Picture, String Location, String History)
 	{
@@ -97,10 +103,10 @@ public class LocationModel
 	}
 
 
-	public List<AttractionModel> getAttractions() {
+	public Set<AttractionModel> getAttractions() {
 		return attractions;
 	}
-	public void setAttractions(List<AttractionModel> attractions) {
+	public void setAttractions(Set<AttractionModel> attractions) {
 		this.attractions = attractions;
 	}
 

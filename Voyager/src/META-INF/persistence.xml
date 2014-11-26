@@ -9,7 +9,7 @@
      <class>models.Account</class>
      <class>models.CommentModel</class>
      <class>models.LocationModel</class>
-     <class>models.CommentModel</class>
+     <class>models.AttractionModel</class>
      
      <properties>
        <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://n8bu1j6855.database.windows.net:1433;database=VoyagerDB;selectMethod=cursor"/>
