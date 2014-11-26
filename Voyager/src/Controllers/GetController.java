@@ -40,7 +40,7 @@ public class GetController {
 	}
 	
 	public ModelAndView getHomePage() {
-		return new ModelAndView(null, "index.jsp");
+		return new ModelAndView(null, "/index.jsp");
 	}
 	
 	public ModelAndView getProfilePage(String username) {

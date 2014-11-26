@@ -18,8 +18,8 @@ public class AttractionModel {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@Column
 	@ManyToOne
+	@Column(name="LOCATION_ID")
 	private LocationModel location;
 	
 	@Column

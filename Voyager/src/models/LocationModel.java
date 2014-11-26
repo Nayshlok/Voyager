@@ -43,7 +43,6 @@ public class LocationModel
 	@Column
 	private String location;
 	
-	@Column
 	@OneToMany(fetch=FetchType.LAZY, cascade={CascadeType.REMOVE, CascadeType.PERSIST}, mappedBy="location")
 	private List<AttractionModel> attractions;
 	
