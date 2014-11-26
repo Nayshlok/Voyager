@@ -22,7 +22,7 @@ public class GetController {
 	public ModelAndView getAllLocations() {
 		List<LocationModel> allLocations = dataService.getAllLocations();
 		request.setAttribute("location", allLocations);
-		return new ModelAndView(allLocations, "locations.jsp");
+		return new ModelAndView(allLocations, "/locations.jsp");
 	}
 	
 	public ModelAndView getUserList(){
@@ -36,7 +36,7 @@ public class GetController {
 	}
 	
 	public ModelAndView beginRegisterWorkflow() {
-		return new ModelAndView(null, "/WEB-INF/account/register.jsp");
+		return new ModelAndView(null, "/WEB-INF/register.jsp");
 	}
 	
 	public ModelAndView getHomePage() {
@@ -48,7 +48,7 @@ public class GetController {
 	}
 	
 	public ModelAndView beginLocationSubmissionWorkflow() {
-		return new ModelAndView(null, "submit.jsp");
+		return new ModelAndView(null, "/submit.jsp");
 	}
 	
 	public ModelAndView getSingleLocation(Long id) {

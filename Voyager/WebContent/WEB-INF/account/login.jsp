@@ -44,7 +44,7 @@
                 <p><%=(request.getAttribute("errorMessage") == null ? "" : request.getAttribute("errorMessage")) %></p>
                 <form method="post" enctype="multipart/form-data">
                     <label>Username:</label>
-                    <input name="username" type="text" class="textEntry" /><br/>
+                    <input name="username" type="text" class="textEntry"  autocomplete="off"/><br/>
                     <label>Password:</label>
                     <input name="password" type="password" class="textEntry"/><br/>
                     <input type="submit" value="Login" id="submit" />
