@@ -13,45 +13,24 @@ import services.DatabaseAccess;
 
 public class SearchController {
 	
-	private DataService dataService;
-	private HttpServletRequest request;
-	private HttpServletResponse response;
-	private String filePath;
 	
-	public SearchController(HttpServletRequest request, HttpServletResponse response, DataService dataService, String filePath) {
-		this.request = request;
-		this.response = response;
-		this.dataService = dataService;
-		this.filePath = filePath;
-	}
-	
-	public ModelAndView Search(){
-		ModelAndView model;
-		LocationModel loc= dataService.retrieveLocation(request.getParameter("search"));
-		if(loc==null){
-			model= new ModelAndView(loc, request.getContextPath()+ "idex");
-		}
-		model= new ModelAndView(loc, request.getContextPath()+"loc/"+loc.getID());
-		return model;
-	}
-
-	public LocationModel DatabaseSearch(String search){
+	public static LocationModel DatabaseSearch(String search, DataService dataService){
 		search = search.toUpperCase();
 		
 		String[] arr = search.split(" ");    
 		LocationModel loc;
 		if(arr.length==1){
-			loc = StateSearch(search);
+			loc = StateSearch(search, dataService);
 		}else if(arr.length<5){
-			 loc = NonAddressSearch(search);
+			 loc = NonAddressSearch(search, dataService);
 		 }
 		 else{
-			 loc = AddressSearch(search);			 
+			 loc = AddressSearch(search, dataService);			 
 		 }
 		return loc;
 	}
 	
-	private LocationModel StateSearch(String search) {
+	private static LocationModel StateSearch(String search, DataService dataService) {
 		LocationModel loc;
 		search.trim();
 		if(search.length()<2){
@@ -116,7 +95,7 @@ public class SearchController {
 		
 		return loc;
 	}
-	private LocationModel AddressSearch(String search) {
+	private static LocationModel AddressSearch(String search, DataService dataService) {
 		int index = search.indexOf("-");
 		if(index>0){
 			search = search.substring(0, index);
@@ -125,7 +104,7 @@ public class SearchController {
 		return loc;
 		
 	}
-	private LocationModel NonAddressSearch(String arr) {
+	private static LocationModel NonAddressSearch(String arr, DataService dataService) {
 		return dataService.retrieveLocation(arr);
 		
 	}

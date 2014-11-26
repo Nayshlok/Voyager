@@ -16,7 +16,6 @@ import models.ModelAndView;
 import services.DataService;
 import Controllers.GetController;
 import Controllers.PostController;
-import Controllers.RegisterController;
 
 /**
  * Servlet implementation class MasterServlet
