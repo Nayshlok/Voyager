@@ -9,7 +9,6 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import servlets.LocationServlet;
 import exceptions.BadLoginException;
 import models.Account;
 import models.LocationModel;

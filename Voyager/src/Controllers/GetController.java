@@ -55,4 +55,5 @@ public class GetController {
 		request.setAttribute("location", dataService.retrieveLocation("Test1"));
 		return null;
 	}
+	
 }

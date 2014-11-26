@@ -21,7 +21,7 @@
 	</header>
 	<article class="bodyContainer">
 		<h1>Update User</h1>
-		<form method="post" enctype="multipart/form-data">
+		<form action="<%= request.getContextPath() %>/voyager/update" method="post" enctype="multipart/form-data">
 			<label>Password:</label><input	name="password" type="password" /> 
 			<label>Confirm Password:</label><input name="confirmPassword" type="password" />
 			<label>Email Address:</label><input name="email" type="email" />

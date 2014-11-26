@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import models.ModelAndView;
 import services.DataService;
 import Controllers.GetController;
+import Controllers.PostController;
 import Controllers.RegisterController;
 
 /**
@@ -72,22 +73,35 @@ public class MasterServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		String path = this.getServletContext().getRealPath(File.separator);
-//		RegisterController regControl = new RegisterController(request, response, dataService, this.getServletContext().getRealPath(File.separator));
-//		ModelAndView mv = regControl.commitUserRegisterUser();
-//		if(mv.getModel() != null){
-//			request.setAttribute("errorMessage", mv.getModel());
-//			RequestDispatcher rd = request.getRequestDispatcher(mv.getViewName());
-//			rd.forward(request, response);
-//		}
-//		else{
-//			response.sendRedirect(mv.getViewName());
-//		}
+		PostController pc = new PostController(request, dataService, this.getServletContext().getRealPath(File.separator));
+		ModelAndView mv = null;
+		if(request.getPathInfo().equals("/login")){
+			mv = pc.commitUserLogin();
+		} 
+		else if(request.getPathInfo().equals("/register") || request.getPathInfo().equals("/update")){
+			mv = pc.commitUserRegisterUser();
+		}
+		else if(request.getPathInfo().equals("/delete")){
+			mv = pc.deleteUser();
+		}
+		else if(request.getPathInfo().equals("/updateRole")){
+			mv = pc.updateRole();
+		} 
+		else if(request.getPathInfo().equals("/search")){
+			mv = pc.Search();
+		} 
+		else {
+			mv = new ModelAndView(null, "/WEB-INF/404.jsp");
+		}
 		
-//		ModelAndView mav = lc.commitUserLogin();
-//		request.setAttribute("model", mav.getModel());
-//		RequestDispatcher rd = request.getRequestDispatcher(mav.getViewName());
-//		rd.forward(request, response);
+		if(mv.isRedirect()){
+			response.sendRedirect(mv.getViewName());
+		}
+		else{
+			RequestDispatcher rd = request.getRequestDispatcher(mv.getViewName());
+			rd.forward(request, response);
+		}
+		
 	}
 
 }

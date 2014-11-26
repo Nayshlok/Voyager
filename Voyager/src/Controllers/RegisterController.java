@@ -66,7 +66,7 @@ public class RegisterController {
 		try {
 			Account user = new Account(username, email, avatarPath, Roles.User, password);
 			dataService.registerUser(user);
-			FileUploadController.processRequest(request, response, filePath);
+			FileUploadController.processRequest(request, filePath);
 			model.setUser(user);
 			mv = new ModelAndView(model, "/WEB-INF/account/profile.jsp");
 		} catch(UsernameAlreadyExistsException e) {

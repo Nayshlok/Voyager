@@ -50,6 +50,7 @@ public class SearchController {
 		 }
 		return loc;
 	}
+	
 	private LocationModel StateSearch(String search) {
 		LocationModel loc;
 		search.trim();

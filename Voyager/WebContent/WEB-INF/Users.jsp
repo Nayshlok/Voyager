@@ -21,13 +21,13 @@
 	<td>${user.email }</td>
 	<td>${user.role }</td>
 	<td>
-		<form action="<%= request.getContextPath() %>/register/delete" method="post">
+		<form action="<%= request.getContextPath() %>/voyager/delete" method="post">
 		<input type="hidden" value="${user.username }" name="username" />
 		<input type="submit" value="delete" />
 		</form>
 	</td>
 	<td>
-		<form action="<%= request.getContextPath() %>/register/update" method="post">
+		<form action="<%= request.getContextPath() %>/voyager/updateRole" method="post">
 		<input type="hidden" value="${user.username }" name="username"/>
 		<select name="role">
 			<option value="User">User</option>
