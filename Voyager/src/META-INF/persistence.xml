@@ -14,8 +14,8 @@
      <properties>
        <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://n8bu1j6855.database.windows.net:1433;database=VoyagerDB;selectMethod=cursor"/>
        <property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
-       <property name="javax.persistence.jdbc.user" value="dbadmin"/>
-       <property name="javax.persistence.jdbc.password" value="Arcan0sShalun"/>
+       <property name="javax.persistence.jdbc.user" value="VoyageLogin"/>
+       <property name="javax.persistence.jdbc.password" value="GroupP@ssword"/>
        
        
        <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/>

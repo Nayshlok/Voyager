@@ -55,9 +55,8 @@ public class LocationModel
 		attractions = new HashSet();
 	}
 	
-	public LocationModel(int ID, int NumVisited, String Name, String Picture, String Location, String History)
+	public LocationModel(int NumVisited, String Name, String Picture, String Location, String History)
 	{
-		this.id = ID;
 		this.setNumVisited(NumVisited);
 		this.setName(Name);
 		this.setPicture(Picture);

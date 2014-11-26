@@ -31,6 +31,10 @@ public class CommentModel
 	@Column
 	private Date time;
 	
+	public CommentModel(){
+		
+	}
+	
 	public CommentModel(int ID, Account user, String comment)
 	{
 		this.ID = ID;
