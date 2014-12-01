@@ -106,6 +106,33 @@ public class PostController {
 		return mv;
 	}
 		
+    public ModelAndView commitNewLocation() {
+        String placeName = "";
+        String history = "";
+        String imgPath = "";
+        
+        try{
+            placeName = this.getValue(request.getPart("placeName"));
+            history = this.getValue(request.getPart("history"));
+            imgPath = FileUploadController.getFileName(request.getPart("image"));
+        } catch (ServletException e1) {
+            e1.printStackTrace();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+        LocationModel location = null;
+        try {
+            location = new LocationModel(0, "que", imgPath, placeName, history);
+            dataService.addLocation(location);
+            FileUploadController.processRequest(request, filePath);
+        } catch (ServletException e1) {
+            e1.printStackTrace();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+        return new ModelAndView(location, "/location.jsp");
+    }
+
 	public ModelAndView updateRole(){
 		Roles role = Roles.valueOf(request.getParameter("role"));
 		String username = request.getParameter("username");
@@ -141,6 +168,8 @@ public class PostController {
 		dataService.saveComment(comment);
 		return new ModelAndView(comment, "");
 	}
+	
+	
 	
 	private String getValue(Part part) throws IOException {
 	    BufferedReader reader = new BufferedReader(new InputStreamReader(part.getInputStream(), "UTF-8"));

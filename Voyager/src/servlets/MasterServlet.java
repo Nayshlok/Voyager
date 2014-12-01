@@ -28,13 +28,14 @@ maxFileSize=1024*1024*5, maxRequestSize=1024*1024*5*5)
 public class MasterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DataService dataService;
-	private final Pattern idPattern = Pattern.compile(".*/(\\d+)(/.*)?");   
+    private static Pattern locPattern = Pattern.compile("\\/loc\\/(?<id>[0-9+])$");
 	
 	@Override
 	public void init(ServletConfig config) throws ServletException{
 		super.init(config);
 		dataService = (DataService) this.getServletContext().getAttribute("data");
 	}
+	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -42,6 +43,7 @@ public class MasterServlet extends HttpServlet {
 		GetController gc = new GetController(request, dataService);
 		ModelAndView mav; 
 		RequestDispatcher rd = null;
+		Matcher m = locPattern.matcher(request.getPathInfo());
 		
 		if(request.getPathInfo().equals("/*") || request.getPathInfo().equals("/home")) {
 			mav = gc.getHomePage();
@@ -61,10 +63,8 @@ public class MasterServlet extends HttpServlet {
 		} else if(request.getPathInfo().equals("/comment")){
 			mav = gc.getCommentForm();
 			rd = request.getRequestDispatcher(mav.getViewName());
-		}
-		else if(request.getPathInfo().contains("/loc/")) {
-			long id = extractId(request.getRequestURI());
-			mav = gc.getSingleLocation(id);
+		} else if(m.find()) {
+			mav = gc.getSingleLocation(Integer.parseInt(m.group("id")));
 			rd = request.getRequestDispatcher(mav.getViewName());
 		} else {
 			rd = request.getRequestDispatcher("/WEB-INF/404.jsp");
@@ -81,22 +81,19 @@ public class MasterServlet extends HttpServlet {
 		ModelAndView mv = null;
 		if(request.getPathInfo().equals("/login")){
 			mv = pc.commitUserLogin();
-		} 
-		else if(request.getPathInfo().equals("/register") || request.getPathInfo().equals("/update")){
+		} else if(request.getPathInfo().equals("/register") || request.getPathInfo().equals("/update")){
 			mv = pc.commitUserRegisterUser();
-		}
-		else if(request.getPathInfo().equals("/delete")){
+		} else if(request.getPathInfo().equals("/delete")){
 			mv = pc.deleteUser();
-		}
-		else if(request.getPathInfo().equals("/updateRole")){
+		} else if(request.getPathInfo().equals("/updateRole")){
 			mv = pc.updateRole();
-		} 
-		else if(request.getPathInfo().equals("/search")){
+		} else if(request.getPathInfo().equals("/search")){
 			mv = pc.Search();
 		} else if(request.getPathInfo().equals("/comment")){
 			mv = pc.postComment();
-		}
-		else {
+		} else if(request.getPathInfo().equals("/new")) {
+			mv = pc.commitNewLocation();
+		} else {
 			mv = new ModelAndView(null, "/WEB-INF/404.jsp");
 		}
 		
@@ -108,22 +105,5 @@ public class MasterServlet extends HttpServlet {
 			rd.forward(request, response);
 		}
 		
-	}
-	
-	public long extractId(String uri)
-	{
-		
-		int itemId = -1;
-		try{
-			Matcher match = idPattern.matcher(uri);
-			match.matches();
-			String idString = match.group(1);
-			itemId = Integer.parseInt(idString);
-		} catch(IllegalStateException e){
-			System.err.println("Failed to match: " + uri);
-		} catch(NumberFormatException e){
-			System.err.println("Failed to parse number");
-		}
-		return itemId;
 	}
 }

@@ -51,10 +51,18 @@ public class GetController {
 		return new ModelAndView(null, "/submit.jsp");
 	}
 	
-	public ModelAndView getSingleLocation(Long id) {
-		request.setAttribute("location", dataService.retrieveLocation("Test1"));
-		return null;
-	}
+    public ModelAndView getSingleLocation(int id) {
+        LocationModel loc = dataService.getLocation(id);
+        ModelAndView mav = null;
+        if(loc != null) {
+            request.setAttribute("location", loc);
+            mav = new ModelAndView(loc, "/location.jsp");
+        } else {
+            mav = new ModelAndView(null, "/WEB-INF/404.jsp");
+        }
+        return mav;
+    }
+
 	
 	public ModelAndView getCommentForm(){
 		return new ModelAndView(null, "/WEB-INF/comment.jsp");
