@@ -15,7 +15,7 @@
 </head>
 
 <body>
-	<%@ include file="/WEB-INF/sidebar.jsp" %> 
+	<%@ include file="/WEB-INF/sidebar.jsp"%>
 
 	<article class="mainContainer">
 		<section class="topContent">
@@ -25,17 +25,15 @@
 
 		<article class="contentContainer">
 			<div id="wrapper">
-
-					<c:forEach var="loc" items="${allLocations}">
-						<div class="pin">
-							<img src="${pageContext.request.contextPath}/${loc.picture}" />
-							<hr />
-							<h3>${loc.name}</h3>
-							<h2 class="author">${loc.name}</h2>
-							<p>${loc.history}</p>
-						</div>
-					</c:forEach>
-				</div>
+				<c:forEach var="loc" items="${location}">
+					<div class="pin">
+						<img src="${pageContext.request.contextPath}/${loc.picture}" />
+						<hr />
+						<h3>${loc.name}</h3>
+						<h2 class="author">${loc.name}</h2>
+						<p>${loc.history}</p>
+					</div>
+				</c:forEach>
 			</div>
 		</article>
 	</article>
