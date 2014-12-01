@@ -41,7 +41,7 @@ public class PostController {
 			if(account != null) {
 				System.out.println("Logged in");
 				model.setUser(account);
-				request.setAttribute("account", account);
+				request.getSession().setAttribute("account", account);
 				return new ModelAndView(model, request.getContextPath() + "voyager/profile", true);
 			} else {
 				model.setErrorMessage("Incorrect Login");
@@ -133,9 +133,12 @@ public class PostController {
 	
 	public ModelAndView postComment(){
 		LocationModel location = dataService.getLocation(Integer.parseInt(request.getParameter("locationId")));
-		Account user = (Account)request.getSession().getAttribute("currentUser");
+		Account user = (Account)request.getSession().getAttribute("account");
 		String commentString = request.getParameter("comment");
 		CommentModel comment = new CommentModel(user, commentString, location);
+		location.addComment(comment);
+		user.addComment(comment);
+		dataService.saveComment(comment);
 		return new ModelAndView(comment, "");
 	}
 	

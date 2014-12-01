@@ -11,6 +11,7 @@ import javax.persistence.TypedQuery;
 
 import exceptions.BadLoginException;
 import models.Account;
+import models.CommentModel;
 import models.LocationModel;
 import models.Post;
 
@@ -120,5 +121,10 @@ public class EntityManagerDataService implements DataService{
 		TypedQuery<LocationModel> locationSearch = em.createNamedQuery("byLocationAddress", LocationModel.class);
 		locationSearch.setParameter("location", location);
 		return locationSearch.getSingleResult();
+	}
+
+	@Override
+	public void saveComment(CommentModel comment) {
+		em.persist(comment);
 	}
 }

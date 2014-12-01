@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Properties;
 
 import models.Account;
+import models.CommentModel;
 import models.LocationModel;
 import models.Post;
 import models.Roles;
@@ -246,5 +247,11 @@ public class DatabaseAccess implements DataService {
 	public LocationModel retrieveLocation(String location) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void saveComment(CommentModel comment) {
+		// TODO Auto-generated method stub
+		
 	}
 }

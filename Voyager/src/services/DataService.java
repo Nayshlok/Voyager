@@ -3,6 +3,7 @@ package services;
 import java.util.List;
 
 import models.Account;
+import models.CommentModel;
 import models.LocationModel;
 import models.Post;
 
@@ -33,4 +34,6 @@ public interface DataService {
 	public LocationModel retrieveLocation(String location);
 	
 	public List<Account> getAllUsers();
+	
+	public void saveComment(CommentModel comment);
 }

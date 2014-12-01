@@ -41,10 +41,8 @@ public class CommentModel
 	public CommentModel(Account user, String comment, LocationModel location)
 	{
 		this.user = user;
-		user.addComment(this);
 		this.comment = comment;
 		this.location = location;
-		location.addComment(this);
 	}
 	
 	public String getComment() {
