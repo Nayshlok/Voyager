@@ -125,6 +125,8 @@ public class EntityManagerDataService implements DataService{
 
 	@Override
 	public void saveComment(CommentModel comment) {
+		em.getTransaction().begin();
 		em.persist(comment);
+		em.getTransaction().commit();
 	}
 }

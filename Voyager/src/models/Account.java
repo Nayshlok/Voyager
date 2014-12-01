@@ -51,7 +51,7 @@ public class Account{
 	@Transient
 	private Set<String> history;
 	
-	@OneToMany(fetch=FetchType.LAZY, cascade={CascadeType.REMOVE, CascadeType.PERSIST}, mappedBy="user")
+	@OneToMany(fetch=FetchType.EAGER, cascade={CascadeType.REMOVE, CascadeType.PERSIST}, mappedBy="user")
 	private Set<CommentModel> comments;
 
 	public Account(){
