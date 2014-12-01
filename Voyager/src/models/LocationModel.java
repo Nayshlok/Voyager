@@ -48,7 +48,7 @@ public class LocationModel
 	@OneToMany(fetch=FetchType.LAZY, cascade={CascadeType.REMOVE, CascadeType.PERSIST}, mappedBy="location")
 	private Set<AttractionModel> attractions;
 	
-	@OneToMany(fetch=FetchType.LAZY, cascade={CascadeType.REMOVE, CascadeType.PERSIST}, mappedBy="location")
+	@OneToMany(fetch=FetchType.EAGER, cascade={CascadeType.REMOVE, CascadeType.PERSIST}, mappedBy="location")
 	private Set<CommentModel> comments; 
 	
 	@Column

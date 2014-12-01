@@ -58,7 +58,7 @@
 		<article class="contentContainer">
 			<div id="wrapper">
 				<div id="columns">
-					<!-- <a href="${pageContext.request.contextPath}/voyager/loc/1">
+					<%-- <a href="${pageContext.request.contextPath}/voyager/loc/1">
 						<div class="pin">
 							<img src="${pageContext.request.contextPath}/resources/ph.png" />
 							<hr />
@@ -71,7 +71,7 @@
 								porta tortor ut convallis. Duis rutrum porta tortor ut
 								convallis.</p>
 						</div>
-					</a>-->
+					</a>--%>
 
 					<c:forEach var="loc" items="${allLocations}">
 						<div class="pin">

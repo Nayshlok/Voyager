@@ -43,6 +43,7 @@ public class CommentModel
 		this.user = user;
 		this.comment = comment;
 		this.location = location;
+		time = new Date();
 	}
 	
 	public String getComment() {
