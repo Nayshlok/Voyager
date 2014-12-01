@@ -4,21 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Voyager Update</title>
+<title>Voyager &#124; Update</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main.css">
-<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-</head>
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"></head>
 <body>
-	<header>
-		<nav>
-			<ul>
-				<li>Home</li> &bull;
-				<li>Profile</li> &bull;
-				<li>Submit</li> &bull;
-				<li>Search</li>
-			</ul>
-		</nav>
-	</header>
+	<%@ include file="/WEB-INF/sidebar.jsp" %> 
+
 	<article class="bodyContainer">
 		<h1>Update User</h1>
 		<form action="<%= request.getContextPath() %>/voyager/update" method="post" enctype="multipart/form-data">

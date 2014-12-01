@@ -14,23 +14,23 @@ import services.DatabaseAccess;
 public class SearchController {
 	
 	
-	public static LocationModel DatabaseSearch(String search, DataService dataService){
+	public static LocationModel databaseSearch(String search, DataService dataService){
 		search = search.toUpperCase();
 		
 		String[] arr = search.split(" ");    
 		LocationModel loc;
 		if(arr.length==1){
-			loc = StateSearch(search, dataService);
+			loc = stateSearch(search, dataService);
 		}else if(arr.length<5){
-			 loc = NonAddressSearch(search, dataService);
+			 loc = nonAddressSearch(search, dataService);
 		 }
 		 else{
-			 loc = AddressSearch(search, dataService);			 
+			 loc = addressSearch(search, dataService);			 
 		 }
 		return loc;
 	}
 	
-	private static LocationModel StateSearch(String search, DataService dataService) {
+	private static LocationModel stateSearch(String search, DataService dataService) {
 		LocationModel loc;
 		search.trim();
 		if(search.length()<2){
@@ -95,7 +95,7 @@ public class SearchController {
 		
 		return loc;
 	}
-	private static LocationModel AddressSearch(String search, DataService dataService) {
+	private static LocationModel addressSearch(String search, DataService dataService) {
 		int index = search.indexOf("-");
 		if(index>0){
 			search = search.substring(0, index);
@@ -104,7 +104,7 @@ public class SearchController {
 		return loc;
 		
 	}
-	private static LocationModel NonAddressSearch(String arr, DataService dataService) {
+	private static LocationModel nonAddressSearch(String arr, DataService dataService) {
 		return dataService.retrieveLocation(arr);
 		
 	}

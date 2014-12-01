@@ -10,40 +10,13 @@
 	
 </head>
 <body>
-  <section id="sideContainer">
-        <i class="fa fa-compass fa-5x compass"></i>
-        <nav>
-            <menu>
-                <section class="menuBg"><a href="${pageContext.request.contextPath}/home" class="navLink">HOME</a>
-                </section>
-                <section class="menuBg"><a href="${pageContext.request.contextPath}/locations" class="navLink">LOCATIONS</a>
-                </section>
-                <section class="menuBg"><a href="profile.html" class="navLink">PROFILE</a>
-                </section>
-                <hr/>
-                <section class="menuBg"><a href="${pageContext.request.contextPath}/register" class="navLink">REGISTER</a>
-                </section>
-                <section class="menuBg"><a href="${pageContext.request.contextPath}/login" class="navLink">LOGIN</a>
-                </section>
-            </menu>
-        </nav>
-
-          <footer>
-            <section id="footerContainer">
-                Voyager &copy; 2014 <br/>
-                All Rights Reserved
-            </section>
-        </footer>
-    </section>
+ 	<%@ include file="/WEB-INF/sidebar.jsp" %> 
 
     <article class="mainContainer">
         <section class="topContent">
-            <h1 id="error">Uh Oh! We couldn't find what you were looking for!</h1>
+            <h1 class="error">!404<br/>
+            Uh Oh! We couldn't find what you were looking for!</h1>
         </section>
-
-        <article class="contentContainer">
-
-        </article>
     </article>
 </body>
 </html>

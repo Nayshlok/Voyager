@@ -6,9 +6,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Voyager &#124; All Users</title>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/main.css">
+<link
+	href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
+	rel="stylesheet">
 </head>
 <body>
+	<%@ include file="/WEB-INF/sidebar.jsp" %> 
+
 <table>
 	<tr>
 	<td>Username</td>

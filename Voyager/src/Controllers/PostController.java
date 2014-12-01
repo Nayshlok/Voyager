@@ -150,7 +150,7 @@ public class PostController {
 	
 	public ModelAndView Search(){
 		ModelAndView model;
-		LocationModel loc= SearchController.DatabaseSearch(request.getParameter("search"), dataService);
+		LocationModel loc= SearchController.databaseSearch(request.getParameter("search"), dataService);
 		if(loc==null){
 			model= new ModelAndView(loc, request.getContextPath()+ "idex");
 		}
