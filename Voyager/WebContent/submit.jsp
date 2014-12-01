@@ -44,13 +44,9 @@
                 
                 <form method="post" enctype="multipart/form-data">
                     <label>Name:</label>
-                    <input name="placeName" type="text" placeholder="Ex: Texas; Boonies, OK" class="textEntry" required /><br/>
+                    <input name="placeName" type="text" placeholder="Ex: Amarillo, Texas; Boonies, OK" class="textEntry" required /><br/>
                     <label>Description:</label>
-                    <input name="desc" type="textarea" class="textarea" required/><br/>
-                    
-                     <label>Attractions:</label>
-                    <input name="desc" type="textarea" class="textarea" required/><br/>
-                   
+                    <input name="history" type="textarea" class="textarea" required/><br/>
                     <label>Display Image:</label>
                     <input name="image" type="file" class="custom-file-input"/><br/>
                     <input type="submit" value="Submit" id="submit" />

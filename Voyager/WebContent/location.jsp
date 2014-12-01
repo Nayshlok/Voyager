@@ -37,13 +37,15 @@
 
 	<article class="mainContainer">
 		<section class="topContent">
-			<h1>${location.title}</h1>
+			<h1>${location.name}</h1>
+			
+			<img src="${pageContext.request.contextPath}/${location.picture}" alt="avatar"/>
 		</section>
 
 		<article class="contentContainer">
 			<section class="postDetails">
-				<h3>${location.author}</h3>
-				${location.message}
+				<h3>${location.location}</h3>
+				${location.history}
 
 				<!-- <section class="commentsContainer">
 					<c:forEach var="comment" items="${comments}">

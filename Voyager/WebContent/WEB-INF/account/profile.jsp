@@ -51,7 +51,7 @@
             </section>
 
 
-            <img src="assets/images/avatar.png" alt="avatar" />
+            <img src="${pageContext.request.contextPath}/ph.png" alt="avatar"/>
             <br/>
             <br/>
             <section class="content"></section>
@@ -65,10 +65,10 @@
                 <h3>${comment.title}</h3> 
                 <hr/>
                 <br/>
-                <p class="commentBody">${comment.body}
+                <p class="commentBody">
                     <br/>
                     <br/>
-                    <cite>Submitted By &mdash; ${comment.author}</cite>
+                    <cite>Submitted By &mdash; </cite>
                 </p>
 
             </section>
@@ -76,20 +76,20 @@
                 <h3>${comment.title}</h3> 
                 <hr/>
                 <br/>
-                <p class="commentBody">${comment.body}
+                <p class="commentBody">
                     <br/>
                     <br/>
-                    <cite>Submitted By &mdash; ${comment.author}</cite>
+                    <cite>Submitted By &mdash; </cite>
                 </p>
             </section>
             <section class="commentContainer">
                 <h3>${comment.title}</h3> 
                 <hr/>
                 <br/>
-                <p class="commentBody">${comment.body} 
+                <p class="commentBody">
                     <br/>
                     <br/>
-                    <cite>Submitted By &mdash; ${comment.author}</cite>
+                    <cite>Submitted By &mdash; </cite>
                 </p>
             </section>
         </article>
