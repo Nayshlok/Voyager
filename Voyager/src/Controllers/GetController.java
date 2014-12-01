@@ -56,4 +56,8 @@ public class GetController {
 		return null;
 	}
 	
+	public ModelAndView getCommentForm(){
+		return new ModelAndView(null, "/WEB-INF/comment.jsp");
+	}
+	
 }

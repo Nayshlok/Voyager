@@ -120,6 +120,9 @@ public class Account{
 	public void setComments(Set<CommentModel> comments) {
 		this.comments = comments;
 	}
+	public void addComment(CommentModel comment){
+		this.comments.add(comment);
+	}
 	public String getUsername() {
 		return username;
 	}

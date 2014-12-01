@@ -48,10 +48,14 @@ public class LocationModel
 	@OneToMany(fetch=FetchType.LAZY, cascade={CascadeType.REMOVE, CascadeType.PERSIST}, mappedBy="location")
 	private Set<AttractionModel> attractions;
 	
+	@OneToMany(fetch=FetchType.LAZY, cascade={CascadeType.REMOVE, CascadeType.PERSIST}, mappedBy="location")
+	private Set<CommentModel> comments; 
+	
 	@Column
 	private String history;
 	
 	public LocationModel(){
+		comments = new HashSet<>();
 		attractions = new HashSet();
 	}
 	
@@ -108,14 +112,33 @@ public class LocationModel
 	public void setAttractions(Set<AttractionModel> attractions) {
 		this.attractions = attractions;
 	}
-
-
+	public void addAttraction(AttractionModel attraction){
+		this.attractions.add(attraction);
+	}
 	public String getHistory() {
 		return history;
 	}
 	public void setHistory(String history) {
 		this.history = history;
 	}
-	
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Set<CommentModel> getComments() {
+		return comments;
+	}
+
+	public void setComments(Set<CommentModel> comments) {
+		this.comments = comments;
+	}
+	public void addComment(CommentModel comment){
+		this.comments.add(comment);
+	}
 	
 }

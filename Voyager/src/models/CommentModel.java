@@ -26,6 +26,9 @@ public class CommentModel
 	@ManyToOne
 	@Column
 	private Account user;
+	@ManyToOne
+	@Column
+	private LocationModel location;	
 	@Column
 	private String comment = "";
 	@Column
@@ -35,11 +38,13 @@ public class CommentModel
 		
 	}
 	
-	public CommentModel(int ID, Account user, String comment)
+	public CommentModel(Account user, String comment, LocationModel location)
 	{
-		this.ID = ID;
 		this.user = user;
+		user.addComment(this);
 		this.comment = comment;
+		this.location = location;
+		location.addComment(this);
 	}
 	
 	public String getComment() {
@@ -61,6 +66,22 @@ public class CommentModel
 
 	public void setTime(Date time) {
 		this.time = time;
+	}
+
+	public LocationModel getLocation() {
+		return location;
+	}
+
+	public void setID(int iD) {
+		ID = iD;
+	}
+
+	public void setUser(Account user) {
+		this.user = user;
+	}
+
+	public void setLocation(LocationModel location) {
+		this.location = location;
 	}
 	
 }

@@ -2,6 +2,8 @@ package servlets;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -26,7 +28,8 @@ maxFileSize=1024*1024*5, maxRequestSize=1024*1024*5*5)
 public class MasterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DataService dataService;
-       
+	private final Pattern idPattern = Pattern.compile(".*/(\\d+)(/.*)?");   
+	
 	@Override
 	public void init(ServletConfig config) throws ServletException{
 		super.init(config);
@@ -55,11 +58,13 @@ public class MasterServlet extends HttpServlet {
 		} else if(request.getPathInfo().equals("/new")) {
 			mav = gc.beginLocationSubmissionWorkflow();
 			rd = request.getRequestDispatcher(mav.getViewName());
-		} 
-		//Needs a pattern or something for this
-		else if(request.getPathInfo().equals("/loc/1")) {
-			//this needs to be changed for dynamic IDs 
-			mav = gc.getSingleLocation(1l);
+		} else if(request.getPathInfo().equals("/comment")){
+			mav = gc.getCommentForm();
+			rd = request.getRequestDispatcher(mav.getViewName());
+		}
+		else if(request.getPathInfo().contains("/loc/")) {
+			long id = extractId(request.getRequestURI());
+			mav = gc.getSingleLocation(id);
 			rd = request.getRequestDispatcher(mav.getViewName());
 		} else {
 			rd = request.getRequestDispatcher("/WEB-INF/404.jsp");
@@ -88,7 +93,9 @@ public class MasterServlet extends HttpServlet {
 		} 
 		else if(request.getPathInfo().equals("/search")){
 			mv = pc.Search();
-		} 
+		} else if(request.getPathInfo().equals("/comment")){
+			mv = pc.postComment();
+		}
 		else {
 			mv = new ModelAndView(null, "/WEB-INF/404.jsp");
 		}
@@ -102,5 +109,21 @@ public class MasterServlet extends HttpServlet {
 		}
 		
 	}
-
+	
+	public long extractId(String uri)
+	{
+		
+		int itemId = -1;
+		try{
+			Matcher match = idPattern.matcher(uri);
+			match.matches();
+			String idString = match.group(1);
+			itemId = Integer.parseInt(idString);
+		} catch(IllegalStateException e){
+			System.err.println("Failed to match: " + uri);
+		} catch(NumberFormatException e){
+			System.err.println("Failed to parse number");
+		}
+		return itemId;
+	}
 }

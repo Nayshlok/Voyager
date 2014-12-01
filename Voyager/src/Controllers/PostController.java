@@ -11,6 +11,7 @@ import javax.servlet.http.Part;
 
 import exceptions.UsernameAlreadyExistsException;
 import models.Account;
+import models.CommentModel;
 import models.LocationModel;
 import models.ModelAndView;
 import models.RegisterUserModel;
@@ -130,7 +131,13 @@ public class PostController {
 		return model;
 	}
 	
-	
+	public ModelAndView postComment(){
+		LocationModel location = dataService.getLocation(Integer.parseInt(request.getParameter("locationId")));
+		Account user = (Account)request.getSession().getAttribute("currentUser");
+		String commentString = request.getParameter("comment");
+		CommentModel comment = new CommentModel(user, commentString, location);
+		return new ModelAndView(comment, "");
+	}
 	
 	private String getValue(Part part) throws IOException {
 	    BufferedReader reader = new BufferedReader(new InputStreamReader(part.getInputStream(), "UTF-8"));
