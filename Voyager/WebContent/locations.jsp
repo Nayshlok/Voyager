@@ -15,39 +15,7 @@
 </head>
 
 <body>
-	<section id="sideContainer">
-		<i class="fa fa-compass fa-5x compass"></i>
-		<nav>
-			<menu>
-				<section class="menuBg">
-					<a href="${pageContext.request.contextPath}/voyager/home"
-						class="navLink">HOME</a>
-				</section>
-				<section class="menuBg">
-					<a href="${pageContext.request.contextPath}/voyager/locations"
-						class="navLink">LOCATIONS</a>
-				</section>
-				<section class="menuBg">
-					<a href="profile.html" class="navLink">PROFILE</a>
-				</section>
-				<hr />
-				<section class="menuBg">
-					<a href="${pageContext.request.contextPath}/voyager/register"
-						class="navLink">REGISTER</a>
-				</section>
-				<section class="menuBg">
-					<a href="${pageContext.request.contextPath}/voyager/login"
-						class="navLink">LOGIN</a>
-				</section>
-			</menu>
-		</nav>
-
-		<footer>
-			<section id="footerContainer">
-				Voyager &copy; 2014 <br />All Rights Reserved
-			</section>
-		</footer>
-	</section>
+	<%@ include file="/WEB-INF/sidebar.jsp" %> 
 
 	<article class="mainContainer">
 		<section class="topContent">
@@ -57,27 +25,12 @@
 
 		<article class="contentContainer">
 			<div id="wrapper">
-				<div id="columns">
-					<%-- <a href="${pageContext.request.contextPath}/voyager/loc/1">
-						<div class="pin">
-							<img src="${pageContext.request.contextPath}/resources/ph.png" />
-							<hr />
-
-							<h3>${location.title}</h3>
-							<h3 class="author">${location.author}</h3>
-							<p>${location.message} Lorem ipsum dolor sit amet,
-								consectetur adipiscing elit. Sed feugiat consectetur
-								pellentesque. Nam ac elit risus, ac blandit dui. Duis rutrum
-								porta tortor ut convallis. Duis rutrum porta tortor ut
-								convallis.</p>
-						</div>
-					</a>--%>
 
 					<c:forEach var="loc" items="${allLocations}">
 						<div class="pin">
 							<img src="${pageContext.request.contextPath}/${loc.picture}" />
 							<hr />
-							<h3>${loc.location}</h3>
+							<h3>${loc.name}</h3>
 							<h2 class="author">${loc.name}</h2>
 							<p>${loc.history}</p>
 						</div>
