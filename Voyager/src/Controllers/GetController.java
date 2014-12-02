@@ -62,10 +62,14 @@ public class GetController {
         }
         return mav;
     }
+    
+    public ModelAndView logout() {
+    	request.getSession().invalidate();
+    	return new ModelAndView(null, "/index.jsp");
+    }
 
 	
 	public ModelAndView getCommentForm(){
 		return new ModelAndView(null, "/WEB-INF/comment.jsp");
-	}
-	
+	}	
 }
