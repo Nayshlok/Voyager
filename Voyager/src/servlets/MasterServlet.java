@@ -66,9 +66,11 @@ public class MasterServlet extends HttpServlet {
 		} else if(request.getPathInfo().equals("/profile")){
 			mav = gc.getProfilePage();
 			rd = request.getRequestDispatcher(mav.getViewName());
-		}
-		else if(m.find()) {
+		} else if(m.find()) {
 			mav = gc.getSingleLocation(Integer.parseInt(m.group("id")));
+			rd = request.getRequestDispatcher(mav.getViewName());
+		} else if(request.getPathInfo().equals("/logout")) {
+			mav = gc.logout();
 			rd = request.getRequestDispatcher(mav.getViewName());
 		} else {
 			rd = request.getRequestDispatcher("/WEB-INF/404.jsp");
