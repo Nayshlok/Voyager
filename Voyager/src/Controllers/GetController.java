@@ -43,8 +43,8 @@ public class GetController {
 		return new ModelAndView(null, "/index.jsp");
 	}
 	
-	public ModelAndView getProfilePage(String username) {
-		return new ModelAndView(dataService.getUser(username), "/profile.jsp");
+	public ModelAndView getProfilePage() {
+		return new ModelAndView(request.getSession().getAttribute("account"), "/profile.jsp");
 	}
 	
 	public ModelAndView beginLocationSubmissionWorkflow() {

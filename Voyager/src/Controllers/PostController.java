@@ -42,7 +42,7 @@ public class PostController {
 				System.out.println("Logged in");
 				model.setUser(account);
 				request.getSession().setAttribute("account", account);
-				return new ModelAndView(model, request.getContextPath() + "voyager/profile", true);
+				return new ModelAndView(model, request.getContextPath() + "/voyager/profile", true);
 			} else {
 				model.setErrorMessage("Incorrect Login");
 				
