@@ -108,11 +108,13 @@ public class PostController {
 		
     public ModelAndView commitNewLocation() {
         String placeName = "";
+        String locationString = "";
         String history = "";
         String imgPath = "";
         
         try{
             placeName = this.getValue(request.getPart("placeName"));
+            locationString = this.getValue(request.getPart("location"));
             history = this.getValue(request.getPart("history"));
             imgPath = FileUploadController.getFileName(request.getPart("image"));
         } catch (ServletException e1) {
@@ -122,15 +124,15 @@ public class PostController {
         }
         LocationModel location = null;
         try {
-            location = new LocationModel(0, "que", imgPath, placeName, history);
-            dataService.addLocation(location);
+            location = new LocationModel(0, placeName, imgPath, locationString, history);
+            location = dataService.addLocation(location);
             FileUploadController.processRequest(request, filePath);
         } catch (ServletException e1) {
             e1.printStackTrace();
         } catch (IOException e1) {
             e1.printStackTrace();
         }
-        return new ModelAndView(location, "/location.jsp");
+        return new ModelAndView(location, request.getContextPath() + "voyager/loc/" + location.getId(), true);
     }
 
 	public ModelAndView updateRole(){
@@ -154,7 +156,7 @@ public class PostController {
 		if(loc==null){
 			model= new ModelAndView(loc, request.getContextPath()+ "idex");
 		}
-		model= new ModelAndView(loc, request.getContextPath()+"loc/"+loc.getID());
+		model= new ModelAndView(loc, request.getContextPath()+"loc/"+loc.getId());
 		return model;
 	}
 	

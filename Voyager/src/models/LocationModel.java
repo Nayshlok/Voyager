@@ -68,12 +68,6 @@ public class LocationModel
 		this.setHistory(History);
 	}
 	
-	
-	public long getID() {
-		return id;
-	}
-
-
 	public int getNumVisited() {
 		return numVisited;
 	}

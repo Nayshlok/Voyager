@@ -94,8 +94,22 @@ public class EntityManagerDataService implements DataService{
 	}
 
 	@Override
-	public void addLocation(LocationModel location) {
-		em.persist(location);
+	public LocationModel addLocation(LocationModel location) {
+		LocationModel persistedLocation = null;
+		em.getTransaction().begin();
+		try{
+			em.persist(location);
+			TypedQuery<LocationModel> typeQuery = em.createNamedQuery("byLocationName", LocationModel.class);
+			typeQuery.setParameter("locationName", location.getName());
+			persistedLocation = typeQuery.getSingleResult();
+		}
+		catch(Exception e){
+			em.getTransaction().rollback();
+			throw e;
+		}
+		em.getTransaction().commit();
+		
+		return persistedLocation;
 	}
 
 	@Override

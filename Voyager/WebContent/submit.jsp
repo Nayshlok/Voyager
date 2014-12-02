@@ -22,8 +22,10 @@
             <section class="formContainer">
                 
                 <form method="post" enctype="multipart/form-data">
-                    <label>Name:</label>
-                    <input name="placeName" type="text" placeholder="Ex: Amarillo, Texas; Boonies, OK" class="textEntry" required /><br/>
+                	<label>Name:</label>
+                	<input name="placeName" type="text" class="textEntry" required/>
+                    <label>Location:</label>
+                    <input name="location" type="text" placeholder="Ex: Amarillo, Texas; Boonies, OK" class="textEntry" required /><br/>
                     <label>Description:</label>
                     <input name="history" type="textarea" class="textarea" required/><br/>
                     <label>Display Image:</label>

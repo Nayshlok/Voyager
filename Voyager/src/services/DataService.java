@@ -23,7 +23,7 @@ public interface DataService {
 
 	public String getUsername(int userId);
 
-	public void addLocation(LocationModel location);
+	public LocationModel addLocation(LocationModel location);
 	
 	public LocationModel getLocation(int id);
 	

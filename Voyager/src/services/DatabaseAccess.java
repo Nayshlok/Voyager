@@ -220,9 +220,9 @@ public class DatabaseAccess implements DataService {
 	}
 
 	@Override
-	public void addLocation(LocationModel location) {
+	public LocationModel addLocation(LocationModel location) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 	@Override
