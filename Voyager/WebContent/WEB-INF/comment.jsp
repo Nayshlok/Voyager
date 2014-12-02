@@ -44,7 +44,7 @@
 					<input name="locationId" type="hidden" value="1" />
 					 <label>Enter Your Comments:</label><br />
 					 <textarea name="comment" rows="4" cols="25"></textarea><br /> 
-					<input type="submit" value="Register" id="submit" />
+					<input type="submit" value="submit" id="submit" />
 				</form>
 			</section>
 		</article>

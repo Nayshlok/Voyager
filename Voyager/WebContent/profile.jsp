@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 
@@ -31,6 +33,11 @@
 
 
         <h2>Recent Comments</h2>
+        <c:forEach var="comment" items="${account.comments }">
+        	<p>${comment.location }</p>
+        	<p><fmt:formatDate value="${comment.time }" type="BOTH"/></p>
+        	<p>${comment.comment }</p>
+        </c:forEach>
         <hr class="div" />
         
         <form action="${pageContext.request.contextPath}/UserProfileServlet"

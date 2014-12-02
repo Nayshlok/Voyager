@@ -44,7 +44,8 @@ public class GetController {
 	}
 	
 	public ModelAndView getProfilePage() {
-		return new ModelAndView(request.getSession().getAttribute("account"), "/profile.jsp");
+		Account account = (Account)request.getSession().getAttribute("account");
+		return new ModelAndView(account, "/profile.jsp");
 	}
 	
 	public ModelAndView beginLocationSubmissionWorkflow() {
