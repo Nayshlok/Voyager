@@ -25,15 +25,17 @@
 
 		<article class="contentContainer">
 			<div id="wrapper">
+				<div id="columns">
 				<c:forEach var="loc" items="${location}">
 					<div class="pin">
-						<img src="${pageContext.request.contextPath}/${loc.picture}" />
+						<a href="${pageContext.request.contextPath}/voyager/loc/${loc.id}"><img src="${pageContext.request.contextPath}/${loc.picture}" /></a>
 						<hr />
-						<h3>${loc.name}</h3>
-						<h2 class="author">${loc.name}</h2>
+						<h3>${loc.location}</h3>
+						<h2 class="title">${loc.name}</h2>
 						<p>${loc.history}</p>
 					</div>
 				</c:forEach>
+				</div>
 			</div>
 		</article>
 	</article>
