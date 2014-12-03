@@ -72,11 +72,13 @@ public class GetController {
     
     public ModelAndView search(){
         ModelAndView model;
-        LocationModel loc = SearchController.databaseSearch(request.getParameter("search"), dataService);
+        List<LocationModel> loc = SearchController.databaseSearch(request.getParameter("search"), dataService);
         if(loc == null){
             model = new ModelAndView(null, "/WEB-INF/404.jsp");
         }
-        model = new ModelAndView(loc, "/voyager/loc/" + loc.getId());
+		request.setAttribute("location", loc);
+
+        model = new ModelAndView(loc, "/locations.jsp");
         return model;
     }
 

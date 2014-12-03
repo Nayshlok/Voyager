@@ -1,5 +1,6 @@
 package Controllers;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,11 +15,11 @@ import services.DatabaseAccess;
 public class SearchController {
 	
 	
-	public static LocationModel databaseSearch(String search, DataService dataService){
+	public static List<LocationModel> databaseSearch(String search, DataService dataService){
 		//search = search.toUpperCase();
 		
 		String[] arr = search.split(" ");    
-		LocationModel loc;
+		List<LocationModel> loc;
 		if(arr.length==1){
 			loc = stateSearch(search, dataService);
 		}else if(arr.length<5){
@@ -30,8 +31,8 @@ public class SearchController {
 		return loc;
 	}
 	
-	private static LocationModel stateSearch(String search, DataService dataService) {
-		LocationModel loc;
+	private static List<LocationModel> stateSearch(String search, DataService dataService) {
+		List<LocationModel> loc;
 		search.trim();
 		if(search.length()<2){
 			Map<String,String> states = new HashMap<String,String>();
@@ -86,26 +87,26 @@ public class SearchController {
 			states.put("WI", "WISCONSIN");
 			states.put("WY", "WYOMING");
 			search = states.get(search);
-			loc = dataService.retrieveLocation(search);
+			loc = dataService.getLocations(search);
 		}
 		else{
-			loc = dataService.retrieveLocation(search);
+			loc = dataService.getLocations(search);
 		}
 		
 		
 		return loc;
 	}
-	private static LocationModel addressSearch(String search, DataService dataService) {
+	private static List<LocationModel> addressSearch(String search, DataService dataService) {
 		int index = search.indexOf("-");
 		if(index>0){
 			search = search.substring(0, index);
 		}
-		LocationModel loc = dataService.retrieveLocation(search);
+		List<LocationModel> loc = dataService.getLocations(search);
 		return loc;
 		
 	}
-	private static LocationModel nonAddressSearch(String arr, DataService dataService) {
-		return dataService.retrieveLocation(arr);
+	private static List<LocationModel> nonAddressSearch(String arr, DataService dataService) {
+		return dataService.getLocations(arr);
 		
 	}
 }
