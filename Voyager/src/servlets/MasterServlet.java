@@ -30,7 +30,7 @@ public class MasterServlet extends HttpServlet {
 	private DataService dataService;
     private static Pattern locPattern = Pattern.compile("\\/loc\\/(?<id>[0-9]+)$");
 	private static Pattern accountPattern = Pattern.compile("\\/user\\/(?<user>[A-Za-z0-9]+)$");
-    
+
 	@Override
 	public void init(ServletConfig config) throws ServletException{
 		super.init(config);
@@ -67,6 +67,8 @@ public class MasterServlet extends HttpServlet {
 		} else if(request.getPathInfo().equals("/profile")){
 			mav = gc.getProfilePage();
 			rd = request.getRequestDispatcher(mav.getViewName());
+		} else if(request.getPathInfo().equals("/search")){
+			mav = gc.search();
 		} else if(m.find()) {
 			mav = gc.getSingleLocation(Integer.parseInt(m.group("id")));
 			rd = request.getRequestDispatcher(mav.getViewName());
@@ -97,8 +99,6 @@ public class MasterServlet extends HttpServlet {
 			mv = pc.deleteUser();
 		} else if(request.getPathInfo().equals("/updateRole")){
 			mv = pc.updateRole();
-		} else if(request.getPathInfo().equals("/search")){
-			mv = pc.Search();
 		} else if(request.getPathInfo().equals("/comment")){
 			mv = pc.postComment();
 		} else if(request.getPathInfo().equals("/new")) {

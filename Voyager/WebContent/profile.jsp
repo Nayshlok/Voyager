@@ -40,11 +40,6 @@
         </c:forEach>
         <hr class="div" />
         
-        <form action="${pageContext.request.contextPath}/UserProfileServlet"
-			method="post">
-			<input type="submit" name="logout" value="Logout" /> <input
-				type="submit" name="update" value="Update" />
-		</form>
         </article>
         
     </article>

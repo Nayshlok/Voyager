@@ -68,6 +68,16 @@ public class GetController {
     	request.getSession().invalidate();
     	return new ModelAndView(null, "/index.jsp");
     }
+    
+    public ModelAndView search(){
+        ModelAndView model;
+        LocationModel loc = SearchController.databaseSearch(request.getParameter("search"), dataService);
+        if(loc == null){
+            model = new ModelAndView(null, "/WEB-INF/404.jsp");
+        }
+        model = new ModelAndView(loc, request.getContextPath() + "loc/" + loc.getId());
+        return model;
+    }
 
 	
 	public ModelAndView getCommentForm(){
