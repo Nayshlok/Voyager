@@ -39,10 +39,10 @@
             </h2>
             <section id="searchContainer">
                 <section class="box">
-                    <form class="container-1">
+                    <form class="container-1" action="${pageContext.request.contextPath}/voyager/search" method="get">
                         <span class="icon"><i class="fa fa-search fa-2x" id="icon"></i></span>
-                        <input type="search" id="search" placeholder="Start Searching..." autocomplete="off" />
-                        <input type="submit" id="submit" nam="submit" value="" />
+                        <input type="search" name="search" id="search" placeholder="Start Searching..." autocomplete="off" />
+                        <input type="submit" id="submit" value="" />
                     </form>
                 </section>
 
