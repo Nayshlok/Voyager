@@ -156,16 +156,6 @@ public class PostController {
 		return new ModelAndView(toRemove, request.getContextPath() + "/register/users");
 	}
 	
-	public ModelAndView Search(){
-		ModelAndView model;
-		LocationModel loc= SearchController.databaseSearch(request.getParameter("search"), dataService);
-		if(loc==null){
-			model= new ModelAndView(loc, request.getContextPath()+ "idex");
-		}
-		model= new ModelAndView(loc, request.getContextPath()+"loc/"+loc.getId());
-		return model;
-	}
-	
 	public ModelAndView postComment(){
 		LocationModel location = dataService.getLocation(Integer.parseInt(request.getParameter("locationId")));
 		Account user = (Account)request.getSession().getAttribute("account");
