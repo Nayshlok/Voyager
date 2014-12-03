@@ -21,7 +21,7 @@ import javax.persistence.UniqueConstraint;
 @NamedQueries({
 	@NamedQuery(name="byLocationName", query="SELECT u FROM LocationModel u WHERE u.name = :locationName"),
 	@NamedQuery(name="allLocations", query="SELECT u FROM LocationModel u"),
-	@NamedQuery(name="byLocationAddress", query="SELECT u FROM LocationModel u WHERE u.location = :Location")
+	@NamedQuery(name="byLocationAddress", query="SELECT u FROM LocationModel u WHERE u.name like :locationName or u.location like :Location")
 })
 
 @Entity
