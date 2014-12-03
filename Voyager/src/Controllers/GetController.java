@@ -76,7 +76,7 @@ public class GetController {
         if(loc == null){
             model = new ModelAndView(null, "/WEB-INF/404.jsp");
         }
-        model = new ModelAndView(loc, request.getContextPath() + "loc/" + loc.getId());
+        model = new ModelAndView(loc, "/voyager/loc/" + loc.getId());
         return model;
     }
 
