@@ -133,7 +133,8 @@ public class EntityManagerDataService implements DataService{
 	@Override
 	public LocationModel retrieveLocation(String location) {
 		TypedQuery<LocationModel> locationSearch = em.createNamedQuery("byLocationAddress", LocationModel.class);
-		locationSearch.setParameter("location", location);
+		locationSearch.setParameter("locationName", "%"+location+"%");
+		locationSearch.setParameter("location", "%"+location+"%");
 		return locationSearch.getSingleResult();
 	}
 

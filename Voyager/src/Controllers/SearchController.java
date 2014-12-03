@@ -15,7 +15,7 @@ public class SearchController {
 	
 	
 	public static LocationModel databaseSearch(String search, DataService dataService){
-		search = search.toUpperCase();
+		//search = search.toUpperCase();
 		
 		String[] arr = search.split(" ");    
 		LocationModel loc;
