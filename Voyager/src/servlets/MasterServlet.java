@@ -28,7 +28,7 @@ maxFileSize=1024*1024*5, maxRequestSize=1024*1024*5*5)
 public class MasterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DataService dataService;
-    private static Pattern locPattern = Pattern.compile("\\/loc\\/(?<id>[0-9+])$");
+    private static Pattern locPattern = Pattern.compile("\\/loc\\/(?<id>[0-9]+)$");
 	
 	@Override
 	public void init(ServletConfig config) throws ServletException{
@@ -87,9 +87,12 @@ public class MasterServlet extends HttpServlet {
 		ModelAndView mv = null;
 		if(request.getPathInfo().equals("/login")){
 			mv = pc.commitUserLogin();
-		} else if(request.getPathInfo().equals("/register") || request.getPathInfo().equals("/update")){
-			mv = pc.commitUserRegisterUser();
-		} else if(request.getPathInfo().equals("/delete")){
+		} else if(request.getPathInfo().equals("/register")){
+			mv = pc.commitUserRegisterUser(true);
+		} else if(request.getPathInfo().equals("/update")){ 
+			mv = pc.commitUserRegisterUser(false);
+		}
+		else if(request.getPathInfo().equals("/delete")){
 			mv = pc.deleteUser();
 		} else if(request.getPathInfo().equals("/updateRole")){
 			mv = pc.updateRole();

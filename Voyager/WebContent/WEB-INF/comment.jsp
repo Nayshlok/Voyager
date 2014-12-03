@@ -41,9 +41,9 @@
 			<section class="formContainer">
 				<p><%=(request.getAttribute("errorMessage") == null ? "" : request.getAttribute("errorMessage")) %></p>
 				<form method="post">
-					<input name="locationId" type="hidden" value="1" />
+					<input name="locationId" type="hidden" value="${locationId }" />
 					 <label>Enter Your Comments:</label><br />
-					 <textarea name="comment" rows="4" cols="25"></textarea><br /> 
+					 <textarea name="comment" rows="4" cols="50"></textarea><br /> 
 					<input type="submit" value="submit" id="submit" />
 				</form>
 			</section>

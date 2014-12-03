@@ -71,6 +71,14 @@ public class GetController {
 
 	
 	public ModelAndView getCommentForm(){
-		return new ModelAndView(null, "/WEB-INF/comment.jsp");
+		ModelAndView mv = null;
+		if(request.getSession().getAttribute("account") == null){
+			mv = new ModelAndView(null, "/WEB-INF/Unauthorized.jsp");
+		}
+		else{
+			request.setAttribute("locaitonId", request.getParameter("locationId"));
+			mv = new ModelAndView(null, "/WEB-INF/comment.jsp");
+		}
+		return mv;
 	}	
 }

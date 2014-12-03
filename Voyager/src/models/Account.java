@@ -130,4 +130,8 @@ public class Account{
 		this.username = username;
 	}
 
+	public void setId(int userId) {
+		this.userId = userId;
+	}
+
 }

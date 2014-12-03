@@ -34,7 +34,7 @@
 
         <h2>Recent Comments</h2>
         <c:forEach var="comment" items="${account.comments }">
-        	<p>${comment.location }</p>
+        	<p>${comment.location.name }</p>
         	<p><fmt:formatDate value="${comment.time }" type="BOTH"/></p>
         	<p>${comment.comment }</p>
         </c:forEach>

@@ -56,7 +56,7 @@ public class PostController {
 
 	}
 	
-	public ModelAndView commitUserRegisterUser() {
+	public ModelAndView commitUserRegisterUser(boolean newUser) {
 		String username = "";
 		String password = "";
 		String confirmPassword = "";
@@ -90,8 +90,14 @@ public class PostController {
 		}
 		try {
 			Account user = new Account(username, email, avatarPath, Roles.User, password);
-			dataService.registerUser(user);
-			FileUploadController.processRequest(request, filePath);
+			if(newUser){
+				dataService.registerUser(user);
+				FileUploadController.processRequest(request, filePath);
+			}
+			else{
+				user.setId(dataService.getUserId(user.getUsername()));
+				dataService.updateUser(user);
+			}
 			model.setUser(user);
 			mv = new ModelAndView(model, "/WEB-INF/account/profile.jsp");
 		} catch(UsernameAlreadyExistsException e) {
@@ -168,7 +174,7 @@ public class PostController {
 		location.addComment(comment);
 		user.addComment(comment);
 		dataService.saveComment(comment);
-		return new ModelAndView(comment, "");
+		return new ModelAndView(comment, request.getContextPath() + "loc/" + location.getId());
 	}
 	
 	

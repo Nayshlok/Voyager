@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+	
 	
 <!DOCTYPE html>
 <html>
@@ -29,16 +31,21 @@
 				<h3>${location.location}</h3>
 				${location.history}
 
-				<!-- <section class="commentsContainer">
-					<c:forEach var="comment" items="${comments}">
+				<section class="commentsContainer">
+					<c:forEach var="comment" items="${location.comments}">
 						<section class="commentBox">
-							${comment.user} <br />
-							<c:out value="${comment.comment}" />
+						   	<p>${comment.user.username }</p>
+	        				<p><fmt:formatDate value="${comment.time }" type="BOTH"/></p>
+	        				<p>${comment.comment }</p>
 						</section>
 					</c:forEach>
 
-				</section>-->
+				</section>
 			</section>
+			<form method="GET" action="<%= request.getContextPath()%>/voyager/comment">
+				<input type="hidden" name="locationId" value="${location.id }" />
+				<input type="submit" value="Comment" />
+			</form>
 		</article>
 	</article>
 </body>
