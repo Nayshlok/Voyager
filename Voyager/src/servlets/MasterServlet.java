@@ -29,7 +29,8 @@ public class MasterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DataService dataService;
     private static Pattern locPattern = Pattern.compile("\\/loc\\/(?<id>[0-9]+)$");
-	
+	private static Pattern accountPattern = Pattern.compile("\\/user\\/(?<user>[A-Za-z0-9]+)$");
+    
 	@Override
 	public void init(ServletConfig config) throws ServletException{
 		super.init(config);

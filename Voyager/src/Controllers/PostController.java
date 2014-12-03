@@ -93,13 +93,14 @@ public class PostController {
 			if(newUser){
 				dataService.registerUser(user);
 				FileUploadController.processRequest(request, filePath);
+				request.getSession().setAttribute("account", dataService.getUser(user.getUsername()));
 			}
 			else{
 				user.setId(dataService.getUserId(user.getUsername()));
 				dataService.updateUser(user);
 			}
 			model.setUser(user);
-			mv = new ModelAndView(model, "/WEB-INF/account/profile.jsp");
+			mv = new ModelAndView(model, "/profile.jsp");
 		} catch(UsernameAlreadyExistsException e) {
 			request.setAttribute("attemptedAccount", new Account(username, email, avatarPath, Roles.User, password));
 			mv = new ModelAndView("Username has already been used.", "/WEB-INF/register.jsp");
