@@ -42,10 +42,11 @@
 
 				</section>
 			</section>
-			<form method="GET" action="<%= request.getContextPath()%>/voyager/comment">
+			<%@ include file="/WEB-INF/comment.jsp" %> 
+			<%--<form method="GET" action="<%= request.getContextPath()%>/voyager/comment">
 				<input type="hidden" name="locationId" value="${location.id }" />
 				<input type="submit" value="Comment" />
-			</form>
+			</form>--%>
 		</article>
 	</article>
 </body>

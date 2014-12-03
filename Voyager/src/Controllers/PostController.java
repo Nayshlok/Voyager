@@ -165,7 +165,7 @@ public class PostController {
 		location.addComment(comment);
 		user.addComment(comment);
 		dataService.saveComment(comment);
-		return new ModelAndView(comment, request.getContextPath() + "loc/" + location.getId());
+		return new ModelAndView(comment, request.getContextPath() + "/loc/" + location.getId());
 	}
 	
 	
