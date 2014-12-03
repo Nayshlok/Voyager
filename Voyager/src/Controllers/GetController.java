@@ -43,8 +43,9 @@ public class GetController {
 		return new ModelAndView(null, "/index.jsp");
 	}
 	
-	public ModelAndView getProfilePage() {
-		Account account = (Account)request.getSession().getAttribute("account");
+	public ModelAndView getProfilePage(String username) {
+		Account account = dataService.getUser(username);
+		request.setAttribute("profileAccount", account);
 		return new ModelAndView(account, "/profile.jsp");
 	}
 	

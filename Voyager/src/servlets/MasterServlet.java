@@ -45,40 +45,32 @@ public class MasterServlet extends HttpServlet {
 		ModelAndView mav; 
 		RequestDispatcher rd = null;
 		Matcher m = locPattern.matcher(request.getPathInfo());
+		Matcher userMatch = accountPattern.matcher(request.getPathInfo());
 		
 		if(request.getPathInfo().equals("/*") || request.getPathInfo().equals("/home")) {
 			mav = gc.getHomePage();
-			rd = request.getRequestDispatcher(mav.getViewName());
 		} else if(request.getPathInfo().equals("/register")) {
 			mav = gc.beginRegisterWorkflow();
-			rd = request.getRequestDispatcher(mav.getViewName());
 		} else if(request.getPathInfo().equals("/locations")) {
 			mav = gc.getAllLocations();
-			rd = request.getRequestDispatcher(mav.getViewName());
 		} else if(request.getPathInfo().equals("/login")) {
 			mav = gc.beginLoginWorkflow();
-			rd = request.getRequestDispatcher(mav.getViewName());
 		} else if(request.getPathInfo().equals("/new")) {
 			mav = gc.beginLocationSubmissionWorkflow();
-			rd = request.getRequestDispatcher(mav.getViewName());
 		} else if(request.getPathInfo().equals("/comment")){
 			mav = gc.getCommentForm();
-			rd = request.getRequestDispatcher(mav.getViewName());
-		} else if(request.getPathInfo().equals("/profile")){
-			mav = gc.getProfilePage();
-			rd = request.getRequestDispatcher(mav.getViewName());
 		} else if(request.getPathInfo().equals("/search")){
 			mav = gc.search();
+		} else if(userMatch.find()){
+			mav = gc.getProfilePage(userMatch.group("user"));
 		} else if(m.find()) {
 			mav = gc.getSingleLocation(Integer.parseInt(m.group("id")));
-			rd = request.getRequestDispatcher(mav.getViewName());
 		} else if(request.getPathInfo().equals("/logout")) {
 			mav = gc.logout();
-			rd = request.getRequestDispatcher(mav.getViewName());
 		} else {
-			rd = request.getRequestDispatcher("/WEB-INF/404.jsp");
+			mav = new ModelAndView(null, "/WEB-INF/404.jsp");
 		}
-		
+		rd = request.getRequestDispatcher(mav.getViewName());
 		rd.forward(request, response);
 	}
 

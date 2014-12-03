@@ -42,7 +42,7 @@ public class PostController {
 				System.out.println("Logged in");
 				model.setUser(account);
 				request.getSession().setAttribute("account", account);
-				return new ModelAndView(model, request.getContextPath() + "/voyager/profile", true);
+				return new ModelAndView(model, request.getContextPath() + "/voyager/user/" + account.getUsername(), true);
 			} else {
 				model.setErrorMessage("Incorrect Login");
 				
@@ -55,7 +55,7 @@ public class PostController {
 		}
 
 	}
-	
+
 	public ModelAndView commitUserRegisterUser(boolean newUser) {
 		String username = "";
 		String password = "";
@@ -100,7 +100,7 @@ public class PostController {
 				dataService.updateUser(user);
 			}
 			model.setUser(user);
-			mv = new ModelAndView(model, "/profile.jsp");
+			mv = new ModelAndView(model, "/voyager/user/" + user.getUsername());
 		} catch(UsernameAlreadyExistsException e) {
 			request.setAttribute("attemptedAccount", new Account(username, email, avatarPath, Roles.User, password));
 			mv = new ModelAndView("Username has already been used.", "/WEB-INF/register.jsp");

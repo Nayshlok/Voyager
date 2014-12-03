@@ -18,7 +18,7 @@
 
     <article class="mainContainer">
         <section class="topContent">
-            <h1>${account.username}</h1>
+            <h1>${profileAccount.username}</h1>
 
             <section class="hrContainer">
                 <hr/>
@@ -33,13 +33,19 @@
 
 
         <h2>Recent Comments</h2>
-        <c:forEach var="comment" items="${account.comments }">
+        <c:forEach var="comment" items="${profileAccount.comments }">
         	<p>${comment.location.name }</p>
         	<p><fmt:formatDate value="${comment.time }" type="BOTH"/></p>
         	<p>${comment.comment }</p>
         </c:forEach>
         <hr class="div" />
-        
+        <p>${profileAccount.id }</p>
+        <%--<c:set var="localAccount" value="${profileAccount.id }"/>
+        <c:set var="loggedAccount" value="${account.id }" />
+        <p>${account.username }</p>
+        <c:if test="${localAccount == loggedAccount} ">
+        	<p>Logged in user</p>
+        </c:if> --%>
         </article>
         
     </article>
