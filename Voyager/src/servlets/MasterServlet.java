@@ -29,12 +29,12 @@ import Controllers.PostController;
 maxFileSize=1024*1024*5, maxRequestSize=1024*1024*5*5)
 public class MasterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private static Pattern locPattern = Pattern.compile("\\/loc\\/(?<id>[0-9]+)$");
+	private static Pattern locPattern = Pattern.compile("\\/loc\\/(?<id>[0-9]+)$");
 	private static Pattern accountPattern = Pattern.compile("\\/user\\/(?<user>[A-Za-z0-9]+)$");
 
 	@Inject GetController gc;
 	@Inject PostController pc;
-	
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -43,7 +43,7 @@ public class MasterServlet extends HttpServlet {
 		RequestDispatcher rd = null;
 		Matcher m = locPattern.matcher(request.getPathInfo());
 		Matcher userMatch = accountPattern.matcher(request.getPathInfo());
-		
+
 		if(request.getPathInfo().equals("/*") || request.getPathInfo().equals("/home")) {
 			mav = gc.getHomePage();
 		} else if(request.getPathInfo().equals("/register")) {
@@ -60,6 +60,8 @@ public class MasterServlet extends HttpServlet {
 			mav = gc.getCommentForm(request);
 		} else if(request.getPathInfo().equals("/search")){
 			mav = gc.search(request);
+		} else if(request.getPathInfo().equals("/users")) {
+			mav = gc.getUserList(request);
 		} else if(userMatch.find()){
 			mav = gc.getProfilePage(request, userMatch.group("user"));
 		} else if(m.find()) {
@@ -97,7 +99,7 @@ public class MasterServlet extends HttpServlet {
 		} else {
 			mv = new ModelAndView(null, "/WEB-INF/404.jsp");
 		}
-		
+
 		if(mv.isRedirect()){
 			response.sendRedirect(mv.getViewName());
 		}
@@ -105,6 +107,6 @@ public class MasterServlet extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher(mv.getViewName());
 			rd.forward(request, response);
 		}
-		
+
 	}
 }
