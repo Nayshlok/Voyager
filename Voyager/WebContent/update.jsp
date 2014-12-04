@@ -9,19 +9,29 @@
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"></head>
 <body>
 	<%@ include file="/WEB-INF/sidebar.jsp" %> 
+	<article class="mainContainer">
+		<section class="topContent">
+			<h1>Register New User</h1>
+		</section>
 
-	<article class="bodyContainer">
-		<h1>Update User</h1>
-		<form action="<%= request.getContextPath() %>/voyager/update" method="post" enctype="multipart/form-data">
-			<input type="hidden" value="${account.userId }"/>
-			<label>Password:</label><input	name="password" type="password" /> 
-			<label>Confirm Password:</label><input name="confirmPassword" type="password" />
-			<label>Email Address:</label><input name="email" type="email" />
-			<label>Confirm Email:</label><input name="confirmEmail" type="email" />
-			<label>Profile Image:</label><input name="image" type="file" />
-			<input type="submit" value="Update" id="submit" />
-		</form>
+		<article class="contentContainer">
 
+			<section class="formContainer">
+				<p><%=(request.getAttribute("errorMessage") == null ? "" : request.getAttribute("errorMessage")) %></p>
+				<form method="post" enctype="multipart/form-data">
+					<label>Username:</label> <input name="username" type="text"
+						 class="textEntry"  autocomplete="off"/><br /> <label>Password:</label>
+					<input name="password" type="password" class="textEntry" /><br /> <label>Confirm
+						Password:</label> <input name="confirmPassword" type="password"
+						class="textEntry" /><br /> <label>Email Address:</label> <input
+						name="email" type="email"
+						class="textEntry"  autocomplete="off"/><br /> <label>Confirm Email:</label> <input
+						name="confirmEmail" type="email" class="textEntry"  autocomplete="off" /><br /> <label>Profile
+						Image:</label> <input name="image" type="file" class="custom-file-input" /><br />
+					<input type="submit" value="Update" id="submit" />
+				</form>
+			</section>
+		</article>
 	</article>
 </body>
 </html>

@@ -31,7 +31,7 @@
 				</tr>
 				<c:forEach var="user" items="${userList }">
 					<tr>
-						<td>${user.username }</td>
+						<td><a href="<%= request.getContextPath()%>/voyager/user/${user.username}">${user.username }</a></td>
 						<td>${user.email }</td>
 						<td>${user.role }</td>
 						<td>

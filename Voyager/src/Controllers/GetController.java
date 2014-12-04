@@ -39,7 +39,7 @@ public class GetController {
 	}
 	
 	public ModelAndView beginUpdateFlow(){
-		return new ModelAndView(null, "/WEB-INF/update.jsp");
+		return new ModelAndView(null, "/update.jsp");
 	}
 	
 	public ModelAndView getHomePage() {
