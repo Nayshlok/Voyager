@@ -34,7 +34,7 @@
 				<section class="commentsContainer">
 					<c:forEach var="comment" items="${location.comments}">
 						<section class="commentBox">
-						   	<p>${comment.user.username }</p>
+						   	<p><a href="<%= request.getContextPath()%>/voyager/user/${comment.user.username}">${comment.user.username }</a></p>
 	        				<p><fmt:formatDate value="${comment.time }" type="BOTH"/></p>
 	        				<p>${comment.comment }</p>
 						</section>
