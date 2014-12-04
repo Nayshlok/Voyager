@@ -87,7 +87,7 @@ public class Account{
 		this.avatar = avatar;
 	}
 
-	public int getUserID() {
+	public int getUserId() {
 		return userId;
 	}
 	
@@ -130,7 +130,7 @@ public class Account{
 		this.username = username;
 	}
 
-	public void setId(int userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 

@@ -42,7 +42,6 @@ public class PostController {
 				return new ModelAndView(model, request.getContextPath() + "/voyager/user/" + account.getUsername(), true);
 			} else {
 				model.setErrorMessage("Incorrect Login");
-				
 				return new ModelAndView(model, "/WEB-INF/account/login.jsp");
 			}
 		} catch(Exception e) {
@@ -93,7 +92,7 @@ public class PostController {
 				request.getSession().setAttribute("account", dataService.getUser(user.getUsername()));
 			}
 			else{
-				user.setId(dataService.getUserId(user.getUsername()));
+				user.setUserId(dataService.getUserId(user.getUsername()));
 				dataService.updateUser(user);
 			}
 			model.setUser(user);
@@ -162,7 +161,7 @@ public class PostController {
 		location.addComment(comment);
 		user.addComment(comment);
 		dataService.saveComment(comment);
-		return new ModelAndView(comment, request.getContextPath() + "/loc/" + location.getId());
+		return new ModelAndView(comment, request.getContextPath() + "/voyager/loc/" + location.getId(), true);
 	}
 	
 	

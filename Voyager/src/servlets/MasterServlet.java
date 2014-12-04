@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import models.ModelAndView;
+import models.RegisterUserModel;
 import services.DataService;
 import Controllers.GetController;
 import Controllers.PostController;
@@ -38,7 +39,7 @@ public class MasterServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ModelAndView mav; 
+		ModelAndView mav = null; 
 		RequestDispatcher rd = null;
 		Matcher m = locPattern.matcher(request.getPathInfo());
 		Matcher userMatch = accountPattern.matcher(request.getPathInfo());
@@ -47,6 +48,8 @@ public class MasterServlet extends HttpServlet {
 			mav = gc.getHomePage();
 		} else if(request.getPathInfo().equals("/register")) {
 			mav = gc.beginRegisterWorkflow();
+		} else if(request.getPathInfo().equals("/update")){
+			mav = gc.beginUpdateFlow();
 		} else if(request.getPathInfo().equals("/locations")) {
 			mav = gc.getAllLocations(request);
 		} else if(request.getPathInfo().equals("/login")) {
@@ -77,6 +80,7 @@ public class MasterServlet extends HttpServlet {
 		ModelAndView mv = null;
 		if(request.getPathInfo().equals("/login")){
 			mv = pc.commitUserLogin(request);
+			request.setAttribute("errorMessage", ((RegisterUserModel)mv.getModel()).getErrorMessage());
 		} else if(request.getPathInfo().equals("/register")){
 			mv = pc.commitUserRegisterUser(request, true);
 		} else if(request.getPathInfo().equals("/update")){ 

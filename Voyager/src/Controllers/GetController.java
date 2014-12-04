@@ -38,6 +38,10 @@ public class GetController {
 		return new ModelAndView(null, "/WEB-INF/register.jsp");
 	}
 	
+	public ModelAndView beginUpdateFlow(){
+		return new ModelAndView(null, "/WEB-INF/update.jsp");
+	}
+	
 	public ModelAndView getHomePage() {
 		return new ModelAndView(null, "/index.jsp");
 	}

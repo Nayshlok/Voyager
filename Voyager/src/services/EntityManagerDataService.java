@@ -45,25 +45,19 @@ public class EntityManagerDataService implements DataService{
 		if ( !query.getResultList().isEmpty() ) {
 			throw new IllegalArgumentException("Username already exists");
 		}
-		em.getTransaction().begin();
 		em.persist(user);
-		em.getTransaction().commit();
 	}
 
 	@Override
 	public void removeUser(Account user) {
 		
-		em.getTransaction().begin();
-		Account toRemove = em.find(Account.class, user.getUserID());
+		Account toRemove = em.find(Account.class, user.getUserId());
 		em.remove(toRemove);
-		em.getTransaction().commit();
 	}
 
 	@Override
 	public void updateUser(Account user) {
-		em.getTransaction().begin();
 		em.merge(user);		
-		em.getTransaction().commit();
 	}
 
 	@Override
@@ -73,7 +67,7 @@ public class EntityManagerDataService implements DataService{
 		query.setParameter("username", user);
 		try{
 			Account found = query.getSingleResult();
-			id = found.getUserID();
+			id = found.getUserId();
 		} catch(NoResultException ex){
 			//ignore and leave id -1
 		}
@@ -99,7 +93,6 @@ public class EntityManagerDataService implements DataService{
 	@Override
 	public LocationModel addLocation(LocationModel location) {
 		LocationModel persistedLocation = null;
-		em.getTransaction().begin();
 		try{
 			em.persist(location);
 			TypedQuery<LocationModel> typeQuery = em.createNamedQuery("byLocationName", LocationModel.class);
@@ -107,10 +100,8 @@ public class EntityManagerDataService implements DataService{
 			persistedLocation = typeQuery.getSingleResult();
 		}
 		catch(Exception e){
-			em.getTransaction().rollback();
 			throw e;
 		}
-		em.getTransaction().commit();
 		
 		return persistedLocation;
 	}
@@ -143,8 +134,6 @@ public class EntityManagerDataService implements DataService{
 
 	@Override
 	public void saveComment(CommentModel comment) {
-		em.getTransaction().begin();
 		em.persist(comment);
-		em.getTransaction().commit();
 	}
 }

@@ -13,6 +13,7 @@
 	<article class="bodyContainer">
 		<h1>Update User</h1>
 		<form action="<%= request.getContextPath() %>/voyager/update" method="post" enctype="multipart/form-data">
+			<input type="hidden" value="${account.userId }"/>
 			<label>Password:</label><input	name="password" type="password" /> 
 			<label>Confirm Password:</label><input name="confirmPassword" type="password" />
 			<label>Email Address:</label><input name="email" type="email" />
