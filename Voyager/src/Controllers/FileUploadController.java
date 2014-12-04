@@ -13,12 +13,15 @@ import javax.servlet.http.Part;
 
 public class FileUploadController {
 
-	protected static String processRequest(HttpServletRequest request, String filePath)
+	protected static String processRequest(HttpServletRequest request)
 	        throws ServletException, IOException {
 
 	    // Create path components to save the file
-	    final String path = filePath + "\\resources\\images";
-	    System.out.println(filePath);
+		File testDir =  new File("C:\\temp\\resources\\images");
+		if(!testDir.exists()){
+			testDir.mkdirs();
+		}
+	    final String path = "C:\\temp\\resources\\images";
 	    final Part filePart = request.getPart("image");
 	    final String fileName = getFileName(filePart);
 

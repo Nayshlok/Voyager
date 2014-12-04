@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -27,21 +28,16 @@ import Controllers.PostController;
 maxFileSize=1024*1024*5, maxRequestSize=1024*1024*5*5)
 public class MasterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private DataService dataService;
     private static Pattern locPattern = Pattern.compile("\\/loc\\/(?<id>[0-9]+)$");
 	private static Pattern accountPattern = Pattern.compile("\\/user\\/(?<user>[A-Za-z0-9]+)$");
 
-	@Override
-	public void init(ServletConfig config) throws ServletException{
-		super.init(config);
-		dataService = (DataService) this.getServletContext().getAttribute("data");
-	}
+	@Inject GetController gc;
+	@Inject PostController pc;
 	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		GetController gc = new GetController(request, dataService);
 		ModelAndView mav; 
 		RequestDispatcher rd = null;
 		Matcher m = locPattern.matcher(request.getPathInfo());
@@ -52,21 +48,21 @@ public class MasterServlet extends HttpServlet {
 		} else if(request.getPathInfo().equals("/register")) {
 			mav = gc.beginRegisterWorkflow();
 		} else if(request.getPathInfo().equals("/locations")) {
-			mav = gc.getAllLocations();
+			mav = gc.getAllLocations(request);
 		} else if(request.getPathInfo().equals("/login")) {
 			mav = gc.beginLoginWorkflow();
 		} else if(request.getPathInfo().equals("/new")) {
 			mav = gc.beginLocationSubmissionWorkflow();
 		} else if(request.getPathInfo().equals("/comment")){
-			mav = gc.getCommentForm();
+			mav = gc.getCommentForm(request);
 		} else if(request.getPathInfo().equals("/search")){
-			mav = gc.search();
+			mav = gc.search(request);
 		} else if(userMatch.find()){
-			mav = gc.getProfilePage(userMatch.group("user"));
+			mav = gc.getProfilePage(request, userMatch.group("user"));
 		} else if(m.find()) {
-			mav = gc.getSingleLocation(Integer.parseInt(m.group("id")));
+			mav = gc.getSingleLocation(request, Integer.parseInt(m.group("id")));
 		} else if(request.getPathInfo().equals("/logout")) {
-			mav = gc.logout();
+			mav = gc.logout(request);
 		} else {
 			mav = new ModelAndView(null, "/WEB-INF/404.jsp");
 		}
@@ -78,23 +74,22 @@ public class MasterServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PostController pc = new PostController(request, dataService, this.getServletContext().getRealPath(File.separator));
 		ModelAndView mv = null;
 		if(request.getPathInfo().equals("/login")){
-			mv = pc.commitUserLogin();
+			mv = pc.commitUserLogin(request);
 		} else if(request.getPathInfo().equals("/register")){
-			mv = pc.commitUserRegisterUser(true);
+			mv = pc.commitUserRegisterUser(request, true);
 		} else if(request.getPathInfo().equals("/update")){ 
-			mv = pc.commitUserRegisterUser(false);
+			mv = pc.commitUserRegisterUser(request, false);
 		}
 		else if(request.getPathInfo().equals("/delete")){
-			mv = pc.deleteUser();
+			mv = pc.deleteUser(request);
 		} else if(request.getPathInfo().equals("/updateRole")){
-			mv = pc.updateRole();
+			mv = pc.updateRole(request);
 		} else if(request.getPathInfo().equals("/comment")){
-			mv = pc.postComment();
+			mv = pc.postComment(request);
 		} else if(request.getPathInfo().equals("/new")) {
-			mv = pc.commitNewLocation();
+			mv = pc.commitNewLocation(request);
 		} else {
 			mv = new ModelAndView(null, "/WEB-INF/404.jsp");
 		}

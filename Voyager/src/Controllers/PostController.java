@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
 
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
@@ -18,19 +21,13 @@ import models.RegisterUserModel;
 import models.Roles;
 import services.DataService;
 
+@Stateless
+@LocalBean
 public class PostController {
 
-	private HttpServletRequest request;
-	private DataService dataService;
-	private String filePath;
+	@Inject DataService dataService;
 	
-	public PostController(HttpServletRequest request, DataService dataService, String filePath) {
-		this.request = request;
-		this.dataService = dataService;
-		this.filePath = filePath;
-	}
-	
-	public ModelAndView commitUserLogin() {
+	public ModelAndView commitUserLogin(HttpServletRequest request) {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
@@ -50,13 +47,13 @@ public class PostController {
 			}
 		} catch(Exception e) {
 			model.setErrorMessage("Incorrect Login");
-			
+			e.printStackTrace();
 			return new ModelAndView(model, "/WEB-INF/account/login.jsp");
 		}
 
 	}
 
-	public ModelAndView commitUserRegisterUser(boolean newUser) {
+	public ModelAndView commitUserRegisterUser(HttpServletRequest request, boolean newUser) {
 		String username = "";
 		String password = "";
 		String confirmPassword = "";
@@ -92,7 +89,7 @@ public class PostController {
 			Account user = new Account(username, email, avatarPath, Roles.User, password);
 			if(newUser){
 				dataService.registerUser(user);
-				FileUploadController.processRequest(request, filePath);
+				FileUploadController.processRequest(request);
 				request.getSession().setAttribute("account", dataService.getUser(user.getUsername()));
 			}
 			else{
@@ -113,7 +110,7 @@ public class PostController {
 		return mv;
 	}
 		
-    public ModelAndView commitNewLocation() {
+    public ModelAndView commitNewLocation(HttpServletRequest request) {
         String placeName = "";
         String locationString = "";
         String history = "";
@@ -133,7 +130,7 @@ public class PostController {
         try {
             location = new LocationModel(0, placeName, imgPath, locationString, history);
             location = dataService.addLocation(location);
-            FileUploadController.processRequest(request, filePath);
+            FileUploadController.processRequest(request);
         } catch (ServletException e1) {
             e1.printStackTrace();
         } catch (IOException e1) {
@@ -142,7 +139,7 @@ public class PostController {
         return new ModelAndView(location, request.getContextPath() + "voyager/loc/" + location.getId(), true);
     }
 
-	public ModelAndView updateRole(){
+	public ModelAndView updateRole(HttpServletRequest request){
 		Roles role = Roles.valueOf(request.getParameter("role"));
 		String username = request.getParameter("username");
 		Account toUpdate = dataService.getUser(username);
@@ -151,13 +148,13 @@ public class PostController {
 		return new ModelAndView(toUpdate, request.getContextPath() + "/register/users");
 	}
 	
-	public ModelAndView deleteUser(){
+	public ModelAndView deleteUser(HttpServletRequest request){
 		Account toRemove = dataService.getUser(request.getParameter("username"));
 		dataService.removeUser(toRemove);
 		return new ModelAndView(toRemove, request.getContextPath() + "/register/users");
 	}
 	
-	public ModelAndView postComment(){
+	public ModelAndView postComment(HttpServletRequest request){
 		LocationModel location = dataService.getLocation(Integer.parseInt(request.getParameter("locationId")));
 		Account user = (Account)request.getSession().getAttribute("account");
 		String commentString = request.getParameter("comment");

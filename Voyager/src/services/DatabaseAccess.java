@@ -8,6 +8,9 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Properties;
 
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+
 import models.Account;
 import models.CommentModel;
 import models.LocationModel;
@@ -19,7 +22,8 @@ import com.microsoft.sqlserver.jdbc.SQLServerDriver;
 import exceptions.BadLoginException;
 import exceptions.UsernameAlreadyExistsException;
 
-
+@Stateless
+@LocalBean
 public class DatabaseAccess implements DataService {
 
 	private final String connectionUrl = "jdbc:sqlserver://n8bu1j6855.database.windows.net:1433;database=VoyagerDB;user=VoyageLogin@n8bu1j6855;password={GroupP@ssword};encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";

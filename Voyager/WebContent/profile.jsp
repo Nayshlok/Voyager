@@ -39,13 +39,12 @@
         	<p>${comment.comment }</p>
         </c:forEach>
         <hr class="div" />
-        <p>${profileAccount.id }</p>
-        <%--<c:set var="localAccount" value="${profileAccount.id }"/>
-        <c:set var="loggedAccount" value="${account.id }" />
+        <c:set var="localAccount" value="${profileAccount.userId }"/>
+        <c:set var="loggedAccount" value="${account.userId }" />
         <p>${account.username }</p>
         <c:if test="${localAccount == loggedAccount} ">
         	<p>Logged in user</p>
-        </c:if> --%>
+        </c:if>
         </article>
         
     </article>

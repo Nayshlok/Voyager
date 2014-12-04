@@ -4,20 +4,14 @@
  xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
  http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd" version="1.0">
  
-   <persistence-unit name="voyagerUnit" transaction-type="RESOURCE_LOCAL">
-     <description>Voyager Persistence Unit</description>
+   <persistence-unit name="voyagerUnit" transaction-type="JTA">
+     <jta-data-source>voyageDataSource</jta-data-source>
      <class>models.Account</class>
      <class>models.CommentModel</class>
      <class>models.LocationModel</class>
      <class>models.AttractionModel</class>
      
      <properties>
-       <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://n8bu1j6855.database.windows.net:1433;database=VoyagerDB;selectMethod=cursor"/>
-       <property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
-       <property name="javax.persistence.jdbc.user" value="VoyageLogin"/>
-       <property name="javax.persistence.jdbc.password" value="GroupP@ssword"/>
-       
-       
        <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/>
      </properties>
    </persistence-unit>

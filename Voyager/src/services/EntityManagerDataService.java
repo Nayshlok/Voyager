@@ -1,24 +1,27 @@
 package services;
 
-import java.util.Arrays;
 import java.util.List;
 
-import javax.ejb.Stateful;
+import javax.ejb.Local;
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import exceptions.BadLoginException;
 import models.Account;
 import models.CommentModel;
 import models.LocationModel;
-import models.Post;
+import exceptions.BadLoginException;
 
+@Stateless
+@LocalBean
+@Local(DataService.class)
 public class EntityManagerDataService implements DataService{
 
 	@PersistenceContext(name="voyagerUnit")
-	public EntityManager em;
+	EntityManager em;
 	
 	@Override
 	public Account login(String username, String password) {

@@ -2,30 +2,29 @@ package Controllers;
 
 import java.util.List;
 
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
-import services.DataService;
 import models.Account;
 import models.LocationModel;
 import models.ModelAndView;
+import services.DataService;
 
+@Stateless
+@LocalBean
 public class GetController {
 	
-	private HttpServletRequest request;
-	private DataService dataService;
+	@Inject DataService dataService;
 	
-	public GetController(HttpServletRequest request, DataService dataService) {
-		this.request = request;
-		this.dataService = dataService;
-	}
-	
-	public ModelAndView getAllLocations() {
+	public ModelAndView getAllLocations(HttpServletRequest request) {
 		List<LocationModel> allLocations = dataService.getAllLocations();
 		request.setAttribute("location", allLocations);
 		return new ModelAndView(allLocations, "/locations.jsp");
 	}
 	
-	public ModelAndView getUserList(){
+	public ModelAndView getUserList(HttpServletRequest request){
 		List<Account> allUsers = dataService.getAllUsers();
 		request.setAttribute("userList", allUsers);
 		return new ModelAndView(allUsers, "/WEB-INF/Users.jsp");
@@ -43,7 +42,7 @@ public class GetController {
 		return new ModelAndView(null, "/index.jsp");
 	}
 	
-	public ModelAndView getProfilePage(String username) {
+	public ModelAndView getProfilePage(HttpServletRequest request, String username) {
 		Account account = dataService.getUser(username);
 		request.setAttribute("profileAccount", account);
 		return new ModelAndView(account, "/profile.jsp");
@@ -53,7 +52,7 @@ public class GetController {
 		return new ModelAndView(null, "/submit.jsp");
 	}
 	
-    public ModelAndView getSingleLocation(int id) {
+    public ModelAndView getSingleLocation(HttpServletRequest request, int id) {
         LocationModel loc = dataService.getLocation(id);
         ModelAndView mav = null;
         if(loc != null) {
@@ -65,12 +64,12 @@ public class GetController {
         return mav;
     }
     
-    public ModelAndView logout() {
+    public ModelAndView logout(HttpServletRequest request) {
     	request.getSession().invalidate();
     	return new ModelAndView(null, "/index.jsp");
     }
     
-    public ModelAndView search(){
+    public ModelAndView search(HttpServletRequest request){
         ModelAndView model;
         List<LocationModel> loc = SearchController.databaseSearch(request.getParameter("search"), dataService);
         if(loc == null){
@@ -83,7 +82,7 @@ public class GetController {
     }
 
 	
-	public ModelAndView getCommentForm(){
+	public ModelAndView getCommentForm(HttpServletRequest request){
 		ModelAndView mv = null;
 		if(request.getSession().getAttribute("account") == null){
 			mv = new ModelAndView(null, "/WEB-INF/Unauthorized.jsp");
