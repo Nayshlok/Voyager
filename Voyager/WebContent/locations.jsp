@@ -11,7 +11,6 @@
 <link
 	href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
 	rel="stylesheet">
-
 </head>
 
 <body>
@@ -33,6 +32,7 @@
 						<h3>${loc.location}</h3>
 						<h2 class="title">${loc.name}</h2>
 						<p>${loc.history}</p>
+						<br />
 					</div>
 				</c:forEach>
 				</div>

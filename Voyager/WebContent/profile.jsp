@@ -46,7 +46,7 @@
 		<fmt:parseNumber var="loggedAccount" value="${account.userId }" />
 		<p>${account.username }</p>
 		<p>${localAccount } and ${loggedAccount }</p>
-		<c:if test="${localAccount eq loggedAccount} ">
+		<c:if test="${localAccount eq loggedAccount}">
 			<a href="${pageContext.request.contextPath}/voyager/update">
 				<button type="button">Update</button>
 			</a>
