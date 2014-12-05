@@ -49,13 +49,13 @@ public class MasterServlet extends HttpServlet {
 		} else if(request.getPathInfo().equals("/register")) {
 			mav = gc.beginRegisterWorkflow();
 		} else if(request.getPathInfo().equals("/update")){
-			mav = gc.beginUpdateFlow();
+			mav = gc.beginUpdateFlow(request);
 		} else if(request.getPathInfo().equals("/locations")) {
 			mav = gc.getAllLocations(request);
 		} else if(request.getPathInfo().equals("/login")) {
 			mav = gc.beginLoginWorkflow();
 		} else if(request.getPathInfo().equals("/new")) {
-			mav = gc.beginLocationSubmissionWorkflow();
+			mav = gc.beginLocationSubmissionWorkflow(request);
 		} else if(request.getPathInfo().equals("/comment")){
 			mav = gc.getCommentForm(request);
 		} else if(request.getPathInfo().equals("/search")){

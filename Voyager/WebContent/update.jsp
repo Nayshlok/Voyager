@@ -11,7 +11,7 @@
 	<%@ include file="/WEB-INF/sidebar.jsp" %> 
 	<article class="mainContainer">
 		<section class="topContent">
-			<h1>Register New User</h1>
+			<h1>Update ${account.username }</h1>
 		</section>
 
 		<article class="contentContainer">
@@ -19,8 +19,7 @@
 			<section class="formContainer">
 				<p><%=(request.getAttribute("errorMessage") == null ? "" : request.getAttribute("errorMessage")) %></p>
 				<form method="post" enctype="multipart/form-data">
-					<label>Username:</label> <input name="username" type="text"
-						 class="textEntry"  autocomplete="off"/><br /> <label>Password:</label>
+					<label>Username:</label> <input name="username" type="hidden" value="${account.username }"/><br /> <label>Password:</label>
 					<input name="password" type="password" class="textEntry" /><br /> <label>Confirm
 						Password:</label> <input name="confirmPassword" type="password"
 						class="textEntry" /><br /> <label>Email Address:</label> <input

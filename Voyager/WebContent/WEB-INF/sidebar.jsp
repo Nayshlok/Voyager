@@ -12,11 +12,10 @@
 				<a href="${pageContext.request.contextPath}/voyager/locations"
 					class="navLink">LOCATIONS</a>
 			</section>
-	
-			<hr />
 			
 			<c:choose>
 				<c:when test="${empty account}">
+					<hr />
 					<section class="menuBg">
 						<a href="${pageContext.request.contextPath}/voyager/register"
 						class="navLink">REGISTER</a>
@@ -29,6 +28,12 @@
 				</c:when>
 				
 				<c:otherwise>
+					<section class="menuBg">
+						<a href="${pageContext.request.contextPath}/voyager/new" class="navLink">New Locaiton</a>
+					</section>
+				
+					<hr />
+				
 					<section class="menuBg">
 						<a href="${pageContext.request.contextPath}/voyager/profile" class="navLink">PROFILE</a>
 					</section>

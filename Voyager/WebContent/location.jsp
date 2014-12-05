@@ -42,11 +42,9 @@
 
 				</section>
 			</section>
-			<%@ include file="/WEB-INF/comment.jsp" %> 
-			<%--<form method="GET" action="<%= request.getContextPath()%>/voyager/comment">
-				<input type="hidden" name="locationId" value="${location.id }" />
-				<input type="submit" value="Comment" />
-			</form>--%>
+			<c:if test="${not empty account}">
+				<%@ include file="/WEB-INF/comment.jsp" %>
+			</c:if> 
 		</article>
 	</article>
 </body>

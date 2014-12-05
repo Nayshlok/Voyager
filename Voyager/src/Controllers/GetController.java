@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import models.Account;
 import models.LocationModel;
 import models.ModelAndView;
+import models.Roles;
 import services.DataService;
 
 @Stateless
@@ -25,9 +26,15 @@ public class GetController {
 	}
 	
 	public ModelAndView getUserList(HttpServletRequest request){
-		List<Account> allUsers = dataService.getAllUsers();
-		request.setAttribute("userList", allUsers);
-		return new ModelAndView(allUsers, "/WEB-INF/Users.jsp");
+		ModelAndView mv = new ModelAndView(null, "/WEB-INF/Unauthorized.jsp");
+		if(request.getSession().getAttribute("account") != null){
+			if(((Account)request.getSession().getAttribute("account")).getRole() == Roles.Admin){
+				List<Account> allUsers = dataService.getAllUsers();
+				request.setAttribute("userList", allUsers);
+				mv = new ModelAndView(allUsers, "/WEB-INF/Users.jsp");
+			}
+		}
+		return mv;
 	}
 	
 	public ModelAndView beginLoginWorkflow() {
@@ -38,8 +45,15 @@ public class GetController {
 		return new ModelAndView(null, "/WEB-INF/register.jsp");
 	}
 	
-	public ModelAndView beginUpdateFlow(){
-		return new ModelAndView(null, "/update.jsp");
+	public ModelAndView beginUpdateFlow(HttpServletRequest request){
+		ModelAndView mv = null;
+		if(request.getSession().getAttribute("account") == null){
+			mv = new ModelAndView(null, "/WEB-INF/Unauthorized.jsp");
+		}
+		else{
+			mv = new ModelAndView(null, "/update.jsp");
+		}
+		return mv;
 	}
 	
 	public ModelAndView getHomePage() {
@@ -52,8 +66,15 @@ public class GetController {
 		return new ModelAndView(account, "/profile.jsp");
 	}
 	
-	public ModelAndView beginLocationSubmissionWorkflow() {
-		return new ModelAndView(null, "/submit.jsp");
+	public ModelAndView beginLocationSubmissionWorkflow(HttpServletRequest request) {
+		ModelAndView mv = null;
+		if(request.getSession().getAttribute("account") == null){
+			mv = new ModelAndView(null, "/WEB-INF/Unauthorized.jsp");
+		}
+		else{
+			mv = new ModelAndView(null, "/submit.jsp");
+		}
+		return mv;
 	}
 	
     public ModelAndView getSingleLocation(HttpServletRequest request, int id) {

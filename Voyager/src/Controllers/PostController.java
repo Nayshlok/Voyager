@@ -110,32 +110,39 @@ public class PostController {
 	}
 		
     public ModelAndView commitNewLocation(HttpServletRequest request) {
-        String placeName = "";
-        String locationString = "";
-        String history = "";
-        String imgPath = "";
-        
-        try{
-            placeName = this.getValue(request.getPart("placeName"));
-            locationString = this.getValue(request.getPart("location"));
-            history = this.getValue(request.getPart("history"));
-            imgPath = FileUploadController.getFileName(request.getPart("image"));
-        } catch (ServletException e1) {
-            e1.printStackTrace();
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        }
-        LocationModel location = null;
-        try {
-            location = new LocationModel(0, placeName, imgPath, locationString, history);
-            location = dataService.addLocation(location);
-            FileUploadController.processRequest(request);
-        } catch (ServletException e1) {
-            e1.printStackTrace();
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        }
-        return new ModelAndView(location, request.getContextPath() + "voyager/loc/" + location.getId(), true);
+		ModelAndView mv = null;
+		if(request.getSession().getAttribute("account") == null){
+			mv = new ModelAndView(null, "/WEB-INF/Unauthorized.jsp");
+		}
+		else{
+	        String placeName = "";
+	        String locationString = "";
+	        String history = "";
+	        String imgPath = "";
+	        
+	        try{
+	            placeName = this.getValue(request.getPart("placeName"));
+	            locationString = this.getValue(request.getPart("location"));
+	            history = this.getValue(request.getPart("history"));
+	            imgPath = FileUploadController.getFileName(request.getPart("image"));
+	        } catch (ServletException e1) {
+	            e1.printStackTrace();
+	        } catch (IOException e1) {
+	            e1.printStackTrace();
+	        }
+	        LocationModel location = null;
+	        try {
+	            location = new LocationModel(0, placeName, imgPath, locationString, history);
+	            location = dataService.addLocation(location);
+	            FileUploadController.processRequest(request);
+	        } catch (ServletException e1) {
+	            e1.printStackTrace();
+	        } catch (IOException e1) {
+	            e1.printStackTrace();
+	        }
+	        mv = new ModelAndView(location, request.getContextPath() + "voyager/loc/" + location.getId(), true);
+		}
+        return mv;
     }
 
 	public ModelAndView updateRole(HttpServletRequest request){
@@ -154,14 +161,18 @@ public class PostController {
 	}
 	
 	public ModelAndView postComment(HttpServletRequest request){
-		LocationModel location = dataService.getLocation(Integer.parseInt(request.getParameter("locationId")));
-		Account user = (Account)request.getSession().getAttribute("account");
-		String commentString = request.getParameter("comment");
-		CommentModel comment = new CommentModel(user, commentString, location);
-		location.addComment(comment);
-		user.addComment(comment);
-		dataService.saveComment(comment);
-		return new ModelAndView(comment, request.getContextPath() + "/voyager/loc/" + location.getId(), true);
+		try{
+			LocationModel location = dataService.getLocation(Integer.parseInt(request.getParameter("locationId")));
+			Account user = (Account)request.getSession().getAttribute("account");
+			String commentString = request.getParameter("comment");
+			CommentModel comment = new CommentModel(user, commentString, location);
+			location.addComment(comment);
+			user.addComment(comment);
+			dataService.saveComment(comment);
+			return new ModelAndView(comment, request.getContextPath() + "/voyager/loc/" + location.getId(), true);
+		} catch(NullPointerException ex){
+			return new ModelAndView(null, "/WEB-INF/Unauthorized.jsp");
+		}
 	}
 	
 	
