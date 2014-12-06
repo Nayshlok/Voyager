@@ -1,6 +1,8 @@
 package models;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -52,7 +54,7 @@ public class Account{
 	private Set<String> history;
 	
 	@OneToMany(fetch=FetchType.EAGER, cascade={CascadeType.REMOVE, CascadeType.PERSIST}, mappedBy="user")
-	private Set<LocationModel> locations;
+	private List<LocationModel> locations;
 	
 	@OneToMany(fetch=FetchType.EAGER, cascade={CascadeType.REMOVE, CascadeType.PERSIST}, mappedBy="user")
 	private Set<CommentModel> comments;
@@ -65,6 +67,7 @@ public class Account{
 		role = Roles.User;
 		history = new HashSet<>();
 		comments = new HashSet<>();
+		locations = new ArrayList<>();
 	}
 	
 	public Account(String UserName, String Email, String Avatar,Roles role, String password){

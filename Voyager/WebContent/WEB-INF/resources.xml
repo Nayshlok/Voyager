@@ -3,7 +3,7 @@
 	<Resource id="voyageDataSource" type="DataSource">
 	    JdbcDriver com.microsoft.sqlserver.jdbc.SQLServerDriver
 	    JdbcUrl jdbc:sqlserver://n8bu1j6855.database.windows.net:1433;database=VoyagerDB;selectMethod=cursor
-	    UserName dbadmin
-	    Password Arcan0sShalun
+	    UserName VoyageLogin
+	    Password GroupP@ssword
 	</Resource>
 </resources>

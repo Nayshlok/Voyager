@@ -1,6 +1,6 @@
 package models;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -50,17 +50,17 @@ public class LocationModel
 	private Account user;
 	
 	@OneToMany(fetch=FetchType.LAZY, cascade={CascadeType.REMOVE, CascadeType.PERSIST}, mappedBy="location")
-	private Set<AttractionModel> attractions;
+	private List<AttractionModel> attractions;
 	
 	@OneToMany(fetch=FetchType.EAGER, cascade={CascadeType.REMOVE, CascadeType.PERSIST}, mappedBy="location")
-	private Set<CommentModel> comments; 
+	private List<CommentModel> comments; 
 	
 	@Column
 	private String history;
 	
 	public LocationModel(){
-		comments = new HashSet<>();
-		attractions = new HashSet<>();
+		comments = new ArrayList<>();
+		attractions = new ArrayList<>();
 	}
 	
 	public LocationModel(int NumVisited, String Name, String Picture, String Location, String History)
@@ -109,10 +109,10 @@ public class LocationModel
 	}
 
 
-	public Set<AttractionModel> getAttractions() {
+	public List<AttractionModel> getAttractions() {
 		return attractions;
 	}
-	public void setAttractions(Set<AttractionModel> attractions) {
+	public void setAttractions(List<AttractionModel> attractions) {
 		this.attractions = attractions;
 	}
 	public void addAttraction(AttractionModel attraction){
@@ -133,11 +133,11 @@ public class LocationModel
 		this.id = id;
 	}
 
-	public Set<CommentModel> getComments() {
+	public List<CommentModel> getComments() {
 		return comments;
 	}
 
-	public void setComments(Set<CommentModel> comments) {
+	public void setComments(List<CommentModel> comments) {
 		this.comments = comments;
 	}
 	public void addComment(CommentModel comment){
