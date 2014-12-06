@@ -23,8 +23,7 @@
 		</section>
 
 		<article class="contentContainer">
-			<div id="wrapper">
-				<div id="columns">
+			<div id="columns">
 				<c:forEach var="loc" items="${location}">
 					<div class="pin">
 						<a href="${pageContext.request.contextPath}/voyager/loc/${loc.id}"><img src="${pageContext.request.contextPath}/voyager/image/${loc.picture}" /></a>
@@ -35,7 +34,6 @@
 						<br />
 					</div>
 				</c:forEach>
-				</div>
 			</div>
 		</article>
 	</article>

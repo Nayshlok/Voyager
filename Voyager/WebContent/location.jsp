@@ -22,26 +22,29 @@
 	<article class="mainContainer">
 		<section class="topContent">
 			<h1>${location.name}</h1>
+			<hr/>
+			<br/>
+			<img src="${pageContext.request.contextPath}/${location.picture}" alt="Location" class="locPic"/>
 			
-			<img src="${pageContext.request.contextPath}/${location.picture}" alt="avatar"/>
 		</section>
 
 		<article class="contentContainer">
 			<section class="postDetails">
 				<h3>${location.location}</h3>
-				${location.history}
-
-				<section class="commentsContainer">
+				<section class="history">${location.history}</section>
+			</section>
+			
+			
+			<h3 class="commentHeader">Recent Comments</h3>
+			<section class="commentsContainer">
 					<c:forEach var="comment" items="${location.comments}">
 						<section class="commentBox">
 						   	<p><a href="<%= request.getContextPath()%>/voyager/user/${comment.user.username}">${comment.user.username }</a></p>
+	        				<hr/>
 	        				<p><fmt:formatDate value="${comment.time }" type="BOTH"/></p>
 	        				<p>${comment.comment }</p>
 						</section>
 					</c:forEach>
-
-				</section>
-			</section>
 			<c:if test="${not empty account}">
 				<%@ include file="/WEB-INF/comment.jsp" %>
 			</c:if> 
