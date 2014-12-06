@@ -26,27 +26,28 @@
 				<hr />
 			</section>
 
-			<img src="${pageContext.request.contextPath}/ph.png" alt="avatar" />
+			<img src="${pageContext.request.contextPath}/voyager/images/${profileAccount.avatar}" alt="avatar" />
 			<br /> <br />
 			<section class="content">
 				<fmt:parseNumber var="localAccount" value="${profileAccount.userId }" />
 				<fmt:parseNumber var="loggedAccount" value="${account.userId }" />
 				<c:if test="${localAccount eq loggedAccount}">
-					<a href="${pageContext.request.contextPath}/voyager/update" id="wrench"> <i class="fa fa-wrench fa-2x"></i></a>
+					<a href="${pageContext.request.contextPath}/voyager/update" id="wrench"> <i class="fa fa-cog fa-3x" title="Account Settings"></i></a>
 				</c:if>
 			</section>
 		</section>
 
 
-		<h2>Recent Comments</h2>
+		<h3 class="commentHeader">Comments ${profileAccount.username}'s Made</h3>
 		<c:forEach var="comment" items="${profileAccount.comments }">
-			<p>${comment.location.name }</p>
-			<p>
-				<fmt:formatDate value="${comment.time }" type="BOTH" />
-			</p>
-			<p>${comment.comment }</p>
+			<section class="commentBox">
+				<p>${comment.location.name }</p>
+				<p>
+					<fmt:formatDate value="${comment.time }" type="BOTH" />
+				</p>
+				<p>${comment.comment }</p>
+			</section>
 		</c:forEach>
-		<hr class="div" />
 	</article>
 </body>
 </html>

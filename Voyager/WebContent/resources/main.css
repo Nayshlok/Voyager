@@ -408,7 +408,9 @@ td {
 #wrench {
 	color: rgb(30,146,180);
 	text-decoration: none;
-	float: right;
+	position: relative;
+	bottom: 0;
+	right: 0;
 }
 
 .locPic {
