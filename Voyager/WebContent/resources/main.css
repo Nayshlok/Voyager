@@ -58,7 +58,7 @@ h1 {
    font-size: 65px;
     text-shadow: 0px 0px 10px #000;
     color: #2db0d6;
-    font-family: "open";
+    font-family: "open", "Tahoma", Helvetica, sans-serif;
     font-weight: 100;
     letter-spacing: 3px;
 }
@@ -253,7 +253,7 @@ h3.author {
 }
 .navLink {
     padding: 10px 30px;
-    font-family: "main", "Arial Black", Helvetica, sans-serif;
+    font-family: "main", "Tahoma", Helvetica, sans-serif;
     font-size: 22px;
     color: #FFF;
     display: block;
@@ -362,7 +362,7 @@ label {
 
 .pin p {
     margin-top: 15px;
-	font: 13px/18px "open", sans-serif;
+	font: 13px/18px "open", "Tahoma", Helvetica, sans-serif;
 	color: #fff;
 	margin-bottom: 15px;
 }
@@ -394,10 +394,59 @@ td {
 	bottom: 0;
 	right: 0;
 }
+#navSearch::-webkit-input-placeholder {
+    color: #FFF;
+}
+#navSearch#search:-moz-placeholder {
+    /* Firefox 18- */
+    color: #FFF;
+}
+#navSearch::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #FFF;
+}
+#navSearch:-ms-input-placeholder {
+    color: #FFF;
+}
+#leftSubmit {
+	position: relative;
+    top: 16px;
+    left: 85px;
+    margin-left: 15px;
+    z-index: 2;
+    color: #FFF;
+    height: 30px;
+    background: transparent;
+    width: 35px;
+    border: none;
+}
 
+#leftIcon {
+	position: relative;
+    top: 16px;
+    left: 76%;
+    margin-left: 15px;
+    z-index: 1;
+    color: #FFF;
+    height: 30px;
+    background: transparent;
+    border: none;
+}
 .locPic {
-	width: 400px;
-	height: 400px;
+	width: 300px;
+	height: 300px;
+}
+
+#navSearch {
+	color: #FFF;
+	position: absolute;
+	width: 96%;
+	left: -15px;
+	margin: 15px;
+	background: rgb(30,146,180);
+	padding: 8px 3px;
+	border: none;
+	z-index: 0;
 }
 
 .t-Header {

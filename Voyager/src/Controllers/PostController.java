@@ -110,7 +110,7 @@ public class PostController {
 					updatingUser.setEmail(email);
 				}
 				if(!password.isEmpty()){
-					updatingUser.setPassword(password);
+					updatingUser.setPassword(pwEncoder.encode(password));
 				}
 				if(!avatarPath.isEmpty()){
 					updatingUser.setAvatar(avatarPath);
