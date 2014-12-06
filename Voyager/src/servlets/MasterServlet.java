@@ -7,8 +7,6 @@ import java.util.regex.Pattern;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -18,8 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import models.ModelAndView;
 import models.RegisterUserModel;
-import services.DataService;
-import sun.swing.FilePane;
 import Controllers.GetController;
 import Controllers.PostController;
 
