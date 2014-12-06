@@ -19,6 +19,7 @@ import models.LocationModel;
 import models.ModelAndView;
 import models.RegisterUserModel;
 import models.Roles;
+import security.PasswordEncoder;
 import services.DataService;
 
 @Stateless
@@ -26,6 +27,7 @@ import services.DataService;
 public class PostController {
 
 	@Inject DataService dataService;
+	@Inject PasswordEncoder pwEncoder;
 	
 	public ModelAndView commitUserLogin(HttpServletRequest request) {
 		String username = request.getParameter("username");
@@ -34,7 +36,7 @@ public class PostController {
 		RegisterUserModel model = new RegisterUserModel();
 		
 		try {
-			Account account = dataService.login(username, password);
+			Account account = dataService.login(username, pwEncoder.encode(password));
 			if(account != null) {
 				System.out.println("Logged in");
 				model.setUser(account);
@@ -85,7 +87,8 @@ public class PostController {
 			mv = new ModelAndView("Emails did not match. ", "/WEB-INF/register.jsp");
 		}
 		try {
-			Account user = new Account(username, email, avatarPath, Roles.User, password);
+			
+			Account user = new Account(username, email, avatarPath, Roles.User, pwEncoder.encode(password));
 			if(newUser){
 				dataService.registerUser(user);
 				FileUploadController.processRequest(request, filePath);

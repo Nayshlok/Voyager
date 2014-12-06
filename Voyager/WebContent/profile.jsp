@@ -26,7 +26,7 @@
 				<hr />
 			</section>
 
-			<img src="${pageContext.request.contextPath}/voyager/image/${profileAccount.avatar}" alt="avatar" />
+			<img src="${pageContext.request.contextPath}/voyager/image/${profileAccount.avatar}" alt="avatar" class="avatar"/>
 			<br /> <br />
 			<section class="content">
 				<fmt:parseNumber var="localAccount" value="${profileAccount.userId }" />
