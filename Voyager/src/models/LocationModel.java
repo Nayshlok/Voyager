@@ -45,6 +45,10 @@ public class LocationModel
 	@Column
 	private String location;
 	
+	@ManyToOne
+	@Column
+	private Account user;
+	
 	@OneToMany(fetch=FetchType.LAZY, cascade={CascadeType.REMOVE, CascadeType.PERSIST}, mappedBy="location")
 	private Set<AttractionModel> attractions;
 	
@@ -56,18 +60,23 @@ public class LocationModel
 	
 	public LocationModel(){
 		comments = new HashSet<>();
-		attractions = new HashSet();
+		attractions = new HashSet<>();
 	}
 	
 	public LocationModel(int NumVisited, String Name, String Picture, String Location, String History)
 	{
+		this(NumVisited, Name, Picture, Location, History, null);
+	}
+		
+	public LocationModel(int NumVisited, String Name, String Picture, String Location, String History, Account user){
 		this.setNumVisited(NumVisited);
 		this.setName(Name);
 		this.setPicture(Picture);
 		this.setLocation(Location);
 		this.setHistory(History);
+		this.setUser(user);
 	}
-	
+
 	public int getNumVisited() {
 		return numVisited;
 	}
@@ -133,6 +142,14 @@ public class LocationModel
 	}
 	public void addComment(CommentModel comment){
 		this.comments.add(comment);
+	}
+
+	public Account getUser() {
+		return user;
+	}
+
+	public void setUser(Account user) {
+		this.user = user;
 	}
 	
 }

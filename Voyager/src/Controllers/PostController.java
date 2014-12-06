@@ -84,26 +84,40 @@ public class PostController {
 			request.setAttribute("attemptedAccount", new Account(username, email, avatarPath, Roles.User, password));
 			mv = new ModelAndView("Emails did not match. ", "/WEB-INF/register.jsp");
 		}
+		if(!avatarPath.isEmpty()){
+			try {
+				FileUploadController.processRequest(request, filePath);
+			} catch (ServletException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		try {
 			Account user = new Account(username, email, avatarPath, Roles.User, password);
 			if(newUser){
 				dataService.registerUser(user);
-				FileUploadController.processRequest(request, filePath);
 				request.getSession().setAttribute("account", dataService.getUser(user.getUsername()));
 			}
 			else{
-				user.setUserId(dataService.getUserId(user.getUsername()));
-				dataService.updateUser(user);
+				Account updatingUser = dataService.getUser(user.getUsername());
+				if(!email.isEmpty()){
+					updatingUser.setEmail(email);
+				}
+				if(!password.isEmpty()){
+					updatingUser.setPassword(password);
+				}
+				if(!avatarPath.isEmpty()){
+					updatingUser.setAvatar(avatarPath);
+				}
 			}
 			model.setUser(user);
 			mv = new ModelAndView(model, "/voyager/user/" + user.getUsername());
 		} catch(UsernameAlreadyExistsException e) {
 			request.setAttribute("attemptedAccount", new Account(username, email, avatarPath, Roles.User, password));
 			mv = new ModelAndView("Username has already been used.", "/WEB-INF/register.jsp");
-		} catch (ServletException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 		
 		return mv;
@@ -120,6 +134,7 @@ public class PostController {
 	        String history = "";
 	        String imgPath = "";
 	        
+	        Account account = (Account)request.getSession().getAttribute("account");
 	        try{
 	            placeName = this.getValue(request.getPart("placeName"));
 	            locationString = this.getValue(request.getPart("location"));
@@ -132,7 +147,8 @@ public class PostController {
 	        }
 	        LocationModel location = null;
 	        try {
-	            location = new LocationModel(0, placeName, imgPath, locationString, history);
+	            location = new LocationModel(0, placeName, imgPath, locationString, history, account);
+	            account.addLocation(location);
 	            location = dataService.addLocation(location);
 	            FileUploadController.processRequest(request, filePath);
 	        } catch (ServletException e1) {

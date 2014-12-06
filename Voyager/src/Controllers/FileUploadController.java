@@ -17,10 +17,12 @@ public class FileUploadController {
 	        throws ServletException, IOException {
 
 	    // Create path components to save the file
-	    final String path = filePath;
+	    final String path = filePath + "/resources/images/";
 	    final Part filePart = request.getPart("image");
 	    final String fileName = getFileName(filePart);
 
+	    System.out.println(filePath);
+	    
 	    OutputStream out = null;
 	    InputStream filecontent = null;
 

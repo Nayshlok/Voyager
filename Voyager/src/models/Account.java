@@ -52,6 +52,9 @@ public class Account{
 	private Set<String> history;
 	
 	@OneToMany(fetch=FetchType.EAGER, cascade={CascadeType.REMOVE, CascadeType.PERSIST}, mappedBy="user")
+	private Set<LocationModel> locations;
+	
+	@OneToMany(fetch=FetchType.EAGER, cascade={CascadeType.REMOVE, CascadeType.PERSIST}, mappedBy="user")
 	private Set<CommentModel> comments;
 
 	public Account(){
@@ -134,4 +137,16 @@ public class Account{
 		this.userId = userId;
 	}
 
+	public Set<LocationModel> getLocations() {
+		return locations;
+	}
+
+	public void setLocations(Set<LocationModel> locations) {
+		this.locations = locations;
+	}
+	public void addLocation(LocationModel location){
+		this.locations.add(location);
+	}
+	
+	
 }
