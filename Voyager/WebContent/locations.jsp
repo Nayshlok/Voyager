@@ -26,8 +26,7 @@
 			<div id="columns">
 				<c:forEach var="loc" items="${location}">
 					<div class="pin">
-						<a href="${pageContext.request.contextPath}/voyager/loc/${loc.id}"><img
-							src="${pageContext.request.contextPath}/${loc.picture}" /></a>
+						<a href="${pageContext.request.contextPath}/voyager/loc/${loc.id}"><img src="${pageContext.request.contextPath}/voyager/image/${loc.picture}" /></a>
 						<hr />
 						<h3>${loc.location}</h3>
 						<h2 class="title">${loc.name}</h2>

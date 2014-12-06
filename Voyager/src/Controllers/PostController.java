@@ -52,7 +52,7 @@ public class PostController {
 
 	}
 
-	public ModelAndView commitUserRegisterUser(HttpServletRequest request, boolean newUser) {
+	public ModelAndView commitUserRegisterUser(HttpServletRequest request, boolean newUser, String filePath) {
 		String username = "";
 		String password = "";
 		String confirmPassword = "";
@@ -88,7 +88,7 @@ public class PostController {
 			Account user = new Account(username, email, avatarPath, Roles.User, password);
 			if(newUser){
 				dataService.registerUser(user);
-				FileUploadController.processRequest(request);
+				FileUploadController.processRequest(request, filePath);
 				request.getSession().setAttribute("account", dataService.getUser(user.getUsername()));
 			}
 			else{
@@ -109,7 +109,7 @@ public class PostController {
 		return mv;
 	}
 		
-    public ModelAndView commitNewLocation(HttpServletRequest request) {
+    public ModelAndView commitNewLocation(HttpServletRequest request, String filePath) {
 		ModelAndView mv = null;
 		if(request.getSession().getAttribute("account") == null){
 			mv = new ModelAndView(null, "/WEB-INF/Unauthorized.jsp");
@@ -134,7 +134,7 @@ public class PostController {
 	        try {
 	            location = new LocationModel(0, placeName, imgPath, locationString, history);
 	            location = dataService.addLocation(location);
-	            FileUploadController.processRequest(request);
+	            FileUploadController.processRequest(request, filePath);
 	        } catch (ServletException e1) {
 	            e1.printStackTrace();
 	        } catch (IOException e1) {

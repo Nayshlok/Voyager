@@ -27,7 +27,7 @@
                     <label>Location:</label>
                     <input name="location" type="text" placeholder="Ex: Amarillo, Texas; Boonies, OK" class="textEntry" required /><br/>
                     <label>Description:</label>
-                    <input name="history" type="textarea" class="textarea" required/><br/>
+                    <textarea name="history" class="textarea" required></textarea><br/>
                     <label>Display Image:</label>
                     <input name="image" type="file" class="custom-file-input"/><br/>
                     <input type="submit" value="Submit" id="submit" />

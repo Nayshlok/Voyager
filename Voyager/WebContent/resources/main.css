@@ -313,13 +313,12 @@ label {
 
 #submit:hover {
     cursor: pointer;
-/*    background-color: rgb(33,160,197);*/
+   background-color: rgb(33,160,197);
 }
 .custom-file-input {
 	visibility: hidden;
 	width: 0;
 	position: relative;
-    
     margin-bottom: 15px;
 }
 .custom-file-input::before {

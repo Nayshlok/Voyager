@@ -105,7 +105,6 @@ public class GetController {
         model = new ModelAndView(loc, "/locations.jsp");
         return model;
     }
-
 	
 	public ModelAndView getCommentForm(HttpServletRequest request){
 		ModelAndView mv = null;
@@ -117,5 +116,11 @@ public class GetController {
 			mv = new ModelAndView(null, "/WEB-INF/comment.jsp");
 		}
 		return mv;
-	}	
+	}
+	
+	public ModelAndView getImage(String imagePath){
+		ModelAndView mv = null;
+		mv = new ModelAndView(null, "/resources/images/" + imagePath);
+		return mv;
+	}
 }
