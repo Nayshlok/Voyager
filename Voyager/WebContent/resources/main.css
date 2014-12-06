@@ -108,7 +108,7 @@ h1 {
     background: rgba(0, 0, 0, 0.8);
 }
 
-.topContent img {
+.avatar {
     width: 125px;
     height: 125px;
     border-radius: 50%;
@@ -316,25 +316,7 @@ label {
    background-color: rgb(33,160,197);
 }
 .custom-file-input {
-	visibility: hidden;
-	width: 0;
-	position: relative;
-    margin-bottom: 15px;
-}
-.custom-file-input::before {
-	content: 'Upload File';
-	display: inline-block;
-	background-color: rgb(30,146,180);
-	border: none;
-	padding: 10px;
-	outline: none;
-	white-space: nowrap;
-	-webkit-user-select: none;
-	cursor: pointer;
-	font-size: 12px;
-	color: #edebe8;
-	visibility: visible;
-	position: absolute;
+	color: #FFF;
 }
 
 #columns {
@@ -431,13 +413,6 @@ td input {
 	border: none;
 	font-size: 15px;
 }
-@media (max-width: 960px) {
-	#columns {
-		-webkit-column-count: 3;
-		-moz-column-count: 3;
-		column-count: 3;
-	}
-}
 
 @media (min-width: 1100px) {
 	#columns {
@@ -447,9 +422,19 @@ td input {
 	}
 }
 
-@media screen and (max-width: 960px) {    
+@media screen and (max-width: 960px) {   
+	.topContent {
+		width: 702px; 
+		margin: 0;
+	}
     .mainContainer {
-        margin-left: 11%;
-        width: 530px;
+        padding-left: 18.8%;
+        width: 600px;
+        padding-right: 0;
+        margin: 0;
+    }
+    
+    .pin {
+    	width: 215px;
     }
 }

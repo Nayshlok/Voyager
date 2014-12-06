@@ -35,14 +35,9 @@
 					<hr />
 				
 					<section class="menuBg">
-						<a href="${pageContext.request.contextPath}/voyager/profile" class="navLink">PROFILE</a>
+						<a href="${pageContext.request.contextPath}/voyager/user/${account.username}" class="navLink">PROFILE</a>
 					</section>
 			
-					<section class="menuBg">
-						<a href="${pageContext.request.contextPath}/voyager/new"
-							class="navLink">SUBMIT</a>
-					</section>
-					
 					<section class="menuBg">
 						<a href="${pageContext.request.contextPath}/voyager/logout"
 							class="navLink">LOGOUT</a>
