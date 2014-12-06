@@ -29,7 +29,7 @@
 				
 				<c:otherwise>
 					<section class="menuBg">
-						<a href="${pageContext.request.contextPath}/voyager/new" class="navLink">New Locaiton</a>
+						<a href="${pageContext.request.contextPath}/voyager/new" class="navLink">NEW LOCATION</a>
 					</section>
 				
 					<hr />

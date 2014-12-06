@@ -267,28 +267,28 @@ label {
     cursor: pointer;
 /*    background-color: rgb(33,160,197);*/
 }
-.custom-file-input {
-	visibility: hidden;
-	width: 0;
-	position: relative;
+/* .custom-file-input { */
+/* 	visibility: hidden; */
+/* 	width: 0; */
+/* 	position: relative; */
     
-    margin-bottom: 15px;
-}
-.custom-file-input::before {
-	content: 'Upload File';
-	display: inline-block;
-	background-color: rgb(30,146,180);
-	border: none;
-	padding: 10px;
-	outline: none;
-	white-space: nowrap;
-	-webkit-user-select: none;
-	cursor: pointer;
-	font-size: 12px;
-	color: #edebe8;
-	visibility: visible;
-	position: absolute;
-}
+/*     margin-bottom: 15px; */
+/* } */
+/* .custom-file-input::before { */
+/* 	content: 'Upload File'; */
+/* 	display: inline-block; */
+/* 	background-color: rgb(30,146,180); */
+/* 	border: none; */
+/* 	padding: 10px; */
+/* 	outline: none; */
+/* 	white-space: nowrap; */
+/* 	-webkit-user-select: none; */
+/* 	cursor: pointer; */
+/* 	font-size: 12px; */
+/* 	color: #edebe8; */
+/* 	visibility: visible; */
+/* 	position: absolute; */
+/* } */
 #wrapper {
 	width: 90%;
 	max-width: 1100px;
