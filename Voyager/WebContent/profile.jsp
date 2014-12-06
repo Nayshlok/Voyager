@@ -26,10 +26,15 @@
 				<hr />
 			</section>
 
-
 			<img src="${pageContext.request.contextPath}/ph.png" alt="avatar" />
 			<br /> <br />
-			<section class="content"></section>
+			<section class="content">
+				<fmt:parseNumber var="localAccount" value="${profileAccount.userId }" />
+				<fmt:parseNumber var="loggedAccount" value="${account.userId }" />
+				<c:if test="${localAccount eq loggedAccount}">
+					<a href="${pageContext.request.contextPath}/voyager/update" id="wrench"> <i class="fa fa-wrench fa-2x"></i></a>
+				</c:if>
+			</section>
 		</section>
 
 
@@ -42,15 +47,6 @@
 			<p>${comment.comment }</p>
 		</c:forEach>
 		<hr class="div" />
-		<fmt:parseNumber var="localAccount" value="${profileAccount.userId }" />
-		<fmt:parseNumber var="loggedAccount" value="${account.userId }" />
-		<c:if test="${localAccount eq loggedAccount}">
-			<a href="${pageContext.request.contextPath}/voyager/update">
-				<button type="button">Update</button>
-			</a>
-		</c:if>
-	</article>
-
 	</article>
 </body>
 </html>
