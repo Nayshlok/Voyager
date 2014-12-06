@@ -41,7 +41,7 @@
 		<h3 class="commentHeader">Comments ${profileAccount.username}'s Made</h3>
 		<c:forEach var="comment" items="${profileAccount.comments }">
 			<section class="commentBox">
-				<p>${comment.location.name }</p>
+				<p><a href="<%= request.getContextPath()%>/voyager/loc/${comment.location.id}">${comment.location.name }</a></p>
 				<p>
 					<fmt:formatDate value="${comment.time }" type="BOTH" />
 				</p>

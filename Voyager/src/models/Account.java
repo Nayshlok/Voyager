@@ -140,11 +140,11 @@ public class Account{
 		this.userId = userId;
 	}
 
-	public Set<LocationModel> getLocations() {
+	public List<LocationModel> getLocations() {
 		return locations;
 	}
 
-	public void setLocations(Set<LocationModel> locations) {
+	public void setLocations(List<LocationModel> locations) {
 		this.locations = locations;
 	}
 	public void addLocation(LocationModel location){
