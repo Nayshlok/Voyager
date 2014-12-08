@@ -2,12 +2,13 @@
 
 <section id="sideContainer">
 	<i class="fa fa-compass fa-5x compass"></i>
-	
-	<form class="container-1" action="${pageContext.request.contextPath}/voyager/search" method="get">
-					<span class="icon"><i class="fa fa-search fa-1x" id="leftIcon"></i></span>
-					<input type="search" name="search" id="navSearch" placeholder="Search..." autocomplete="off" /> <input
-						type="submit" id="leftSubmit" value="" />
-				</form>
+
+	<form action="${pageContext.request.contextPath}/voyager/search"
+		method="get" class="sideForm">
+		<input type="search" name="search" id="navSearch"
+			placeholder="Search..." autocomplete="off" /> <input type="submit"
+			id="leftSubmit" value="Go!" />
+	</form>
 	<nav>
 		<menu>
 			<section class="menuBg">

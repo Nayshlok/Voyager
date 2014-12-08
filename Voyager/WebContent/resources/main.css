@@ -57,7 +57,7 @@ li {
 h1 {
    font-size: 65px;
     text-shadow: 0px 0px 10px #000;
-    color: #2db0d6;
+    color: rgb(45,176,214);
     font-family: "open", "Tahoma", Helvetica, sans-serif;
     font-weight: 100;
     letter-spacing: 3px;
@@ -109,15 +109,15 @@ h1 {
 }
 
 .avatar {
-    max-width: 125px;
-    max-height: 125px;
+	width: 125px;
+    height: 125px;
     border-radius: 50%;
     box-shadow: 0px 1px 15px #000;
     vertical-align: middle;
 }
 
 .compass {
-    color: rgb(30,146,180);
+    color: rgb(45,176,214);
     position: relative;
     top: 15px;
     left: 28%;
@@ -133,10 +133,10 @@ a:visited {
 hr {
     border: 0;
     height: 1px;
-    background-image: -webkit-linear-gradient(left, rgba(30,146,180, 0), rgba(30,146,180, 1), rgba(30,146,180, 0)); 
-    background-image:    -moz-linear-gradient(left, rgba(30,146,180, 0), rgba(30,146,180, 1), rgba(30,146,180, 0));  
-    background-image:     -ms-linear-gradient(left, rgba(30,146,180, 0), rgba(30,146,180, 1), rgba(30,146,180, 0)); 
-    background-image:      -o-linear-gradient(left, rgba(30,146,180, 0), rgba(30,146,180, 1), rgba(30,146,180, 0)); 
+    background-image: -webkit-linear-gradient(left, rgba(45,176,214, 0), rgba(45,176,214, 1), rgba(45,176,214, 0)); 
+    background-image:    -moz-linear-gradient(left, rgba(45,176,214, 0), rgba(45,176,214, 1), rgba(45,176,214, 0));  
+    background-image:     -ms-linear-gradient(left, rgba(45,176,214, 0), rgba(45,176,214, 1), rgba(45,176,214, 0)); 
+    background-image:      -o-linear-gradient(left, rgba(45,176,214, 0), rgba(45,176,214, 1), rgba(45,176,214, 0)); 
     width: 85%;
     margin: 3px auto;
 }
@@ -161,7 +161,7 @@ hr {
 	text-transform: uppercase;
 }
 .postDetails {
-	background-color: rgba(30,146,180, 0.75);
+	background-color: rgba(45,176,214, 0.75);
 	box-shadow: 0px 0px 1px #000;
 	border-radius: 1px;
 	color: #FFF;
@@ -180,7 +180,7 @@ hr {
 
 .commentHeader {
 	font-size: 22px;
-	color: #000;
+	color: rgba(45,176,214, 1);
 	font-weight: 700;
 }
 
@@ -195,16 +195,16 @@ hr {
 .commentBox hr {
 	border: 0;
     height: 1px;
-    background-image: -webkit-linear-gradient(left, rgba(30,146,180, 1), rgba(30,146,180, 1), rgba(30,146,180, 0)); 
-    background-image:    -moz-linear-gradient(left, rgba(30,146,180, 1), rgba(30,146,180, 1), rgba(30,146,180, 0)); 
-    background-image:     -ms-linear-gradient(left, rgba(30,146,180, 1), rgba(30,146,180, 1), rgba(30,146,180, 0)); 
-    background-image:      -o-linear-gradient(left, rgba(30,146,180, 1), rgba(30,146,180, 1), rgba(30,146,180, 0)); 
+    background-image: -webkit-linear-gradient(left, rgba(45,176,214, 1), rgba(45,176,214, 1), rgba(30,146,180, 0)); 
+    background-image:    -moz-linear-gradient(left, rgba(45,176,214, 1), rgba(45,176,214, 1), rgba(30,146,180, 0)); 
+    background-image:     -ms-linear-gradient(left, rgba(45,176,214, 1), rgba(45,176,214, 1), rgba(30,146,180, 0)); 
+    background-image:      -o-linear-gradient(left, rgba(45,176,214, 1), rgba(45,176,214, 1), rgba(30,146,180, 0)); 
     width: 70%;
     margin: 10px 0;
 }
 .commentBox a{
 	text-decoration: none;
-	color: rgba(30,146,180, 1);
+	color: rgb(45,176,214);
 }
 cite {
     float: right;
@@ -259,7 +259,7 @@ h3.author {
     display: block;
 }
 menu {
-    padding-top: 20px;
+    padding-top: 10px;
     margin: 0 auto;
 }
 footer {
@@ -283,9 +283,14 @@ form {
 label {
     display: block;
     letter-spacing: 1px;
-    font-size: 20px;
-    color: #fff;
-    text-shadow: 0px 0px 10px #000;
+    font-size: 17px;
+    color: rgb(45,176,214);
+    background: rgba(0, 0, 0, 0.8);
+    border-bottom: 1px solid rgb(45,176,214);
+    padding: 10px;
+    width: 38.2%;
+        box-shadow: 0px 0px 10px #222;
+    
 }
 
 .textEntry {
@@ -305,7 +310,7 @@ label {
 #submit {
     width: 15%;
     padding: 15px 0px;
-    background-color: rgb(30,146,180);
+    background-color: rgb(45,176,214);
     color: #FFF;
     border: none;
     margin: 15px 0;
@@ -329,6 +334,22 @@ label {
 	height: 100%;
 }
 
+.locBox {
+	border-radius: 2px;
+	display: inline-block;
+	background-color: rgba(45,176,214,0.75);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+	margin: 0 2px 15px;
+	padding: 15px;
+	padding-bottom: 5px;
+	max-height: 300px;
+	width: 235px;
+	-webkit-transition: all .35s ease;
+	-moz-transition: all .35s ease;
+	-o-transition: all .35s ease;
+	transition: all .35s ease;
+	vertical-align: top;
+}
 .pin {
 	border-radius: 2px;
 	display: inline-block;
@@ -388,7 +409,7 @@ td {
 	
 }
 #wrench {
-	color: rgb(30,146,180);
+	color: rgb(45,176,214);
 	text-decoration: none;
 	position: relative;
 	bottom: 0;
@@ -410,55 +431,61 @@ td {
 }
 #leftSubmit {
 	position: relative;
-    top: 16px;
-    left: 85px;
+	padding: 5px;
+    top: 15px;
+    left: 120px;
     margin-left: 15px;
     z-index: 2;
     color: #FFF;
-    height: 30px;
-    background: transparent;
+    height: 31px;
+    background: rgb;
     width: 35px;
     border: none;
-}
-
-#leftIcon {
-	position: relative;
-    top: 16px;
-    left: 76%;
-    margin-left: 15px;
-    z-index: 1;
+    background: #144778;
     color: #FFF;
-    height: 30px;
-    background: transparent;
-    border: none;
-}
-.locPic {
-	width: 300px;
-	height: 300px;
+    font-family: "open", "Tahoma", Helvetica, sans-serif;
 }
 
+.postedLocations {
+	width: 820px;
+	margin: 0 auto;
+}
+
+.locPic {
+	max-height: 300px;
+}
+textarea {
+    resize: none;
+    width: 39.38%;
+    font-family: "open", "Tahoma", Helvetica, sans-serif;
+}
 #navSearch {
+	font-family: "open", "Tahoma", Helvetica, sans-serif;
 	color: #FFF;
 	position: absolute;
-	width: 96%;
 	left: -15px;
 	margin: 15px;
-	background: rgb(30,146,180);
-	padding: 8px 3px;
+	background: rgb(45,176,214);
+	padding: 6px 3px;
 	border: none;
 	z-index: 0;
+	width: 85%;
 }
 
+.sideForm {
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
 .t-Header {
 	font-size: 20px;
-	color: rgb(30,146,180);
+	color: rgb(45,176,214);
 	font-weight: 100;
 }
 
 td input {
 	vertical-align: middle;
 	background: transparent;
-	color: rgb(30,146,180);
+	color: rgb(45,176,214);
 	text-transform: capitalize;
 	border: none;
 	font-size: 15px;
@@ -482,6 +509,25 @@ td input {
         width: 600px;
         padding-right: 0;
         margin: 0;
+    }
+    .postedLocations {
+    	width: 620px; 
+    	margin-left: 13%;
+    
+    }
+    .locBox {
+    	width: 160px;
+    }
+    
+    .locBox  h2{
+    	font-size: 22px;
+    }
+    label{
+    	width: 75%;
+    }
+    
+    .textEntry {
+    	width: 68.2%;
     }
     
     .pin {

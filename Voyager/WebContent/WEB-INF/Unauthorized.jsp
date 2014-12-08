@@ -13,7 +13,7 @@
 
 <article class="mainContainer">
 	<section class="topContent">
-		<h1 class="error">You're account does not have the authority for that page.</h1>
+		<h1 class="error">Your account does not have the authority for that page.</h1>
 	</section>
 </article>
 </body>

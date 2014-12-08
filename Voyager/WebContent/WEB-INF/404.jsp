@@ -14,8 +14,7 @@
 
     <article class="mainContainer">
         <section class="topContent">
-            <h1 class="error">!404<br/>
-            Uh Oh! We couldn't find what you were looking for!</h1>
+            <h1 class="error">We Couldn't Find What You Were Looking For!</h1>
         </section>
     </article>
 </body>

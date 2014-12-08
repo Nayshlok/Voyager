@@ -159,7 +159,7 @@ public class PostController {
 	        } catch (IOException e1) {
 	            e1.printStackTrace();
 	        }
-	        mv = new ModelAndView(location, request.getContextPath() + "voyager/loc/" + location.getId(), true);
+	        mv = new ModelAndView(location, request.getContextPath() + "/voyager/loc/" + location.getId(), true);
 		}
         return mv;
     }

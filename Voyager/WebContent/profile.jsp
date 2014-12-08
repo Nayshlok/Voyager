@@ -26,28 +26,56 @@
 				<hr />
 			</section>
 
-			<img src="${pageContext.request.contextPath}/voyager/image/${profileAccount.avatar}" alt="avatar" class="avatar"/>
-			<br /> <br />
+			<img
+				src="${pageContext.request.contextPath}/voyager/image/${profileAccount.avatar}"
+				alt="avatar" class="avatar" /> <br /> <br />
 			<section class="content">
-				<fmt:parseNumber var="localAccount" value="${profileAccount.userId }" />
+				<fmt:parseNumber var="localAccount"
+					value="${profileAccount.userId }" />
 				<fmt:parseNumber var="loggedAccount" value="${account.userId }" />
 				<c:if test="${localAccount eq loggedAccount}">
-					<a href="${pageContext.request.contextPath}/voyager/update" id="wrench"> <i class="fa fa-cog fa-3x" title="Account Settings"></i></a>
+					<a href="${pageContext.request.contextPath}/voyager/update"
+						id="wrench"> <i class="fa fa-cog fa-3x"
+						title="Account Settings"></i></a>
 				</c:if>
 			</section>
 		</section>
 
 
-		<h3 class="commentHeader">Comments ${profileAccount.username}'s Made</h3>
-		<c:forEach var="comment" items="${profileAccount.comments }">
-			<section class="commentBox">
-				<p><a href="<%= request.getContextPath()%>/voyager/loc/${comment.location.id}">${comment.location.name }</a></p>
-				<p>
-					<fmt:formatDate value="${comment.time }" type="BOTH" />
-				</p>
-				<p>${comment.comment }</p>
+		<article class="contentContainer">
+
+			<section class="postedLocations">
+				<h3 class="commentHeader">${profileAccount.username}'s Visited
+					Places</h3>
+				<c:forEach var="loc" items="${profileAccount.locations}" end="2">
+					<section class="locBox">
+						<a href="<%= request.getContextPath()%>/voyager/loc/${loc.id}"><img
+							src="<%= request.getContextPath()%>/voyager/loc/${loc.picture}"
+							class="locImg" />
+						<h2>
+							${loc.name}</a>
+						</h2>
+						<p>${loc.location }</p>
+					</section>
+				</c:forEach>
 			</section>
-		</c:forEach>
+
+<hr class="div"/>
+			<h3 class="commentHeader">Comments ${profileAccount.username}'s
+				Made</h3>
+			<c:forEach var="comment" items="${profileAccount.comments }">
+				<section class="commentBox">
+					<p>
+						<a
+							href="<%= request.getContextPath()%>/voyager/loc/${comment.location.id}">${comment.location.name }</a>
+					</p>
+					<p>
+						<fmt:formatDate value="${comment.time }" type="BOTH" />
+					</p>
+					<p>${comment.comment }</p>
+				</section>
+			</c:forEach>
+		</article>
 	</article>
 </body>
 </html>

@@ -23,11 +23,11 @@
                 
                 <form method="post" enctype="multipart/form-data">
                 	<label>Name:</label>
-                	<input name="placeName" type="text" class="textEntry" required/>
+                	<input name="placeName" type="text" class="textEntry" required/><br/>
                     <label>Location:</label>
                     <input name="location" type="text" placeholder="Ex: Amarillo, Texas; Boonies, OK" class="textEntry" required /><br/>
                     <label>Description:</label>
-                    <textarea name="history" class="textarea" required></textarea><br/>
+                    <textarea name="history" required></textarea><br/>
                     <label>Display Image:</label>
                     <input name="image" type="file" class="custom-file-input"/><br/>
                     <input type="submit" value="Submit" id="submit" />
